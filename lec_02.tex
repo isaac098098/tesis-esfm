@@ -1,0 +1,298 @@
+%%% Preliminares
+\newpage
+\pagenumbering{arabic}
+\section{El teorema fundamental de la aritmética}
+
+\subsection{Algoritmo de la división}
+
+\begin{definition}
+Sean $a,b\in \mathbb{Z}$. Decimos que $a$ divide a $b$, o que $a$ es factor de $b$, o que $b$ es múltiplo de $a$, si existe $q\in \mathbb{Z}$ tal que $b=aq$.
+\end{definition}
+\textsc{Notación}. Utilizaremos la expresión $a\mid b$ para indicar que $a$ divide a $b$. La notación $a\centernot\mid b$ significa que $a$ no divide a $b$.
+
+\begin{proposition}
+\label{prop:prop1}Las siguientes propiedades de divisibilidad serán ocasionalmente útiles:
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+	\item $a\mid a, \forall \: a\in \mathbb{Z}$
+	\item $a\mid 0,\forall \: a\in \mathbb{Z}$
+	\item $0\mid a\iff a=0$
+	\item $1\mid a,\forall \: a\in \mathbb{Z}$
+	\item $b\mid 1\iff |a|=1$
+	\item $a\mid b$ y $b\mid a\implies |a|=|b|$
+	\item $a\mid b$ y $b\mid c$ implica $a\mid c$
+	\item $a\mid b \implies a\mid bc,\forall \: c\in \mathbb{Z}$
+	\item $a\mid b$ y $a\mid c$ implica $a\mid a+c$
+	\item $a\mid b$ y $a\mid c$ implica $a\mid bs+c t,\forall \: s,t\in \mathbb{Z}$
+	\item $|a|\mid |b| \iff a\mid b \iff -a\mid b \iff a\mid -b \iff -a\mid -b$
+	\item $a\mid b \implies ca \mid c b,\forall \: c\in \mathbb{Z}$
+	\item $c a \mid c b$ y $c\neq 0$ implica que $a \mid b$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\label{prop:des1}Si $a\mid b$ y $b \neq 0$, entonces $|a|\leq|b|$.
+\end{proposition}
+\begin{proof}
+Como $a \mid b$, existe $q\in \mathbb{Z}$ tal que $b=aq$ y dado que $b \neq 0$ entonces $q \neq 0$, de manera que $1\leq |q|$, luego $|a|\leq |a||q|=|b|$.
+\end{proof}
+
+\begin{theorem}[Algoritmo de la división]
+Si $a,b\in \mathbb{Z}$ y $b \neq 0$, entonces existen únicos $q,r\in \mathbb{Z}$ tales que 
+\begin{equation*}
+	a=bq+r\hspace*{0.5cm}\textnormal{con}\hspace*{0.5cm} 0\leq r<|b|
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Supongamos primero que $b>0$. Sea 
+\begin{equation*}
+	S=\left\{a-bx \: : \: x\in \mathbb{Z}\textnormal{ y }0\leq a-bx\right\}.
+\end{equation*}
+Como $0<b$, entonces $1\leq b$, luego $-b\leq -1$, por tanto $-b|a|\leq -|a|$, pero $-|a|\leq a$, así que $-b|a|\leq a$, osea $0\leq a+b|a|=a-b(-|a|)$. Luego el conjunto $S$ es no vacío, de manera que debe tener un elemento mínimo $r$, escribamos $r=a-bq$. Entonces $a=bq+r$ y $0\leq r$ por elección de $r$. Si $b\leq r$, entonces $0\leq r-b<r$, donde $r-b=a-bq-b=a-b(q+1)\in S$, lo que contradice la elección de $r$, así que necesariamente $r<b$. Luego $q,r$ son los enteros buscados. Supongamos ahora que $b<0$. Entonces $|b|=-b>0$ y por lo anterior existen $q',r'\in \mathbb{Z}$ tales que $a=-bq'+r'$ con $0\leq r'<|b|$, es decir, $a=b(-q')+r'$ y por tanto los enteros buscados son ahora $-q'$ y $r'$. 
+\bigskip
+
+Finalmente, veamos que estos tales enteros son únicos. Supongamos que $q,r,q',r'\in\mathbb{Z}$ son enteros tales que 
+\begin{align*}
+	a &=bq+r,\hspace*{0.3cm}0\leq r<|b| \\
+	a &=bq'+r',\hspace*{0.3cm}0\leq r'<|b|.
+\end{align*}
+Entonces $bq+r=bq'+r'$, es decir, $b(q-q')=r'-r$, osea $b \mid r'-r$. Si $r'-r \neq 0$, por la proposición \eqref{prop:des1} se debe cumplir que $|b|\leq |r'-r|$. Por otro lado, se tiene que $-|b|<-r$ y $0\leq r'$, por tanto $-|b|<r'-r$. Análogamente, $-r\leq 0$ y $r'<|b|$ implican que $r'-r<|b|$. Juntando estas dos desigualdades obtenemos que $|r'-r|<|b|$, osea $|b|<|b|$, lo cual es imposible. En consecuencia, $r'-r=0$ y cómo $b \neq 0$ necesariamente $q-q'=0$, es decir, $r=r'$ y $q=q'$.
+\end{proof}
+
+\subsection{Máximo común divisor}
+
+\begin{proposition}[\textsc{y definición}]
+\label{prop:mcd1}Si $a,b\in \mathbb{Z}$ con $a\neq 0$, entonces el conjunto 
+\begin{equation*}
+	D=\left\{c\in \mathbb{N} \: : \: c \mid a\textnormal{ y }c \mid b\right\}
+\end{equation*}
+es no vacío y finito. Al elemento máximo de $D$ se le llama máximo común divisor de $a$ y $b$.
+\end{proposition}
+\begin{proof}
+Como $1$ divide a cualquier entero, entonces $1\in D$. Si $c\in D$ se tiene, en particular, que $c \mid a$ y como $a\neq 0$, por la proposición \eqref{prop:des1} se tiene que $|c|=c\leq |a|$. Luego $D\subset \left\{1,\ldots ,|a|\right\}$ y por tanto $D$ es finito por ser subconjunto de un conjunto finito.
+\end{proof}
+\bigskip
+
+\textsc{Notación}. Para decir que un número $d\in \mathbb{Z}$ es máximo común divisor de $a$ y $b$, escribiremos $d=(a,b)$ ó $d=\textnormal{mcd}\left\{a,b\right\}$.
+
+\begin{remark}
+El máximo común divisor de dos números $a,b$ no ambos cero es único por ser el elemento máximo de un conjunto. También se sigue sin más que $(a,b)=(b,a)$.
+\end{remark}
+
+\begin{theorem}
+\label{thm:lin}Sean $a,b\in \mathbb{Z}$ con $a\neq 0$ y sea $d=(a,b)$. Entonces el conjunto 
+\begin{equation*}
+	L=\left\{a s+ b t>0 \: : \: s,t\in \mathbb{Z}\right\}\subset \mathbb{N}
+\end{equation*}
+es no vacío y su elemento mínimo es igual a $d$.
+\end{theorem}
+\begin{proof}
+Si $a>0$, entonces $0<a(1)+b(0)\in L$ y si $a<0$ entonces $-a>0$, de manera que $0<a(-1)+b(0)\in L$. En cualquier caso $L$ es no vacío. Dado que $\mathbb{N}$ está bien ordenado, $L$ admite un elemento mínimo, sea $d'$ este elemento y escribamos $d'=a s+ b t$, para algunos $s,t\in \mathbb{Z}$. Afirmamos que $d' \mid a$ y $d'\mid b$. En efecto, supongamos por ejemplo que $d'\centernot\mid a$. Por el algoritmo de la división, existen $q,r\in \mathbb{Z}$ tales que 
+\begin{equation*}
+	a=d'q+r\hspace*{0.3cm}\textnormal{con}\hspace*{0.3cm}0\leq r<d'.
+\end{equation*}
+Más aún, $0\neq r$ pues por hipótesis $d'\centernot\mid a$, así que $0<r$. Entonces 
+\begin{align*}
+	0<r &= a-d'q \\
+		&= a-(a s+ b t)q \\
+		&= a-a s q-b t q \\
+		&= a(1-s q)+b(-t q) \in L
+\end{align*}
+lo que contradice la elección de $d'$, así que necesariamente $d' \mid a$. Similarmente se demuestra que $d' \mid b$. Luego $d'\in D$, con $D$ definido como en la proposición \eqref{prop:mcd1} y por tanto $d'\leq d$, pues $d$ es el elemento máximo de $D$.
+\bigskip
+
+Por otro lado, como $d \mid a$ y $d \mid b$ por ser $d$ un elemento de $D$, entonces $d \mid a s+b t=d'$ en virtud del inciso (x) de la proposición \eqref{prop:prop1}, luego $d\leq d'$, pues $d'\neq 0$ y ambos $d',d$ son mayores que cero. Se sigue finalmente que $d=d'$.
+\end{proof}
+
+\begin{remark}
+Si $d=(a,b)$, el teorema anterior nos permite escribir $d=a s+ b t$, para algunos $s,t\in \mathbb{Z}$. A los coeficientes $s,t$ se les llama \textit{coeficientes de Bezout} y se pueden calcular explicitamente usando, por ejemplo, el algoritmo de Euclides. Véase \cite{Zal1-2014}.
+\end{remark}
+
+\begin{proposition}
+Sean $a,b\in \mathbb{Z}$ con $a\neq 0$. Si un número $d'\in \mathbb{N}$ es tal que 
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+	\item $d' \mid a$ y $d' \mid b$
+	\item $c \mid a$ y $c \mid b \implies c \mid d',\:\forall \: c\in \mathbb{Z}$
+\end{enumerate}
+entonces $d'$ es el máximo común divisor de $a$ y $b$. Y recíprocamente, el máximo común divisor de $a$ y $b$ satisface las condiciones (i) y (ii).
+\end{proposition}
+\begin{proof}
+En efecto, tenemos que $d=(a,b)$ es el elemento máximo del conjunto $D=\left\{c\in \mathbb{N} \: : \: c \mid a\textnormal{ y }c \mid b\right\}$. Por (i) se tiene que $d'\in D$, de tal manera que $d'\leq d$. Por otro lado, como $d\in D$, entonces $d \mid a$ y $d \mid b$, por tanto el inciso (ii) asegura que $d \mid d'$, luego $d\leq d'$. En consecuencia, $d=d'$.
+\bigskip
+
+Veamos ahora que $d$ también satisface ambas condiciones. Como  $d\in D$, entonces $d$ satisface (i). Ahora, por el teorema \eqref{thm:lin}, existen $s,t\in \mathbb{Z}$ tales que $d=a s+ b t$. Si $c\in \mathbb{Z}$ es tal que $c \mid a$ y $c \mid b$, entonces $c \mid a s+b t=d$ y como $c\in \mathbb{Z}$ fue arbitrario, entonces $d$ también cumple la condición (ii).
+\end{proof}
+
+\begin{proposition}
+Si $a,b\in \mathbb{Z}$ son no ambos cero y $c\in \mathbb{Z}\setminus \left\{0\right\}$, entonces
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+	\item $(a,b)=(|a|,|b|)$
+	\item $(ca,cb)=|c|(a,b)$
+	\item $(c,1)=1$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Si $r \in \mathbb{N}$, $r=e q_1$, $r= d q_2$, $d=(q_1,d)k_1$ y $e=(q_2,e) k_2$ entonces $k_1=k_2$.
+\end{proposition}
+\begin{proof}
+Nótese que $q_1,q_2$ enteros positivos, además $(q_1 q_2, r) = (q_1 q_2, r)$, luego $(q_1 q_2,e q_1)=(q_1 q_2,d q_2)$ y por tanto $q_1 (q_2,e)=q_2 (q_1,d)$ por la proposición anterior. Luego, dado que $r=(q_2,e)k_2 q_1=(q_1,d)k_1 q_2$, la ley de cancelación implica que $k_1 = k_2$.
+\end{proof}
+
+\begin{corollary}\label{cor:mcd1}
+Si $r \in \mathbb{N}$, $e \mid r$ y $d \mid r$ con $e,r \in \mathbb{N}$, entonces
+\begin{equation*}
+    d/\left( r/e,d \right) = e/\left( r/d,e \right).
+\end{equation*}
+\end{corollary}
+
+\subsection{Mínimo común múltiplo}
+
+\begin{proposition}[y definición]\label{prop:mcm1}
+Si $a,b\in \mathbb{Z}\setminus \left\{0\right\}$, entonces el conjunto 
+\begin{equation*}
+	M=\left\{m\in \mathbb{N} \: : \: a \mid m\textnormal{ y }b \mid m\right\}\subset \mathbb{N}
+\end{equation*}
+es no vacío. Al elemento mínimo de $M$ se le llama mínimo común múltiplo de $a$ y $b$.
+\end{proposition}
+
+\begin{proof}
+Notemos que como $a,b\in \mathbb{Z}\setminus \left\{0\right\}$, entonces $1\leq |a b|$, $a \mid |a b|$ y $b \mid |a b|$. Luego $|a b|\in M$.
+\end{proof}
+\textsc{Notación}. Para indicar que $m\in \mathbb{N}$ es mínimo común múltiplo de $a$ y $b$, escribiremos $m=[a,b]$ ó $m=\textnormal{mcm}\left\{a,b\right\}$.
+
+\begin{remark}
+El mínimo común múltiplo de dos números $a,b$ distintos de cero es único. Además, $[a,b]=[b,a]$.
+\end{remark}
+\begin{proposition}
+Sean $a,b\in \mathbb{Z}\setminus\left\{0\right\}$. Si un número $m'\in \mathbb{N}$ es tal que 
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+	\item $a \mid m'$ y $b \mid m'$
+	\item $a \mid c$ y $b \mid c \implies m' \mid c,\:\forall \: c\in \mathbb{Z}$
+\end{enumerate}
+entonces $m'$ es el mínimo común múltiplo de $a$ y $b$. Y recíprocamente, el mínimo común múltiplo satisface las condiciones (i) y (ii).
+\end{proposition}
+\begin{proof}
+Sea $d=[a,b]$. Por (i) se tiene que a $\mid m'$ y $b \mid m'$, entonces $m'\in M$, con $M$ definido como en la proposición \eqref{prop:mcm1}. Luego $m\leq m'$ por ser $m$ el elemento mínimo de este conjunto. Por otro lado, como $a \mid m$ y $b \mid m$, el inciso (ii) asegura que $m' \mid m$, luego $m'\leq m$ y por tanto $m'=m$.
+\bigskip
+
+Además, $m$ también satisface estas condiciones. La condición (i) se cumple por ser $m$ un elemento de $M$, es decir, $a \mid m$ y $b \mid m$. Si $c\in \mathbb{Z}$ es tal que $a \mid c$ y $b \mid c$, por el algortimo de la división, existen $q,r\in \mathbb{Z}$ tales que $c=mq+r$ con $0\leq r<m$. Como $a \mid c$ y $a \mid m$, entonces $a \mid c-mq=r$ y analogamente $b \mid r$. Si $0<r$ esto nos llevaría a una contradicción en la elección de $m$, así que necesariamente $r=0$ y por tanto $c=mq$, o lo que es lo mismo, $m \mid c$. Como $c\in \mathbb{Z}$ fue arbitrario, entonces $m$ satisface la condición (ii).
+\end{proof}
+
+\begin{theorem}
+Si $a,b\in \mathbb{Z}\setminus \left\{0\right\}$, entonces $|a b|=(a,b)[a,b]$.
+\end{theorem}
+\begin{proof}
+Como $a\neq 0$, existe $d=(a,b)$. Se tiene que $d \mid a$ y $d \mid b$, por tanto, $d \mid |ab|$ y en consecuencia existe $m\in \mathbb{Z}$ tal que $|ab|=dm$. Más aún, $m\in \mathbb{N}$, pues $|a b|$ y $d$ son enteros positivos. Afirmamos que $m=[a,b]$.
+\bigskip
+
+(i) Notemos que $d \mid a$ y $d \mid b$ y por tanto $d \mid |a|$ y $d \mid |b|$, por lo que existen $q_{1},q_{2}\in \mathbb{Z}$ tales que $|a|=dq_{1}$ y $|b|=dq_{2}$, por lo tanto, $|a b|=d^{2}q_{1}q_{2}=dm$, lo cual implica que $dq_{1}q_{2}=m$ de tal manera que $|a|q_{2}=m$ y $|b|q_{1}=m$, es decir, $|a| \mid m$ y $|b| \mid m$, luego $a \mid m$ y $b \mid m$.
+\bigskip
+
+(ii) Si $c\in \mathbb{Z}$ es tal que $a \mid c$ y $b \mid c$ entonces  $|a|\mid c$ y $|b|\mid c$, por tanto existen $q_{1},q_{2}\in \mathbb{Z}$ tales que $c=|a|q_{1}$ y $c=|b|q_{2}$. Notemos que también por el inciso anterior, $a \mid m$ y $b \mid m$, por lo que $|a|\mid m$ y $|b| \mid m$, por tanto, existen $r_{1},r_{2}\in \mathbb{Z}$ tales que $m=|a|r_{1}$ y $m=|b|r_{2}$. Además, como $d=(a,b)=(|a|,|b|)$, existen $s,t\in \mathbb{Z}$ tales que $d=|a| s+|b| t$, así que $d m=|a| s m+|b| t m$. Más aún $|a b|\neq 0$, pues $a$ y $b$ son distintos de cero, así
+\begin{align*}
+	d m=|a| s m+|b| t m &\implies |a b| = d m=|a| s |b| r_{2}+|b| t |a| r_{1} \\
+					&\implies |a b|=|a b|(sr_{2}+tr_{1}) \\
+					&\implies 1=s r_{2}+t r_{1} \\
+					&\implies c=c s r_{2}+c t r_{1} \\
+					&\implies c=|b| q_{2}s r_{2}+|a| q_{1} t r_{1} \\
+					&\implies c=m q_{2} s+m q_{1}t=m(q_{2}s+q_{1}t) \\
+					&\implies m \mid c.
+\end{align*}
+De (i) y (ii) se sigue que $m=[a,b]$ y por tanto $|a b|=(a,b)[a,b]$.
+\end{proof}
+
+\subsection{Primos y factorización única}
+
+\begin{definition}
+Se dice que dos enteros $a$ y $b$ son \textbf{coprimos} o \textbf{primos relativos} si $(a,b)=1$.
+\end{definition}
+
+\begin{theorem}[Lema de Euclides]
+Si $a \mid bc$ y $(a,b)=1$ entonces $a \mid c$.
+\end{theorem}
+\begin{proof}
+Si $(a,b)=1$, podemos escribir $1=a s+b t$, donde $s,t\in \mathbb{Z}$. Luego $c=a(s c)+b c(t)$ y como $a \mid a$ y $a \mid bc$ por hipótesis, entonces $a \mid c$.
+\end{proof}
+
+\begin{definition}
+Dado $p\in \mathbb{Z}$, con $p>1$, decimos que $p$ es un \textbf{número primo} si tiene exactamente dos divisores positivos, $1$ y $p$ mismo.
+\end{definition}
+
+% \begin{proposition}
+% Si $a,b,a_1,a_2,\ldots ,a_n\in \mathbb{Z}$ y $p$ es un número primo, entonces:
+%
+% \begin{enumerate}[label=\textnormal{(\roman*)}]
+% 	\item $p \mid a$ ó $1=(a,p)$
+% 	\item $p \mid a b \implies p \mid a$ ó $p \mid b$
+% 	\item $p \mid a_1 a_2 \cdots a_n \implies p \mid a_i$, para algún $i=1,2,\ldots ,n$.
+% \end{enumerate}
+% \begin{proof}
+% De (i): Si $d=(a,p)$ entonces $d \mid p$ y $d \mid a$ y como $p$ es primo, $d=p$ o $d=1$. Si $d=p$ entonces $p \mid a$. Si $d=1$ entonces $1=(a,p)$.
+% \bigskip
+%
+% De (ii): Supongamos por ejemplo que $p \centernot\mid a$, entonces por el inciso anterior $1=(a,p)$, así que el lema de Euclides implica que $p \mid b$.
+% \bigskip
+%
+% De (iii): Se sigue por inducción de (ii).
+% \end{proof}
+% \end{proposition}
+
+\begin{corollary}
+Si $p$ es un número primo y $a\in \mathbb{Z}$ entonces 
+\begin{equation*}
+	(p,a) =
+		\begin{cases}
+			1 & \text{si} \: p \centernot\mid a \\ %\hfil
+			p & \text{si} \: p \mid a.
+		\end{cases}
+\end{equation*}
+\end{corollary}
+
+\begin{lemma}\label{lemma:pr1}
+Si $a>1$ y $a\in \mathbb{Z}$, entonces el menor divisor positivo de $a$ mayor que uno es un número primo.
+\end{lemma}
+\begin{proof}
+Sea $A=\left\{m\in\mathbb{N} \: : \: m \mid a\right\}$. Como $a\in A$, entonces $A\neq\vc$ y por tanto $A$ tiene elemento mínimo, digamos $p$. Si $p$ no fuera primo, entonces $p=qr$ para algunos $q,r\in \mathbb{Z}$ con $1<q<p$ y $1<r<p$. Entonces $q \mid p$, y además $p \mid a$, por tanto $q \mid a$, lo que contradice la elección de $p$, luego $p$ debe de ser primo.
+\end{proof}
+
+\begin{theorem}[de factorización única]
+Si $a\in \mathbb{Z}$ y $a>1$, entonces $a$ se puede expresar como
+\begin{equation*}
+	a=p_1 p_1\cdots p_r
+\end{equation*}
+donde los $p_i$ son números primos y $r\in\mathbb{N}$. Además, si $a=q_1 q_2\ldots q_s$ es otra factorización de esta forma, entonces $r=s$ y existe una permutación $\sigma: \left\{1,2,\ldots ,r\right\} \longrightarrow \left\{1,2,\ldots ,r\right\}$ tal que $p_i=q_{\sigma(i)}, \:\forall \: i\in \left\{1,2,\ldots ,r\right\}$.
+\end{theorem}
+\begin{proof}
+\cite[\S I.2, pp. 23--24]{Zal1-2014}. Una demostración no constructiva se puede encontrar en \cite[\S 2.11, p. 26]{Har1-1979}.
+\end{proof}
+
+\begin{definition}
+Si $n>1$ es un entero con factorización $a=p_1\cdots p_m$, podemos asociar primos iguales y escribirlos en orden creciente, es decir escribir a $n$ de la forma $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}$, donde $0<p_i,\:\forall \: i=1,\ldots ,s$ y $p_1<p_2<\cdots <p_s$. Decimos entonces que esta es la \textbf{forma estándar} o \textbf{descomposición canónica} de $n$ como producto de primos. También decimos que un número primo tiene multiplicidad $\alpha$ en $n$ si aparece $\alpha$ veces como factor de $n$.
+\end{definition}
+
+\begin{theorem}[Eratóstenes]
+Sea $n\in \mathbb{N}$, $a>1$. Si para cada primo tal que $p^2\leq a$ se tiene que $p \centernot\mid a$, entonces $a$ es primo.
+\end{theorem}
+\begin{proof}
+Sea $m$ el menor entero mayor que 1 que divide a $a$. Por el lema \eqref{lemma:pr1}, $m$ debe ser un número primo. Como $m \mid a$, entonces $m\leq a$.
+\bigskip
+
+Supongamos que $m<a$. Como $m \mid a$, existe $q\in \mathbb{N}$ tal que $a=mq$, luego $q \mid a$. Más aún, $1<q$, pues $m<a$ y en consecuencia $m\leq q$ por elección de $m$. Luego
+\begin{equation*}
+	m^2\leq mq=a.
+\end{equation*}
+Luego $m$ es un primo tal que $m^2\leq a$ y $m \mid a$, lo que contradice la hipótesis. Por tanto debe ser que $m=a$ y como $m$ es primo, $a$ también lo es.
+\end{proof} \begin{corollary}
+Si $a\in\mathbb{N}$ no es primo entonces existe un primo $p$ tal que $p\leq \sqrt{a}$ y $p \mid a$.
+\end{corollary}
+
+\begin{theorem}[Euclides]
+El conjunto de números primos es infinito.
+\end{theorem}
+\begin{proof}
+Supongamos lo contrario y listemos todos los primos como $p_1,\ldots ,p_m$. Consideremos el entero $n=p_1\cdots p_m+1$. Tenemos que $n>1$ y por tanto debe ser primo o producto de primos. Si $n$ es primo, entonces $n=p_i$ para algún $i=1,\ldots ,m$, pero esto es imposible pues $n>p_i,\:\forall \: i=1,\ldots ,m$. Si $n$ es producto de primos, entonces algún $p_i$ lo divide, pero esto tampoco puede ser pues todos los $p_i$ dejan residuo 1 al dividir a $n$, es decir, ningún primo lo divide. En consecuencia el conjunto de números primos no es finito.
+\end{proof}

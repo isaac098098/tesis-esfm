@@ -1,0 +1,151 @@
+%%% Algunas funciones aritmeticas
+\newpage
+\subsection{Algunas funciones aritméticas conocidas}
+
+A continuación se presentan algunas funciones aritméticas que aparecen frecuentemente en teoría de números.
+
+\begin{definition}[Función idéntica]
+La función idéntica $N$ es tal que $N(n)=n$, para cada $n\in \mathbb{N}$.
+\end{definition}
+
+\begin{definition}[Función $\varphi$ de Euler]
+Para cada $n\geq 1$, se define la función $\varphi$ de Euler $\varphi(n)$ como el número de enteros positivos no mayores a que $n$ que son primos relativos a $n$.
+\end{definition}
+
+\begin{definition}[Función de Mangoldt]
+Para todo $n\in\mathbb{N}$, definimos la función de Mangoldt como 
+\begin{equation*}
+	\Lambda(n) =
+		\begin{cases}
+			\log p & \text{si} \: n=p^m \text{ para algún primo } p \text{ y } m\geq 1\\ \hfil
+			0 & \text{en otro caso}.
+		\end{cases}
+\end{equation*}
+\end{definition}
+
+\begin{definition}[Función de Liouville]
+Se define a la función $\lambda$ de Liouville como $\lambda(1)=1$ y dada $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ la factorización de $n$ en primos, entonces $\lambda(n)=(-1)^{\alpha_1+\alpha_2+\cdots+\alpha_k}$.
+\end{definition}
+
+\begin{definition}[Función divisor]
+Para cada $k\in\mathbb{C}$ se define la función divisor de orden $k$ como 
+\begin{equation*}
+	\sigma_k(n)=\sum_{d \mid n} d^k.
+\end{equation*}
+A la función divisor de orden $1$ la llamaremos simplemente función divisor y se denotará como $\sigma$ en vez de $\sigma_1$. La función divisor de orden $0$ se denomina función número de divisores.
+\end{definition}
+
+Las funciones aritméticas por sí mismas pueden tener comportamientos aleatorios y difíciles de predecir, pero se pueden observar algunas regularidades cuando sumamos todos los valores que toma la función en los divisores positivos de un número natural dado. Para esto definimos la siguiente notación:
+
+\begin{definition}
+Sean $f$ una función aritmética, $n\in\mathbb{N}$ y $d_1,d_2,\cdots,d_k$ todos los divisores positivos de $n$. Definimos 
+\begin{equation*}
+	\sum_{d \mid n} f(d)=f(d_1)+f(d_2)+\cdots+f(d_k).
+\end{equation*}
+\end{definition}
+
+Se tienen las siguientes propiedades básicas de algunas funciones aritméticas.
+
+\begin{proposition}
+Para todo $n\in\mathbb{N}$, se tiene que 
+\begin{equation*}
+	\sum_{d \mid n} \mu(d) = I(n) =
+		\begin{cases}
+			1 & \text{si} \: n=1 \\ %\hfil
+			0 & \text{si} \: n>1
+		\end{cases}
+\end{equation*}
+\end{proposition}
+\begin{proof}
+Si $n=1$, por definición $\mu(n)=1$. Supongamos que $n>2$ y sea $n=q_1^{\alpha_1}\cdots q_k^{\alpha_k}$ la factorización de $n$ en primos. Todos los divisores de $n$ son de la forma $n=q_1^{\beta_1}\cdots q_k^{\beta_k}$, con $0\leq \beta_i\leq \alpha_i,\:\forall \: i=1,\ldots,k$. Sin embargo, hace falta considerar sólo los factores donde $0\leq \beta_i\leq 1$, pues la función de Möbius se anula para cualesquiera otros. Para un $1\leq i\leq k$ dado, existen $\binom{k}{i}$ $i$-combinaciones (sin repetición y desordenadas) de elementos del conjunto $P=\left\{q_1,\cdots,q_k\right\}$, véase \cite{Br1-1999}. Luego la suma buscada es igual a
+\begin{align*}
+    \mu(1)+&\sum_{p_1\in\left\{q_1,\ldots,q_k\right\}} \mu(p_1) + \sum_{\substack{p_1,p_2\in \left\{q_1,\ldots,q_k\right\} \\ p_1\neq p_2}} \mu(p_1 p_2)+\cdots+\sum_{\substack{p_1,\ldots,p_k\in \left\{q_1,\ldots,q_k\right\} \\ p_1\neq p_2 \neq \cdots \neq p_k}} \mu(p_1\cdots p_k) \\
+						   &= \binom{k}{0}(-1)^0+\binom{k}{1}(-1)^1+\binom{k}{2}(-1)^2+\cdots+\binom{k}{k}(-1)^k =  (1-1)^k=0
+\end{align*}
+Es decir, $\sum_{d \mid n} \mu(d)=0$.
+\end{proof}
+
+\begin{corollary}[Inversión de Möbius]\label{cor:mob1}
+Si $f,g \in \mathcal{A}$, entonces para cada $n \in \mathbb{N}$,
+\begin{equation*}
+    \sum_{d \mid n} f(n) = g(n) \iff \sum_{d \mid n} g(n)\mu \left( \frac{n}{d} \right) = f(n)
+\end{equation*}
+\end{corollary}
+\begin{proof}
+De acuerdo con la proposición anterior, se tiene $\mu*\mathbf{1}=\mathbf{1}*\mu=I$, de tal manera que
+\begin{equation*}
+    f*\mathbf{1} =  g \iff f*\mathbf{1}*\mu = g * \mu \iff f*I = g * \mu \iff f = g * \mu,
+\end{equation*}
+lo cual es equivalente al enunciado.
+\end{proof}
+
+\begin{proposition}[Gauss]\label{eq:gauss1}
+Para todo $n\in\mathbb{N}$ se verifica que 
+\begin{equation*}
+	\sum_{d \mid n} \varphi(d)=n.
+\end{equation*}
+\end{proposition}
+\begin{proof}
+La siguiente demostración es debida a Gauss en \cite{Gauss1}. Sea $n\in\mathbb{N}$ y sean $d_1,\cdots,d_k$ los distintos divisores positivos de $n$. Para cada $d_i$, sean $c_{i,1},\cdots,c_{i,m_i}$ todos los enteros positivos primos relativos y no mayores a $d_i$. Notemos que $\varphi(d_i)=m_i$. Afirmamos que el conjunto formado por los números 
+\begin{equation*}
+	\renewcommand\arraystretch{2}
+	\begin{matrix}
+	(n/d_1)c_{1,1} & (n/d_1)c_{1,2} & \cdots & (n/d_1)c_{1,m_1} \\
+	(n/d_2)c_{2,1} & (n/d_2)c_{2,2} & \cdots & (n/d_2)c_{2,m_2} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	(n/d_k)c_{k,1} & (n/d_k)c_{k,2} & \cdots & (n/d_k)c_{k,m_k} \\
+	\end{matrix}
+\end{equation*}
+es igual a $\left\{1,2,\ldots,n\right\}$. En efecto, sea $r$ un entero positivo tal que $1\leq r\leq n$  y sea $d=(n,r)$. Notemos que $n/d$ es un divisor de $n$, $r/d\leq n/d$ y $(n/d,r/d)=1$. Además $(n/(n/d))(r/d)=r$, luego $r$ está entre los elementos de la tabla anterior. Recíprocamente, se tiene que $1\leq (n/d_i)c_{i,j}\leq (n/d_i)d_i=n,\:\forall \: i=1,\ldots,k,\:\forall \: j=1,\ldots,m_i$.
+\medskip
+
+Finalmente veamos que todos los elementos de la tabla son distintos. Es claro que todos los elementos de cada fila son distintos, pues los divisores de cada $d_i$ son distintos por hipótesis. Si dos números fueran iguales, para algunos divisores $M$ y $N$ de $n$ distintos, podemos suponer que $M>N$. Se tendría pues que $(n/M)\mu=(n/N)\nu$, donde $\mu$ es primo relativo a $M$ y $\nu$ es primo relativo a $N$, luego $\mu N=\nu M$, de manera que $M \mid \mu N$, por tanto $M \mid N$, lo cual no puede ser pues $M>N$. Finalmente: 
+
+\begin{equation*}
+	\sum_{d \mid n} \varphi(d) = \varphi(d_1)+\cdots+\varphi(d_k) = m_1+\cdots+m_k = |\left\{1,\ldots,n\right\}| = n
+\end{equation*}
+\end{proof}
+
+Existe una relación entre las funciones $\mu$ y $\varphi$ al sumar sobre los divisores de un entero positivo. El siguiente lema será útil para probar dicha relación.
+
+\begin{lemma}\label{lemma:car1}
+Si $n\in\mathbb{N}$, $d$ es un divisor positivo de $n$, $S=\left\{x\in\mathbb{N} \: : \: 1\leq x\leq n\right\}$ y $A=\left\{x\in S \: : \: d \mid x\right\}$ entonces $|A|=n/d$.
+\end{lemma}
+\begin{proof}
+En efecto, tenemos que la función
+\begin{align*}
+	F:\left\{1,\ldots,n/d\right\} & \longrightarrow A \\
+	x & \longmapsto dx
+\end{align*}
+es biyectiva, pues si $x,y\in \left\{1,\ldots,n/d\right\}$ son tales que $F(x)=F(y)$, entonces $dx=dy$ y por tanto $x=y$, pues $d\neq 0$. Además, si $r\in A$ entonces $d \mid r$ y $1\leq r\leq n$, por lo que existe $q\in\mathbb{N}$ tal que $r=dq$, luego $q$ es tal que $1\leq q\leq n/d$ y $F(q)=dq=r$. En consecuencia $|A|=|\left\{1,\ldots,n/d\right\}|=n/d$
+\end{proof}
+
+\begin{proposition}\label{prop:mob1}
+Para todo $n\in\mathbb{N}$ se verifica que 
+\begin{equation*}
+	\sum_{d \mid n} \mu(d)\frac{n}{d}=\varphi(n).
+\end{equation*}
+\end{proposition}
+\begin{proof}
+Si $n=1$ claro que se tiene $\mu(1)=\varphi(1)=1$. Supongamos que $n>1$ y sea $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ su factorización en primos. Sea $S=\left\{1,\ldots,n\right\}$ y para cada $i=1,\ldots,r$ definamos $A_i=\left\{x\in S\: : \: p_i \mid x\right\}$.
+\bigskip
+
+Si $1\leq m\leq r$, como todos los $p_i$ son primos distintos, se debe tener que 
+\begin{equation*}
+	\bigcap_{s=1}^{m} A_i = \left\{x\in S \: : \: p_1 \mid x,p_2 \mid x,\ldots,p_m \mid x\right\}=\left\{x\in S \: : \: p_1 p_2 \ldots p_m \mid x\right\}.
+\end{equation*}
+Por otro lado, notemos que si $P=\left\{x\in S \: : \: (n,x)=1\right\}$ entonces 
+\begin{equation*}
+	\bigcap_{i=1}^{r} S \setminus A_i=P.
+\end{equation*}
+En efecto, si $x\in \bigcup_{i=1}^{r} A_i$ entonces $x\in S$ y $p_i \mid x$, para algún $p_i$, de manera que $p_i \mid n$ y $p_i \mid x$, y por tanto $(n,x)\geq p_i>1$, luego $x\not\in P$. Recíprocamente, si $x\in S$ y $x\not\in P$, entonces $(n,x)>1$ y por tanto debe existir un primo $q$ que divide a $(n,x)$, pero $(n,x)\mid n$ y $(n,x)\mid x$, por lo que $q \mid n$ y $q \mid x$, luego $q=p_i$, para algún $i=1,\ldots,m$. En consecuencia, $p_i \mid x$ y por tanto $x\in \bigcup_{i=1}^{r} A_i$. Se sigue que $\bigcup_{i=1}^{r} A_i=S \setminus P$, o bien $\bigcap_{i=1}^{r} S/A_i=P$.
+\bigskip
+
+Como $p_1 \cdots p_m \mid n,\:\forall \: m=1,\ldots,r$, por el lema \eqref{lemma:car1} se debe tener que  $|\bigcap_{s=1}^{m} A_i|=n/p_1 \cdots p_m,\:\forall \: m=1,\ldots,r$. Finalmente, por el principio de inclusión-exclusión, se tiene que 
+\begin{align*}
+	&\varphi(n) = |P| = \left|\bigcap_{i=1}^{r} S \setminus A_i\right| = |S|+\sum_{i_1\in \{1,\ldots,r\}} (-1)|A_{i_1}|+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} |A_{i_1} \cap A_{i_2}|+\cdots \\
+	&+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,r\} \\ i_1\neq \cdots \neq i_r}} (-1)^{r}|A_{i_1}\cap \cdots\cap A_{i_r}| = n+\sum_{i_1\in \{1,\ldots,r\}} (-1)\frac{n}{p_{i_1}}+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} \frac{n}{p_{i_1}p_{i_2}} +\cdots \\
+	&+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,m\} \\ i_1\neq \cdots \neq i_r}} (-1)^{r}\frac{n}{p_{i_1}\cdots p_{i_r}} = n+\sum_{i_1\in \{1,\ldots,r\}} \mu(p_{i_1})\frac{n}{p_{i_1}}+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} \mu(p_{i_1}p_{i_2})\frac{n}{p_{i_1}p_{i_2}} + \\
+	&\cdots+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,m\} \\ i_1\neq \cdots \neq i_r}} \mu(p_{i_1}\cdots p_{i_r})\frac{n}{p_{i_1}\cdots p_{i_r}} = \sum_{d \mid n} \mu(d)\frac{n}{d}.
+\end{align*}
+\end{proof}

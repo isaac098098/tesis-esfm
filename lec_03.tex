@@ -1,0 +1,163 @@
+%%% Estructura del anillo
+\newpage
+\section{Estructura del anillo de funciones aritméticas}
+
+\begin{definition}
+A partir de ahora, nos referiremos como \textbf{función aritmética} a cualquier función $f : \mathbb{N} \longrightarrow \mathbb{C}$. Se denota al conjunto de todas las funciones aritméticas como $\mathcal{A}$.
+\end{definition}
+
+\begin{definition}[Función constante]
+La función constante de valor $c \in \mathbb{C}$ es claramente una función aritmética en $\mathbb{N}$, a la cuál denotaremos en negritas como $\mathbf{c}$. Por ejemplo, $\mathbf{1}(n)=1, \forall n \in \mathbb{N}$.
+\end{definition}
+
+La siguiente función aritmética, conocida como función de Möbius, es de importancia central en la teoría de números. Aunque a primera vista su definición parece más bien artificial, se verá que aparece naturalmente al derivar propiedades del producto de Dirichlet.
+
+\begin{definition}[Función de Möbius]
+La función $\mu$ de Möbius está definida por $\mu(1)=1$ y dada $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ la factorización de $n$ en primos, entonces
+\begin{equation*}
+	\mu(n) =
+		\begin{cases}
+			(-1)^k & \text{si} \: \alpha_1=\alpha_2=\cdots=\alpha_k=1 \\ \hfil
+			0 & \text{en otro caso} \: 
+		\end{cases}
+\end{equation*}
+\end{definition}
+
+Una primera forma natural de operar funciones aritméticas es haciéndo su suma o multiplicación puntual, obteniéndo otra función aritmética.
+
+\begin{definition}
+Si $f,g \in \mathcal{A}$, definimos la \textbf{suma} de $f$ y $g$ como la función \begin{align*}
+    f+g : \mathbb{N} & \longrightarrow \mathbb{C} \\
+    n & \longmapsto f(n)+g(n)
+\end{align*}
+y el \textbf{producto} de $f$ y $g$ como la función
+\begin{align*}
+    fg : \mathbb{N} & \longrightarrow \mathbb{C} \\
+    n & \longmapsto f(n)g(n).
+\end{align*}
+\end{definition}
+
+Es fácil verificar que para cualesquiera funciones aritméticas $f$ y $g$,
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+\item $f+\mathbf{0}=\mathbf{0}+f=f$ 
+\item $f\mathbf{1}=\mathbf{1}f=f$ 
+\item $f+g=g+f$
+\item $fg=gf$.
+\end{enumerate}
+
+\subsection{Convolución de Dirichlet}
+
+\begin{definition}[Convolución de Dirichlet]
+Si $f$ y $g$ son funciones aritméticas, definimos la \textbf{convolución de Dirichlet} o \textbf{producto de Dirichlet} de $f$ y $g$, como la función aritmética $f*g$ definida como:
+\begin{equation*}
+	(f*g)(n)=\sum_{d \mid n} f(d)g\left(\frac{n}{d}\right),\:\forall \: n\in\mathbb{N}.
+\end{equation*}
+\end{definition}
+
+Para ver que la operación $*$ es asociativa, conmutativa y distributiva respecto a la suma, necesitaremos algunos lemas.
+
+\begin{lemma}
+Si $k\in\mathbb{N}$, $D\subset \mathbb{N}$ y $f,g: \{1,\ldots,k\} \longrightarrow D$ son dos funciones biyectivas y estrictamente crecientes, entonces $f=g$.
+\end{lemma}
+\begin{proof}
+Como $D\subset \mathbb{N}$ podemos ordenar los elementos de $D$, digamos $D=\{d_1,\ldots,d_k\}$, donde $d_1<d_2<\cdots<d_k$. Tenemos que $d_1$ es entonces el elemento mínimo de $D$. Sin embargo, tenemos que $f(1)\leq f(i)$ y $g(1)\leq g(i),\:\forall \: i=1,\ldots,k$ y como $f$ y $g$ son suprayectivas, entonces $f(1)\leq d_1$ y $g(1)\leq d_1$, además $d_1\leq f(1)$ y $d_1\leq g(1)$ por ser $d_1$ el elemento mínimo de $D$. Luego $f(1)=d_1=g(1)$.
+\bigskip
+
+%Ahora, tenemos que $d_2$ es el elemento mínimo de $D \setminus \{d_1\}$. Notemos que $f(2),g(2)\in D \setminus \{d_1\}$. En efecto, si $f(2)=d_1$ o $g(2)=d_1$, entonces $f(2)=f(1)$ o $g(2)=g(1)$ y como ambas funciones son inyectivas, entonces $2=1$, lo cual es absurdo. En consecuencia $d_2\leq f(2)$ y $d_2\leq g(1)$. Por otro lado, como $d_2\in D$, deben existir $i_1,i_2\in \{1,\ldots,k\}$ tales que $f(i_1)=d_2$ y $g(i_2)=d_2$. Más aún, $2\leq i_1$ y $2\leq i_2$, pues en caso contrario se tendría $i_1=1$ o $i_2=1$ y por tanto $f(1)=d_2$ o $g(1)=d_2$, es decir, $d_1=d_2$, lo cual es falso por hipótesis. Luego $f(2)\leq f(i_1)=d_2$ y $g(2)\leq f(i_2)=d_2$ y por tanto $f(2)=d_2=g(2)$.
+%\bigskip
+
+Supongamos que $f(i)=d_i=g(i),\:\forall \: i=1,\ldots,n$ y $n+1\leq k$. Si $n+1=k$, como $f$ y $g$ son biyectivas, necesariamente $f(n+1)=d_{n+1}=g(n+1)$. Supongamos pues que $n+1<k$. Tenemos que $d_{n+1}$ es el elemento mínimo del conjunto $D \setminus \{1,\ldots,d_n\}$. Notemos que $f(n+1),g(n+1)\in D\setminus \{1,\ldots,d_n\}$. En efecto, pues si $f(n+1)=d_{i_1}$ o $g(n+1)=d_{i_2}$, para algunos $i_1,i_2\in \{1,\ldots,n\}$, entonces $f(n+1)=f(i_1)$ y $g(n+1)=g(i_2)$ por hipótesis de inducción y por inyectividad se tendría que $n+1=i_1\leq n$ o $n+1=i_2\leq n$, lo cual es absurdo. En consecuencia $f(n+1),g(n+1)\in D \setminus \{1,\ldots,d_n\}$ y por tanto $d_{n+1}\leq f(n+1)$ y $d_{n+1}\leq g(n+1)$. 
+\bigskip
+
+Por otra parte, se tiene por suprayectividad que existen $j_1,j_2\in \{1,\ldots,k\}$ tales que $f(j_1)=d_{n+1}$ y $g(j_2)=d_{n+1}$, más aún, $n+1\leq j_1$ y $n+1\leq j_2$, pues en caso contrario se tendría que $j_1<n$ o $j_2<n$, es decir, $f(j_1)<f(n)$ o $g(j_2)<g(n)$, es decir, $d_{n+1}<d_n$, lo que contradice la hipótesis. Luego $f(n+1)\leq f(j_1)=d_{n+1}$ y $g(n+1)\leq g(j_2)=d_{n+1}$. Se sigue finalmente que $f(n+1)=d_{n+1}=g(n+1)$.
+\end{proof}
+
+\begin{lemma}\label{lemma:div1}
+Si $n\in\mathbb{N}$ y $d_1=1<d_2<\cdots<d_{k-1}<d_k=n$ son todos los divisores positivos de $n$, entonces $d_i d_{k+1-i}=n,\:\forall \: i=1,\ldots,k$.
+\end{lemma}
+\begin{proof}
+Sea $D=\{d_1,\ldots,d_k\}$ y consideremos las funciones $f: \{1,\ldots,k\} \longrightarrow D$ definida como $f(i)=d_i,\:\forall \: i=1,\ldots,k$ y $g: \{1,\ldots,k\} \longrightarrow D$ definida como $g(i)=n/d_{k+1-i},\:\forall \: i=1,\ldots,k$. Es fácil ver que $f$ y $g$ cumplen las condiciones del lema anterior y por tanto $f(i)=g(i),\:\forall \: i=1,\ldots,k$, es decir, $d_i d_{k+1-i}=n,\:\forall \: i=1,\ldots,k$.
+\end{proof}
+
+\begin{proposition}\label{prop:dir1}
+Si $f$ y $g$ son funciones aritméticas, $n\in\mathbb{N}$ y $d_1<\cdots<d_k$ son todos los divisores positivos de $n$, entonces 
+\begin{equation*}
+	(f*g)(n)=\sum_{i=1}^{k} f(d_i)g(d_{k+1-i})=f(d_1)g(d_k)+\cdots+f(d_k)g(d_1).
+\end{equation*}
+\begin{proof}
+Se sigue de la definición de $(f*g)(n)$ y del lema \eqref{lemma:div1}.
+\end{proof}
+\end{proposition}
+
+\begin{definition}[Función identidad]
+Definimos a la función identidad $I$ como 
+\begin{equation*}
+	I(n) =
+		\begin{cases}
+			\hfil 1 & \text{si} \: n=1 \\ 
+			\hfil 0 & \text{si} \: n>1,
+		\end{cases}
+\end{equation*}
+para cada $n\in\mathbb{N}$.
+\end{definition}
+
+La siguiente proposición muestra que la función $I$ actúa como la identidad bajo la convolución de Dirichlet, entre otras propiedades algebraicas.
+
+\begin{proposition}
+Si $f,g$ y $h$ son funciones aritméticas entonces se verifica lo siguiente:
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+	\item $(f*g)*h=f*(g*h)$
+	\item $f*I=I*f=f$
+	\item $f*(g+h)=(f*g)+(f*h)$
+	\item $f*g=g*f$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Sea $n\in\mathbb{N}$, sean $d_1=1<d_2<\cdots<d_k=n$ todos los divisores positivos de $n$ y para cada $i=1,\ldots,k$ sean $c_{i,1}<c_{i,2}<\cdots<c_{i,m_i}$ los divisores positivos de $d_i$.
+\bigskip
+
+(i) Tenemos que 
+\begin{equation}\label{eqn:sum1}
+	((f*g)*h)(n)=\sum_{i=1}^{k} \sum_{j=1}^{m_i} f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})
+\end{equation}
+y 
+\begin{equation}\label{eqn:sum2}
+	(f*(g*h))(n)=\sum_{i=1}^{k} \sum_{j=1}^{m_{k+1-i}} f(d_i)g(c_{m_{k+1-i},j})h(c_{m_{k+1-i},m_{k+1-i}+1-j}).
+\end{equation}
+Definamos los conjuntos 
+\begin{align*}
+	& A=\left\{f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i}) \: \mid i=1,\ldots,k,j=1,\ldots,m_i \: \right\} \\
+	& \\
+	& B=\left\{f(d_i)g(c_{m_{k+1-i},j})h(c_{m_{k+1-i},m_{k+1-i}+1-j}) \: \mid i=1,\ldots,k,j=1,\ldots,m_i \: \right\},
+\end{align*}
+y $C=\left\{f(a)f(b)f(c) \mid a,b,c\in\mathbb{N} \textrm{ y } a b c=n\right\}$. Afirmamos que $A=C$ y $B=C$. En efecto, si $f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})$, entonces $c_{i,j}c_{i,m_i+1-j}d_{k+1-i}=d_i d_{k+1-i}=n$, aplicando dos veces el lema \eqref{lemma:div1}. Recíprocamente, si $a,b,c\in\mathbb{N}$ son tales que $a b c = n$, entonces $c \mid n$, por tanto $c=d_j$, para algún $j=1,\ldots,k$, es decir, $c=d_{k+1-i}$ para $i=k+1-j$ con $i=1,\ldots,k$. Notemos entonces que por el lema \eqref{lemma:div1}, necesariamente se debe tener $a b=d_i$, por lo que $a=c_{i,j}$, para algún $j=1,\ldots,m_i$ y aplicando el lema de nuevo se debe tener que $b=c_{i,m_i+1-j}$. En consecuencia $f(a)g(b)h(c)=f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})\in A$. Se sigue pues que $A=C$. Similarmente se demuestra que $B=C$.
+\bigskip
+
+Se tiene pues que $A=B$ y como las sumas \eqref{eqn:sum1} y \eqref{eqn:sum2} se extienden sobre los conjuntos $A$ y $B$, entonces deben coincidir, es decir, $((f*g)*h)(n)=(f*(g*h))(n)$.
+\bigskip
+
+(ii) Como $1<d_i,\:\forall \: i=2,\ldots,k$ entonces $I(d_i)=0,\:\forall \: i=2,\ldots,k$, luego por la proposición \eqref{prop:dir1} se tiene que
+\begin{align*}
+	(f*I)(n) &= \sum_{i=1}^{k} f(d_i)I(d_{k+1-i})=f(d_1)I(d_k)+\cdots+f(d_k)I(d_1) \\
+			 &= f(d_k)I(d_1)=f(n)I(1)=f(n)\cdot 1=f(n)
+\end{align*}
+Y
+\begin{align*}
+	(I*f)(n) &= \sum_{i=1}^{k} I(d_i)f(d_{k+1-i})=I(d_1)f(d_k)+\cdots+I(d_k)f(d_1) \\
+			 &= I(d_1)f(d_k)=I(n)f(1)=1\cdot f(n)=f(n)
+\end{align*}
+\bigskip
+
+(iii) Tenemos que 
+\begin{align*}
+	(f*(g+ & h)) (n) = \sum_{i=1}^{k} f(d_i)(g+h)(d_{k+1-i}) = \sum_{i=1}^{k} f(d_i)[g(d_{k+1-i})+h(d_{k+1-i})] \\
+		   & = \sum_{i=1}^{k} f(d_i)g(d_{k+1-i})+\sum_{i=1}^{k} f(d_i)h(d_{k+1-i}) = (f*g)(n)+(f*h)(n).
+\end{align*}
+\bigskip
+
+(iv) La conmutatividad de la convolución de Dirichlet es clara, pues 
+\begin{equation*}
+	(f*g)(n) = \sum_{i=1}^{k} f(d_i)g(d_{k+1-i}) = \sum_{i=1}^{k} g(d_i)f(d_{k+1-i})=(g*f)(n).
+\end{equation*}
+\end{proof}
