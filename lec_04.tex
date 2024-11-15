@@ -1,498 +1,148 @@
-%%% Una norma
-\subsection{Una norma para funciones aritméticas}
+%%% Algunas funciones aritmeticas
+\newpage
+\subsection{Algunas funciones aritméticas conocidas}
 
-\begin{definition}
-Sea $\mathcal{A}$ el conjunto de todas las funciones aritméticas. Definimos la función
-\begin{align*}
-    \mathcal{N} : \mathcal{A} & \longrightarrow \mathbb{N} \cup \{0\} \\
-	   f & \longmapsto \mathcal{N}(f)=
-	   \begin{cases}
-           \hfil 0 & \textnormal{si } f=\mathbf{0} \\ \hfil
-           \min \left\{n : f(n)\neq 0\right\} & \textnormal{si } f \neq \mathbf{0}.
-       \end{cases}
-\end{align*}
+A continuación se presentan algunas funciones aritméticas que aparecen frecuentemente en teoría de números.
+
+\begin{definition}[Función idéntica]
+La función idéntica $N$ es tal que $N(n)=n$, para cada $n\in \mathbb{N}$.
 \end{definition}
 
-\begin{proposition}
-La función $\mathcal{N}$ definida anteriormente tiene las siguientes propiedades:
-\begin{enumerate}[label=\textnormal{(\roman*)}]
-    \item $\mathcal{N}(f)=0 \iff f=0, \forall f \in \mathcal{A}$.
-    \item $\mathcal{N}(f*g)=\mathcal{N}(f)\mathcal{N}(g), \forall f,g \in \mathcal{A}$.
-    \item $\min \{\mathcal{N}(f),\mathcal{N}(g)\}\leq \mathcal{N}(f+g), \forall f,g \in \mathcal{A}$. 
-    \item Si $\mathcal{N}(f) \ne \mathcal{N}(g)$ entonces $\mathcal{N}(f+g)=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$.
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-(i) Si $f=0$ por definición se tiene que $\mathcal{N}(f)=0$. Si $f \neq 0$, entonces $\min \left\{n : f(n) \neq 0\right\}\neq 0$, i.e. $\mathcal{N}(f)\geq 1\neq 0$. Por tanto $\mathcal{N}(f)=0$ implica que $f=0$.
-\bigskip
-
-(ii) Si $f=0$ o $g=0$ entonces $\mathcal{N}(f)=0$ o $\mathcal{N}(g)=0$. Además $(f*g)(n)=\sum_{d \mid n} f(n)g(n/d)=0, \:\forall\: n \in\mathbb{N}$, es decir, $\mathcal{N}(f*g)=0=\mathcal{N}(f)\mathcal{N}(g)$. Supongamos pues que $f \neq 0$ y $g \neq 0$. Sean $a=\mathcal{N}(f)$ y $b=\mathcal{N}(g)$. Afirmamos que $a b=\min \left\{n : (f*g)(n) \ne 0\right\}=m$.
-\bigskip
-
-En efecto, se tiene
-\begin{align*}
-	(f*g)(a b) &= \sum_{d \mid a b} f(d)g(a b/d) \\
-			   &= \sum_{\substack{d \mid a b \\ a \leq d}} f(d)g(a b/d), \textnormal{ pues }f(d)=0, \:\forall\: d<a \\
-			   &= \sum_{\substack{d \mid a b \\ a \leq d \\ a b/d \leq b}}, \textnormal{ pues }a \leq d \implies a b/d \leq b \\
-			   &= \sum_{a=d} f(d)g(a b/d), \textnormal{ pues }g(d)=0, \:\forall\: d<b \\
-			   &= f(a)g(b)\neq 0.
-\end{align*}
-Luego $m \leq a b$ por elección de $m$. Si $m<a b$ entonces
-\begin{equation*}
-	(f * g)(m) = \sum_{d \mid m} f(d) g(m/d) = \sum_{\substack{d \mid m \\ b \le m/d}} f(d) g(m/d) = \sum_{\substack{d \mid m \\ d<a}} f(d) g(m/d) = 0,
-\end{equation*}
-pues $b \le m/d$ implica que $d<a$ y $f(d)=0$. Pero esto contradice la elección de $m$. Por tanto, $m=a b$.
-
-\bigskip
-
-(iii) Sin pérdida de generalidad se puede suponer que $a \le b$, de tal manera que $\min \{ a,b \} = a$. Si $n<a$ entonces $(f+g)(n) = f(n) + g(n) = 0$, por lo que
-\begin{equation*}
-    \min \{ \mathcal{N}(f),\mathcal{N}(g) \}=a \le \min \{ n \std (f+g)(n) \ne 0 \}=\mathcal{N}(f+g).
-\end{equation*}
-
-(iv) Supóngase de nuevo sin pérdida de generaliad que $a<b$. Entonces
-\begin{equation*}
-	(f+g)(a) = f(a) + f(a) = f(a) + 0 = f(a) \ne 0,
-\end{equation*}
-por tanto, $N(f+g) \le a = \min \{ a,b \}=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$. El resultado se sigue ahora del inciso (iii).
-
-\end{proof}
-\begin{theorem}
-$\mathcal{A}$ es un dominio entero. 
-\end{theorem}
-\begin{proof}
-Si $f,g \in \mathcal{A}$ y $f*g=0$ entonces $\mathcal{N}(f*g)=0 \implies \mathcal{N}(f)\mathcal{N}(g)=0 \implies \mathcal{N}(f)=0$ o $\mathcal{N}(g)=0 \implies f=0$ o $g=0$.
-\end{proof}
-
-\begin{remark}
-Como ocurre en cualquier anillo con identidad, el conjunto de elementos invertibles forma un grupo respecto a la operación de multiplicación, en este caso, respecto a la convolución de Dirichlet. Este grupo se denotará $(\mathcal{A}^*,*)$ o simplemente como $\mathcal{A}^*$ cuando no haya riesgo de confusión.
-\end{remark}
-
-\begin{proposition}
-$f \in \mathcal{A}^*$ si y sólo si $\mathcal{N}(f)=1$.
-\end{proposition}
-\begin{proof}
-Si $f(1) \ne 0$, defínase
-\begin{equation}\label{eq:inv1}
-    \begin{split}
-	f^{-1}(1) &= \frac{1}{f(1)} \\
-	f^{-1}(n) &= -\frac{1}{f(1)} \sum_{\substack{d \mid n \\ d \ne n}} f \left( \frac{n}{d} \right) f^{-1}(d), \hspace{0.2cm} n>1.
-\end{split}
-\end{equation}
-
-Es fácil verificar que la ecuación \eqref{eq:inv1} define a $f^{-1}$ de tal forma que $f*f^{-1} = I$, pues $f(1)f^{-1}(1)=1$ y si $n>1$ entonces
-\begin{align*}
-	(f*f^{-1})(n) = \sum_{d \mid n} f(d)f^{-1}\left( \frac{n}{d} \right) &= f(1)f^{-1}(n) + \sum_{\substack{d \mid n \\ d \ne n }} f(d)f^{-1}\left( \frac{n}{d} \right) \\
-	&= f(1)f^{-1}(n)-f(1)f^{-1}(n) = 0
-\end{align*}
-es decir, $f*f^{-1}=I$.
-\bigskip
-
-Si se supone ahora que $f$ es invertible, entonces, en particular, se tiene que $(f*f^{-1})(1)=1$,  y por tanto $f(1) \ne 0$, es decir, $\mathcal{N}(f)=1$.
-\end{proof}
-
-\begin{proposition}
-Si $\mathcal{N}(f)=p$ para algún número primo $p$, entonces $f$ es irreducible en $\mathcal{A}$.
-\end{proposition}
-\begin{proof}
-Como $p \ne 0$ y $p \ne 1$, entonces $f$ no es cero ni es una unidad. Además, si $f=g*h$ para algunas funciones $g,h \in \mathcal{A}$, entonces  $g,h \ne 0$,  pues en caso contrario $f=0$ y en consecuencia $\mathcal{N}(f)=0 \ne p$, así que $\mathcal{N}(f)$ y $\mathcal{N}(h)$ son enteros positivos. Luego $\mathcal{N}(f)=\mathcal{N}(g*h)=\mathcal{N}(g)\mathcal{N}(h)=p$ y como $p$ es primo, entonces $\mathcal{N}(g)=1$ o bien $\mathcal{N}(h)=1$, es decir, $g$ o $h$ es unidad. Como $g$ y $h$ fueron arbitrarios, entonces $f$ debe ser irreducible en $\mathcal{A}$.
-\end{proof}
-
-\begin{theorem}[Condición de la cadena ascendente] \label{thm:chain1}
-Si $\{ f_i \}_{i \in \mathbb{N}}$ es un un conjunto de funciones aritméticas con la propiedad de que $f_1 \ne 0$ y $f_i=f_{i+1}*g_i$ y $g_i$ no es unidad, para cada $i \in \mathbb{N}$, entonces $\{ f_i \}_{i \in \mathbb{N}}$ es un conjunto finito.
-\end{theorem}
-\begin{proof}
-Supóngase que $\{ f_i \}_{i \in \mathbb{N}}$ es un conjunto infinito. Se tiene que $\mathcal{N}(i)=\mathcal{N}(f_{i+1})\mathcal{N}(g_{i+1})>\mathcal{N}(f_{i+1})$, para cada $i \in \mathbb{N}$, pues $g_{i+1}$ no es unidad, en particular $\mathcal{N}(f_1)>\mathcal{N}(f_i), \forall i \in \mathbb{N}$. Luego $\{ \mathcal{N}(f_i) \}_{i \in \mathbb{N}}$ es una sucesión en $\mathbb{N}$, por ser $\{ f_i \}_{i \in \mathbb{N}}$ infinito, y además estrictamente creciente, por tanto $\lim_{i \to \infty} \mathcal{N}(f_i)=\infty$, pero esto implica que $\mathcal{N}(f_1)>n, \forall n \in \mathbb{N}$, en particular $\mathcal{N}(f_1)>\mathcal{N}(f_1)$, lo cual es absurdo.
-\end{proof}
-
-El teorema anterior permite probar inmediatamente que cualquier elemento no cero y no unidad de $\mathcal{A}$ se puede expresar como producto finito de elementos irreducibles de $A$.
-
-\begin{proposition}
-Si $f \in \mathcal{A}\setminus (\mathcal{A}^* \cup \{ \mathbf{0} \})$, entonces $f$ es producto finito de elementos irreducibles en $\mathcal{A}$.
-\end{proposition}
-\begin{proof}
-Como $f \ne \mathbf{0}$, en lo que sigue de esta demostración se debe tener que todas las funciones involucradas son distintas de cero. Se probará primero que $f$ tiene un factor irreducible. En efecto, si $f$ es irreducible, entonces no hay nada que probar. Supóngase que este no es el caso y por tanto $f=f_1*g_1$, donde $f_1$ y $g_1$ no son unidades. Si $f_1$ es irreducible hemos concluido. En caso contrario se tiene $f_1=f_2*g_2$, donde $f_2$ y $g_2$ no son unidades y además $f_1 \ne f_2$, pues de otra forma se tendría, por la ley de cancelación, que $1=g_2$, contradiciendo la elección de $g_2$. De manera inductiva se tiene una sucesión de funciones $\{ f_i \}_{i \in \mathbb{N}}$ tal que $f_i=f_{i+1}*g_{i+1}$, donde $g_{i+1}$ no es unidad y $f_i \ne f_{i+1}, \forall i \in \mathbb{N}$, luego dicho conjunto es infinito, lo que contradice el Teorema \ref{thm:chain1}. En consecuencia, el proceso anterior debe terminar y debe existir $M \in \mathbb{N}$ tal que $f_{M-1}=f_M*g_M$, donde $f_M$ es irreducible y $f_M \mid f$.
-\bigskip
-
-Se probará ahora el resultado principal. Escribiendo $f_M=p_1$, se tiene que $f=p_1*q_1$, con $p_1$ irreducible. Si $q_1$ es una unidad, entonces $f$ es irreducible y ya terminamos. Si $q_1$ no es unidad, por el párrafo anterior, $q_1$ debe tener un factor irreducible, es decir, $q_1=p_2*q_2$, donde $p_2$ es irreducible, y por tanto no es unidad, además, $q_1 \ne q_2$ pues de otra forma se tendría, por la ley de cancelación, que $1=p_2$, lo que contradice la elección de $p_2$. Si $q_2$ es unidad, entonces $q_1$ es irreducible y $f=p_1*q_1$ es la factorización buscada. Si este proceso nunca terminara, de forma inductiva se tendría una sucesión $\{ q_i \}_{i \in \mathbb{N}}$ tal que $q_i=p_{i+1}*q_{i+1}$, con $p_i$ no unidad y además $q_i \ne q_{i+1},\forall i \in \mathbb{N}$, de tal manera que dicho conjunto es infinito, lo que contradice de nuevo el Teorema \ref{thm:chain1}. En consecuencia, el proceso eventualmente termina y por tanto existe $N \in \mathbb{N}$ tal que $q_N=p_{N+1}*q_{N+1}$, donde $q_{N+1}$ es unidad y $p_{N+1}$ es irreducible. Luego
-\begin{equation*}
-    f=p_1*p_2*\cdots*p_N*q_N,
-\end{equation*}
-donde $p_1,\ldots,p_{N}$ y $q_N$ son irreducibles.
-\end{proof}
-
-Habiendo llegado hasta aquí, uno puede sospechar que el dominio $\mathcal{A}$ es un dominio de factorización única. Esta sospecha es, de manera sorprendente, acertada. Sin embargo, la demostración de este hecho no es tan sencilla como la de la proposición anterior.
-
-\begin{theorem}
-$\mathcal{A}$ es un dominio de factorización única.
-\end{theorem}
-\begin{proof}
-El hecho de que toda función aritmética se puede escribir como producto de funciones aritméticas irreducibles ha quedado en evidencia en la proposición anterior. Una demostración de la unicidad de dicha factorización se puede encontrar en \cite[18, p. 985]{Ca1959}. Ahí se prueba que el anillo de series de potencias formales en un conjunto numerable de variables $\{ x_1,x_2,\ldots \}$ es un dominio de factorización única. El resultado se sigue entonces del hecho de que este anillo es isomorfo al anillo de funciones aritméticas mediante el isomorfismo
-\begin{align*}
-    P : \mathcal{A} & \longrightarrow \mathbb{C}[[x_1,x_2,\ldots]] \\
-    P(f) & \longmapsto \sum_{n \in \mathbb{N}} f(n) x_1^{\alpha_1}\cdots x_{\nu}^{\alpha_{\nu}},
-\end{align*}
-donde $n=p_1^{\alpha_1}\cdots p_{\nu}^{\alpha_{\nu}}$ es la factorización en primos de $n$. Se tiene que $P(f+g)=P(f)+P(g)$ y $P(f*g)=P(f)P(g)$, donde la multiplicación de dos series de este tipo se realiza agrupando términos ``semejantes'', es decir, monomios iguales. Otra demostración de este hecho se puede encontrar en \cite{Nish1}. Ambas demostraciones utilizan el hecho de que los anillos de series de potencias formales en un número finito de variables $\mathbb{C}[[x_1,\ldots,x_n]]$ son dominios de factorización única, para cada $n \in \mathbb{N}$.
-\end{proof}
-
-\begin{corollary}\label{cor:fac1}
-Todo elemento irreducible en $\mathcal{A}$ es primo en $\mathcal{A}$.
-\end{corollary}
-
-Siendo $\mathcal{A}$ un dominio de factorización única, cabe preguntarse si también es un dominio de ideales principales. La siguiente proposición muestra que este no es el caso.
-
-\begin{proposition}
-$\mathcal{A}$ no es un dominio de ideales principales.
-\end{proposition}
-\begin{proof}
-Considere $f=(0,1,0,\ldots)$ y $g=(0,0,1,0,\ldots)$. Se tiene que $\mathcal{N}(f)=2$ y $\mathcal{N}(g)=3$, ambos números primos. Afirmamos que $I$ es un máximo común divisor de $f$ y $g$. Claro que $I \mid f$ y $I \mid g$. Si $h \in \mathcal{A}$ es tal que $h \mid f$ y $h \mid g$, entonces $f=h k_1$ y $g=h k_2$, con $h,k_1,k_1 \in \mathcal{A}\setminus \{ \mathbf{0} \}$. Luego $2=\mathcal{N}(h)\mathcal{N}(k_1)<3=\mathcal{N}(h)\mathcal{N}(k_2)$, en consecuencia, $1 \le \mathcal{N}(k_1)<\mathcal{N}(k_2)$, así que necesariamente $\mathcal{N}(k_2)=3$ y $\mathcal{N}(h)=1$. Luego $h$ es unidad, es decir $h \mid I$. Esto prueba que $I$ es máximo común divisor de $f$ y $g$.
-\bigskip
-
-Si $\mathcal{A}$ fuera un dominio de ideales principales por \cite[\S III.3, Thm. 3.11.(ii), p. 140]{Hun1}, existirían $s,t \in \mathcal{A}$ tales que $I=f*s+g*t$, en particular, $1=I(1)=f(1)s(1)+g(1)t(1)=0$, lo cual es imposible.
-\end{proof}
-
-\begin{theorem}
-$\mathcal{A}$ es un anillo local.
-\end{theorem}
-\begin{proof}
-Por \cite[\S III.4, Thm. 4.13.(iii), p. 147]{Hun1}, basta probar que los elementos no invertibles de $\mathcal{A}$ forman un ideal de $\mathcal{A}$. En efecto, se tiene que $\mathbf{0} \in \mathcal{A}\setminus \mathcal{A}^*$. Si $f \in \mathcal{A}\setminus \mathcal{A}^*$ y $g \in \mathcal{A}$, entonces $f(1)=0$, en consecuencia $(f*g)(1)=f(1)g(1)=0$, es decir, $f*g \in \mathcal{A}\setminus \mathcal{A}^*$. Además, si $h \in \mathcal{A}\setminus \mathcal{A}^*$, entonces $h(1)=0$ y por tanto $f(1)-h(1)=0$, es decir $f-h \in \mathcal{A}\setminus \mathcal{A}^*$. Esto prueba que $\mathcal{A}\setminus \mathcal{A}^*$ es un ideal de $\mathcal{A}$.
-\end{proof}
-
-\begin{proposition}
-Si $f \in \mathcal{A}$ es tal que $f(1) = 0$ y $f(p) \ne 0$ para alǵun primo $p$, entonces $f$ es irreducible en $\mathcal{A}$.
-\end{proposition}
-\begin{proof}
-Por hipótesis $f$ no es cero y no es unidad. Supongamos que $f=g*h$. Si $g$ y $h$ no fueran unidades, entonces se tendría que $g(1)=0$ y $f(1)=0$, por tanto, $f(1)=(g*h)(1)=g(1)h(p)+g(p)h(1)=0$, lo que contradice la hipótesis. En consecuencia alguna de las funciones $g$ o $h$ es unidad.
-\end{proof}
-
-Un colorario de la proposición anterior y el \Cref{cor:fac1} es el siguiente.
-
-\begin{corollary}
-Si $f \in \mathcal{A}$ es tal que $f(1) = 0$ y $f(p) \ne 0$ para algún primo $p$, entonces $f$ es un elemento primo de $\mathcal{A}$.
-\end{corollary}
-
-Hasta aquí se tiene que el anillo $\mathcal{A}$ satisface cierto tipo de condición de la cadena ascendente. Sin embargo, la siguiente proposición muestra que en general no se cumple la condición de la cadena descendente, es decir, $\mathcal{A}$ no es artiniano.
-
-\begin{proposition}
-$\mathcal{A}$ no es un anillo artiniano.
-\end{proposition}
-\begin{proof}
-Para cada $n \in \mathbb{N}$ defínase $I_n = \{ f \in \mathcal{A} \std \mathcal{N}(f) \ge n \} \cup \{ \mathbf{0} \}$. Se tiene lo siguiente:\begin{enumerate}[label=\textnormal{(\arabic*)}]
-\item $I_n$ es un ideal de $\mathcal{A}$, para cada $n$. En efecto, por definición se tiene $I_n \ne \emptyset$. Si $f,g \in I_n$ entonces $\mathcal{N}(f) \ge n$ y $\mathcal{N}(g) \ge n$, luego $\mathcal{N}(f-g) \ge \min \{ \mathcal{N}(f), \mathcal{N}(-g) \} = \min \{ \mathcal{N}(f),\mathcal{N}(g) \} \ge n$, luego $f-g \in I_n$.
-\bigskip
-
-Además, si $h \in \mathcal{A}$, se tienen dos casos. Si $h=\mathbf{0}$, entonces $f*h=0 \in I_n$. Si $h \ne \mathbf{0}$, entonces $\mathcal{N}(f) \ge 1$, de tal manera que $\mathcal{N}(f*g)=\mathcal{N}(f)\mathcal{N}(h) \ge \mathcal{N}(f) \ge n$, es decir, $f*h \in I_n$. Esto prueba que $I_n$ es un ideal de $\mathcal{A}$.
-\item $I_{n+1} \subset I_n$, para cada $n \in \mathbb{N}$, pues $\mathcal{N}(f) \ge n+1$ implica que $\mathcal{N}(f) \ge n$.
-\item $I_n \not \subset I_{n+1}$, para cada $n \in \mathbb{N}$, pues considere $f \in \mathcal{A}$ definida como
-\begin{equation*}
-    f(k) = \begin{cases}
-        \hfil 1 & \text{si } k=n \\
-        \hfil 0 & \text{en otro caso.}
-    \end{cases}
-\end{equation*}
-Entonces $\mathcal{N}(f) = n < n+1$, es decir, $f \in I_n$, pero $f \notin I_{n+1}$.
-\end{enumerate}
-Se tiene pues una cadena descendente infinita de ideales de $\mathcal{A}$, luego $\mathcal{A}$ no es artiniano.
-\end{proof}
-
-\subsection{Funciones multiplicativas}
-
-\begin{definition}[Función multiplicativa]
-Se dice que una función aritmética $f$ es \textbf{multiplicativa} si no es idénticamente cero y para todo $m,n \in \mathbb{N}$, $(m,n)=1$ implica que $f(m n)=f(m)f(n)$.
+\begin{definition}[Función $\varphi$ de Euler]
+Para cada $n\geq 1$, se define la función $\varphi$ de Euler $\varphi(n)$ como el número de enteros positivos no mayores a que $n$ que son primos relativos a $n$.
 \end{definition}
 
-\begin{remark}
-Se denota al conjunto de funciones multiplicativas como $\mathcal{M}$. En general si $f$ y $g$ son funciones multiplicativas entonces $f-g$ no es necesariamente una función multiplicativa, sin embargo, $f*g$ sí lo es.
-\end{remark}
-
-\begin{lemma}
-Si $(a,b)=1$ y $d \in \mathbb{N}$, entonces $(a b,d)=(a,d)(b,d)$.
-\end{lemma}
-\begin{proof}
-Escríbanse $(a,d)=a x+d y$ y $(b,d)=b s+d t$, para algunos $x,y,s,t \in \mathbb{Z}$. Entonces
+\begin{definition}[Función de Mangoldt]
+Para todo $n\in\mathbb{N}$, definimos la función de Mangoldt como 
 \begin{equation*}
-	(a,d)(b,d) = a b x s + a x d t + d y b s + d y d t = a b (xs) + d(a x t + y b s + y d t),
+	\Lambda(n) =
+		\begin{cases}
+			\log p & \text{si} \: n=p^m \text{ para algún primo } p \text{ y } m\geq 1\\ \hfil
+			0 & \text{en otro caso}.
+		\end{cases}
 \end{equation*}
-por tanto, $(a b,d) \mid (a,d)(b,d)$. 
-\bigskip
+\end{definition}
 
-Por otro lado, escríbase $1=a z + b w$, para algunos $z,w \in \mathbb{Z}$. Entonces $d=d a z + d b w$. Además, como $a=(a,d)m$, $b=(b,d)n$, $d=(b,d)p$ y $d=(a,d)q$ para algunos $m,n,p,q \in \mathbb{Z}$, entonces
+\begin{definition}[Función de Liouville]
+Se define a la función $\lambda$ de Liouville como $\lambda(1)=1$ y dada $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ la factorización de $n$ en primos, entonces $\lambda(n)=(-1)^{\alpha_1+\alpha_2+\cdots+\alpha_k}$.
+\end{definition}
+
+\begin{definition}[Función divisor]
+Para cada $k\in\mathbb{C}$ se define la función divisor de orden $k$ como 
 \begin{equation*}
-    d = (a,d)(b,d) (p m z + q n w),
+	\sigma_k(n)=\sum_{d \mid n} d^k.
 \end{equation*}
-es decir, $(a,d)(b,d) \mid d$. Dado que $a b=(a,d)(b,d)m n$, entonces $(a,d)(b,d) \mid a b$ y en consecuencia $(a,d)(b,d) \mid (a b,d)$. Se sigue que $(a b,d)=(a,d)(b,d)$.
-\end{proof}
+A la función divisor de orden $1$ la llamaremos simplemente función divisor y se denotará como $\sigma$ en vez de $\sigma_1$. La función divisor de orden $0$ se denomina función número de divisores.
+\end{definition}
 
-\begin{lemma}\label{lem:div1}
-Si $(a,b)=1$, $a_1,\ldots,a_l$ son todos los divisores positivos de $a$ y $b_1,\ldots,b_m$ son todos los divisores positivos de $b$, entonces $\{ d>0 \std d \mid a b \}=\{ a_i b_j \std i=1,\ldots,l, \hspace{0.2cm} j=1,\ldots,m \}$.
-\end{lemma}
+Las funciones aritméticas por sí mismas pueden tener comportamientos aleatorios y difíciles de predecir, pero se pueden observar algunas regularidades cuando sumamos todos los valores que toma la función en los divisores positivos de un número natural dado. Para esto definimos la siguiente notación:
+
+Se tienen las siguientes propiedades básicas de algunas funciones aritméticas.
+
+\begin{proposition}
+Para todo $n\in\mathbb{N}$, se tiene que 
+\begin{equation*}
+	\sum_{d \mid n} \mu(d) = I(n) =
+		\begin{cases}
+			1 & \text{si} \: n=1 \\ %\hfil
+			0 & \text{si} \: n>1
+		\end{cases}
+\end{equation*}
+\end{proposition}
 \begin{proof}
-Si $a_i$, $b_j$ son divisores de $a$ y $b$, respectivamente, entonces existen $s,t \in \mathbb{Z}$ tales que $a=a_i s$ y $b=b_j t$, luego $a b=a_i b_j s t$, es decir, $a_i b_j \mid a b$. Recíprocamente, si $d$ es un divisor de $a b$, entonces $(a b,d)=d$, pero por el lema anterior $(a b,d)=(a,d)(b,d)$, luego $d=(a,d)(b,d)$, donde $(a,d)$ es un divisor positivo de $a$ y $(b,d)$ es un divisor positivo de $b$.
-\end{proof}
-
-\begin{theorem}\label{thm:sb1}
-$(\mathcal{M},*)$ es un subgrupo de $(\mathcal{A}^*,*)$.
-\end{theorem}
-\begin{proof}
-Si $f \in \mathcal{M}$, entonces $f \ne \mathbf{0}$ y existe $N \in \mathbb{N}$ tal que $f(N) \ne 0$, luego $f(N)=f(1 \cdot N)=f(1)f(N)$ y en consecuencia $1=f(1)$, es decir, $f \in \mathcal{A}^*$. Esto prueba que $\mathcal{M} \subset \mathcal{A}^*$.
-\bigskip
-
-Claro que el conjunto $\mathcal{M}$ es no vacío, pues $I \in \mathcal{M}$. Veamos que la operación $*$ es cerrada en $\mathcal{M}$. Sean $f,g$ funciones multiplicativas, sean $a,b \in \mathbb{N}$ tales que $(a,b)=1$ y sean $a_1,\ldots,a_l$ y $b_1,\ldots,b_m$ todos los divisores positivos de $a$ y $b$, respectivamente. Entonces $(a_i,b_j)=1$, para cada $i=1,\ldots,l$ y para cada $j=1,\ldots,m$, luego
+Si $n=1$, por definición $\mu(n)=1$. Supongamos que $n>2$ y sea $n=q_1^{\alpha_1}\cdots q_k^{\alpha_k}$ la factorización de $n$ en primos. Todos los divisores de $n$ son de la forma $n=q_1^{\beta_1}\cdots q_k^{\beta_k}$, con $0\leq \beta_i\leq \alpha_i,\:\forall \: i=1,\ldots,k$. Sin embargo, hace falta considerar sólo los factores donde $0\leq \beta_i\leq 1$, pues la función de Möbius se anula para cualesquiera otros. Para un $1\leq i\leq k$ dado, existen $\binom{k}{i}$ $i$-combinaciones (sin repetición y desordenadas) de elementos del conjunto $P=\left\{q_1,\cdots,q_k\right\}$, véase \cite{Br1-1999}. Luego la suma buscada es igual a
 \begin{align*}
-	(f*g)(a)(f*g)(b) &= \left[ \sum_{i=1}^{l} f(a_i)g\left( \frac{a}{a_i} \right) \right]\left[ \sum_{j=1}^{m} f(b_j)g \left( \frac{b}{b_i} \right) \right] \\
-					 &= \sum_{i=1}^{l} \sum_{j=1}^{m} f(a_i)g \left( \frac{a}{a_i} \right)f(b_i)g \left( \frac{b}{b_i} \right) \\
-					 &= \sum_{i=1}^{l} \sum_{j=1}^{m} f(a_i b_j)g \left( \frac{a b}{a_i b_j} \right) \\
-					 &= \sum_{d \mid a b}f(d)g \left( \frac{a b}{d} \right) = (f*g)(a b)
+    \mu(1)+&\sum_{p_1\in\left\{q_1,\ldots,q_k\right\}} \mu(p_1) + \sum_{\substack{p_1,p_2\in \left\{q_1,\ldots,q_k\right\} \\ p_1\neq p_2}} \mu(p_1 p_2)+\cdots+\sum_{\substack{p_1,\ldots,p_k\in \left\{q_1,\ldots,q_k\right\} \\ p_1\neq p_2 \neq \cdots \neq p_k}} \mu(p_1\cdots p_k) \\
+						   &= \binom{k}{0}(-1)^0+\binom{k}{1}(-1)^1+\binom{k}{2}(-1)^2+\cdots+\binom{k}{k}(-1)^k =  (1-1)^k=0
 \end{align*}
-por el \Cref{lem:div1}.
+Es decir, $\sum_{d \mid n} \mu(d)=0$.
+\end{proof}
+
+\begin{corollary}[Inversión de Möbius]\label{cor:mob1}
+Si $f,g \in \mathcal{A}$, entonces para cada $n \in \mathbb{N}$,
+\begin{equation*}
+    \sum_{d \mid n} f(n) = g(n) \iff \sum_{d \mid n} g(n)\mu \left( \frac{n}{d} \right) = f(n)
+\end{equation*}
+\end{corollary}
+\begin{proof}
+De acuerdo con la proposición anterior, se tiene $\mu*\mathbf{1}=\mathbf{1}*\mu=I$, de tal manera que
+\begin{equation*}
+    f*\mathbf{1} =  g \iff f*\mathbf{1}*\mu = g * \mu \iff f*I = g * \mu \iff f = g * \mu,
+\end{equation*}
+lo cual es equivalente al enunciado.
+\end{proof}
+
+\begin{proposition}[Gauss]\label{eq:gauss1}
+Para todo $n\in\mathbb{N}$ se verifica que 
+\begin{equation*}
+	\sum_{d \mid n} \varphi(d)=n.
+\end{equation*}
+\end{proposition}
+\begin{proof}
+La siguiente demostración es debida a Gauss en \cite{Gauss1}. Sea $n\in\mathbb{N}$ y sean $d_1,\cdots,d_k$ los distintos divisores positivos de $n$. Para cada $d_i$, sean $c_{i,1},\cdots,c_{i,m_i}$ todos los enteros positivos primos relativos y no mayores a $d_i$. Notemos que $\varphi(d_i)=m_i$. Afirmamos que el conjunto formado por los números 
+\begin{equation*}
+	\renewcommand\arraystretch{2}
+	\begin{matrix}
+	(n/d_1)c_{1,1} & (n/d_1)c_{1,2} & \cdots & (n/d_1)c_{1,m_1} \\
+	(n/d_2)c_{2,1} & (n/d_2)c_{2,2} & \cdots & (n/d_2)c_{2,m_2} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	(n/d_k)c_{k,1} & (n/d_k)c_{k,2} & \cdots & (n/d_k)c_{k,m_k} \\
+	\end{matrix}
+\end{equation*}
+es igual a $\left\{1,2,\ldots,n\right\}$. En efecto, sea $r$ un entero positivo tal que $1\leq r\leq n$  y sea $d=(n,r)$. Notemos que $n/d$ es un divisor de $n$, $r/d\leq n/d$ y $(n/d,r/d)=1$. Además $(n/(n/d))(r/d)=r$, luego $r$ está entre los elementos de la tabla anterior. Recíprocamente, se tiene que $1\leq (n/d_i)c_{i,j}\leq (n/d_i)d_i=n,\:\forall \: i=1,\ldots,k,\:\forall \: j=1,\ldots,m_i$.
+\medskip
+
+Finalmente veamos que todos los elementos de la tabla son distintos. Es claro que todos los elementos de cada fila son distintos, pues los divisores de cada $d_i$ son distintos por hipótesis. Si dos números fueran iguales, para algunos divisores $M$ y $N$ de $n$ distintos, podemos suponer que $M>N$. Se tendría pues que $(n/M)\mu=(n/N)\nu$, donde $\mu$ es primo relativo a $M$ y $\nu$ es primo relativo a $N$, luego $\mu N=\nu M$, de manera que $M \mid \mu N$, por tanto $M \mid N$, lo cual no puede ser pues $M>N$. Finalmente: 
+
+\begin{equation*}
+	\sum_{d \mid n} \varphi(d) = \varphi(d_1)+\cdots+\varphi(d_k) = m_1+\cdots+m_k = |\left\{1,\ldots,n\right\}| = n
+\end{equation*}
+\end{proof}
+
+Existe una relación entre las funciones $\mu$ y $\varphi$ al sumar sobre los divisores de un entero positivo. El siguiente lema será útil para probar dicha relación.
+
+\begin{lemma}\label{lemma:car1}
+Si $n\in\mathbb{N}$, $d$ es un divisor positivo de $n$, $S=\left\{x\in\mathbb{N} \: : \: 1\leq x\leq n\right\}$ y $A=\left\{x\in S \: : \: d \mid x\right\}$ entonces $|A|=n/d$.
+\end{lemma}
+\begin{proof}
+En efecto, tenemos que la función
+\begin{align*}
+	F:\left\{1,\ldots,n/d\right\} & \longrightarrow A \\
+	x & \longmapsto dx
+\end{align*}
+es biyectiva, pues si $x,y\in \left\{1,\ldots,n/d\right\}$ son tales que $F(x)=F(y)$, entonces $dx=dy$ y por tanto $x=y$, pues $d\neq 0$. Además, si $r\in A$ entonces $d \mid r$ y $1\leq r\leq n$, por lo que existe $q\in\mathbb{N}$ tal que $r=dq$, luego $q$ es tal que $1\leq q\leq n/d$ y $F(q)=dq=r$. En consecuencia $|A|=|\left\{1,\ldots,n/d\right\}|=n/d$
+\end{proof}
+
+\begin{proposition}\label{prop:mob1}
+Para todo $n\in\mathbb{N}$ se verifica que 
+\begin{equation*}
+	\sum_{d \mid n} \mu(d)\frac{n}{d}=\varphi(n).
+\end{equation*}
+\end{proposition}
+\begin{proof}
+Si $n=1$ claro que se tiene $\mu(1)=\varphi(1)=1$. Supongamos que $n>1$ y sea $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ su factorización en primos. Sea $S=\left\{1,\ldots,n\right\}$ y para cada $i=1,\ldots,r$ definamos $A_i=\left\{x\in S\: : \: p_i \mid x\right\}$.
 \bigskip
 
-Como ya se probó al inicio de esta demostración, si $f$ es multiplicativa entonces $f(1)=1$, por lo que existe $f^{-1}$. Veamos que $f^{-1} \in \mathcal{M}$. Para esto construiremos, a partir de $f$, una función multiplicativa $g$ con la propiedad de que $f*g=I$, con lo que quedará demostrado que $f^{-1}$ es multiplicativa por la unicidad de la inversa. Se procede definiendo a $g$ de forma gradual:
-\begin{enumerate}[label=\textnormal{(\arabic*)},ref=\textnormal{\arabic*}]
-\item $g(1)=1$.
-\item Para cada primo $p$ se define $g(p)=-f(p)$. De tal manera que
-	\begin{equation*}
-		(f*g)(p) = \sum_{d \mid p} f(p)g \left( \frac{p}{d} \right) = f(1)g(p) + f(p)g(1) = -f(p) + f(p) = 0.
-	\end{equation*}
-\item \label{it:mul1} Para cada $a \in \mathbb{N}$ y para cada primo $p$ se define, recursivamente,
-	\begin{equation*}
-	    g(p^a)=-f(p)g(p^{a-1})-\cdots-f(p^a)g(1)
-	\end{equation*}
-	de tal manera que 
-	\begin{align*}
-		(f&*g)(p^a) = \sum_{d \mid p^a} f(d)g \left( \frac{p^a}{d} \right) = f(1)g(p^a)+f(p)g(p^{a-1})+\cdots+f(p^a)g(1) \\
-				   &= -f(p)g(p^{a-1})-\cdots-f(p^a)g(1)+f(p)g(p^{a-1})+\cdots+f(p^a)g(1) = 0.
-	\end{align*}
-\item Se define
-	\begin{equation*}
-	    g \left( \prod p_i^{a_i} \right) = \prod g(p_i^{a_i}).
-	\end{equation*}
-	para cualquier producto finito de potencias de primos, con $p_i \ne p_j$ si $i \ne j$. La función $g$ ha quedado entonces definida para cualquier entero positivo.
-\item $g$ es multiplicativa, pues si $a=p_1^{\alpha_1}\cdots p_m^{\alpha_m}$ y $b=q_1^{\beta_1}\cdots q_l^{\beta_l}$ son tales que $(a,b)=1$, entonces $p_i \ne q_j$, luego
-	\begin{align*}
-		g(a b) = g(p_1^{\alpha_1}\cdots p_m^{\alpha_m} q_1^{\beta_1}\cdots q_l^{\beta_l}) &= g(p_1^{\alpha_1})\cdots g(p_m^{\alpha_m})g(q_1^{\beta_1})\cdots g(q_l^{\beta_l}) \\
-																				 &= g(p_1^{\alpha_1}\cdots p_m^{\alpha_m})g(q_1^{\beta_1}\cdots q_l^{\beta_l}) = g(a)g(b)
-	\end{align*}
-\item Como la operación $*$ es cerrada en $\mathcal{M}$, entonces $f*g$ es multiplicativa.
-\item Si $n>1$ y $n=p_1^{\alpha_1}\cdots p_l^{\alpha_l}$ es su factorización en primos, entonces
-	\begin{equation*}
-		(f*g)(n) = (f*g)(p_1^{\alpha_1})\cdots (f*g)(p_l^{\alpha_l}) = 0
-	\end{equation*}
-	donde la primera igualdad se cumple por ser $f*g$ multiplicativa y la segunda por el inciso \eqref{it:mul1}. Además, $(f*g)(1)=f(1)g(1)=1$. En consecuencia $f*g=I$.
-\item Se sigue que $g=f^{-1}$ y como $g$ es multiplicativa, entonces $f^{-1}$ también lo es.
-\end{enumerate}
+Si $1\leq m\leq r$, como todos los $p_i$ son primos distintos, se debe tener que 
+\begin{equation*}
+	\bigcap_{s=1}^{m} A_i = \left\{x\in S \: : \: p_1 \mid x,p_2 \mid x,\ldots,p_m \mid x\right\}=\left\{x\in S \: : \: p_1 p_2 \ldots p_m \mid x\right\}.
+\end{equation*}
+Por otro lado, notemos que si $P=\left\{x\in S \: : \: (n,x)=1\right\}$ entonces 
+\begin{equation*}
+	\bigcap_{i=1}^{r} S \setminus A_i=P.
+\end{equation*}
+En efecto, si $x\in \bigcup_{i=1}^{r} A_i$ entonces $x\in S$ y $p_i \mid x$, para algún $p_i$, de manera que $p_i \mid n$ y $p_i \mid x$, y por tanto $(n,x)\geq p_i>1$, luego $x\not\in P$. Recíprocamente, si $x\in S$ y $x\not\in P$, entonces $(n,x)>1$ y por tanto debe existir un primo $q$ que divide a $(n,x)$, pero $(n,x)\mid n$ y $(n,x)\mid x$, por lo que $q \mid n$ y $q \mid x$, luego $q=p_i$, para algún $i=1,\ldots,m$. En consecuencia, $p_i \mid x$ y por tanto $x\in \bigcup_{i=1}^{r} A_i$. Se sigue que $\bigcup_{i=1}^{r} A_i=S \setminus P$, o bien $\bigcap_{i=1}^{r} S/A_i=P$.
+\bigskip
+
+Como $p_1 \cdots p_m \mid n,\:\forall \: m=1,\ldots,r$, por el lema \eqref{lemma:car1} se debe tener que  $|\bigcap_{s=1}^{m} A_i|=n/p_1 \cdots p_m,\:\forall \: m=1,\ldots,r$. Finalmente, por el principio de inclusión-exclusión, se tiene que 
+\begin{align*}
+	&\varphi(n) = |P| = \left|\bigcap_{i=1}^{r} S \setminus A_i\right| = |S|+\sum_{i_1\in \{1,\ldots,r\}} (-1)|A_{i_1}|+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} |A_{i_1} \cap A_{i_2}|+\cdots \\
+	&+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,r\} \\ i_1\neq \cdots \neq i_r}} (-1)^{r}|A_{i_1}\cap \cdots\cap A_{i_r}| = n+\sum_{i_1\in \{1,\ldots,r\}} (-1)\frac{n}{p_{i_1}}+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} \frac{n}{p_{i_1}p_{i_2}} +\cdots \\
+	&+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,m\} \\ i_1\neq \cdots \neq i_r}} (-1)^{r}\frac{n}{p_{i_1}\cdots p_{i_r}} = n+\sum_{i_1\in \{1,\ldots,r\}} \mu(p_{i_1})\frac{n}{p_{i_1}}+\sum_{\substack{i_1,i_2\in \{1,\ldots,r\} \\ i_1\neq j_2}} \mu(p_{i_1}p_{i_2})\frac{n}{p_{i_1}p_{i_2}} + \\
+	&\cdots+\sum_{\substack{i_1,\ldots,i_r\in \{1,\ldots,m\} \\ i_1\neq \cdots \neq i_r}} \mu(p_{i_1}\cdots p_{i_r})\frac{n}{p_{i_1}\cdots p_{i_r}} = \sum_{d \mid n} \mu(d)\frac{n}{d}.
+\end{align*}
 \end{proof}
 
 \begin{corollary}
-Si $f*g$ es multiplicativa y $g$ es multiplicativa, entonces $f$ también lo es.
+La función $\varphi$ es multiplicativa, pues $\varphi = \mu * N$, donde $\mu$ y $N$ son funciones multiplicativas.
 \end{corollary}
-\begin{proof}
-Como $g$ es multiplicativa, entonces existe $g^{-1}$ y también es multiplicativa, luego $f=(f*g)*g^{-1}$ es multiplicativa por ser producto de funciones multiplicativas.
-\end{proof}
-
-\subsection{Isomorfismos entre grupos de funciones aritméticas}
-
-Se denotará como $\mathcal{A}_\mathbb{R}$ al conjunto de funciones aritméticas real valuadas, es decir, $\mathcal{A}_{\mathbb{R}}=\{ f \in \mathcal{A} \std f(n) \in \mathbb{R}, \forall n \in \mathbb{N} \}$. Asimismo, se define $P=\{ f \in \mathcal{A} \std f(1)>0 \}$. Es fácil verificar que $(\mathcal{A}_{\mathbb{R}},+)$ y $(P,*)$ son subgrupos de $(\mathcal{A},+)$ y de $(\mathcal{A}^*,*)$, respectivamente. Más aún, estos grupos son isomorfos.
-
-\begin{lemma}\label{prop:iso1}
-$(\mathcal{A}_{\mathbb{R}},+) \cong (P,*)$.
-\end{lemma}
-\begin{proof}
-El isomorfismo buscado es
-\begin{align*}
-    L : (P,*) & \longrightarrow (\mathcal{A}_{\mathbb{R}},+) \\
-    f & \longmapsto L f
-\end{align*}
-donde $L f(1)=\log(1)$ y $L f(n)=\sum_{d \mid n} \log(d)f(d)f^{-1}(n/d)$ para $n>1$. Se tiene que $L$ es en efecto un homomorfismo, pues para $n=1$ se tiene
-\begin{equation*}
-    L (f*g)(1) = \log (f*g) (1) = \log(f(1)g(1)) = \log f(1) + \log g(1) = L f(1) + L g(1).
-\end{equation*}
-Para el caso $n>1$, nótese primero que para cualquier $n \in \mathbb{N}$,
-\begin{align*}
-	\log(n)(f*g)(n) &= \log(n) \sum_{d \mid n} f(d)g \left( \frac{n}{d} \right) \\
-					&= \sum_{d \mid n} f(d) g \left( \frac{n}{d} \right) \left[ \log \frac{n}{d} + \log d \right] \\
-					&= \sum_{d \mid n} f(d) g \left( \frac{n}{d} \right) \log \left( \frac{n}{d} \right) + \sum_{d \mid n} f(d) g \left( \frac{n}{d} \right) \log(d) \\
-					&= (f*(\log \cdot g))(n)+((\log \cdot f)*g)(n),
-\end{align*}
-es decir, $\log \cdot (f*g) = f*(\log \cdot g)+(\log \cdot f)*g$. Multiplicando por $(f*g)^{-1}=f^{-1}*g^{-1}$ a ambos lados de la ecuación, se tiene que
-\begin{equation*}
-	(\log \cdot (f*g))*(f*g)^{-1} = (\log \cdot g)*g^{-1} + (\log \cdot f)*f^{-1},
-\end{equation*}
-es decir, $L(f*g)=L f+L g$ y en particular para $n>1$. Esto prueba que $L$ es un homomorfismo.
-\bigskip
-
-$L$ también es suprayectivo, pues si $f \in \mathcal{A}_{\mathbb{R}}$, defínase $g(1)=\exp(f(1))$. Entonces $L g(1)=\log g(1)=\log \exp(f(1))=f(1)$, pues $f(1) \in \mathbb{R}$. Además, como $g(1)>0$ existe $g^{-1}$ y se define recursivamente, para $n>1$,
-\begin{equation*}
-    g(n) = \frac{1}{\log(n) g^{-1}(1)} \left[ f(n) - \sum_{\substack{d \mid n \\ d \ne 1,n}} \log(d) g(d) g^{-1} \left( \frac{n}{d} \right)\right].
-\end{equation*}
-Esta ecuación implica que
-\begin{align*}
-	f(n) = g(n)\log(n)g^{-1}(1)+g(1)\log(1)g^{-1}(n)&+\sum_{\substack{d \mid n \\ d \ne 1,n}} \log(d)g(d)g^{-1} \left( \frac{n}{d} \right) \\
-		 &= \sum_{d \mid n} \log(d)g(d)g^{-1} \left( \frac{n}{d} \right) = L g(n).
-\end{align*}
-En consecuencia, $L g(n)=f(n), \forall n \in \mathbb{N}$, es decir, $L g=f$.
-\bigskip
-
-Finalmente, se tiene que $L$ es inyectivo. En efecto, si $L(f)=L(g)$, entonces $L(f)-L(g)=0$, pero $-L g=L g^{-1}$ por ser $L$ un homomorfismo, luego $L f+L g^{-1}=L(f*g^{-1})=0$. Para $n=1$ esto implica que $\log(f*g^{-1}(1))=0$ y por tanto $(f*g^{-1})(1)=1$. Si $n=2$, entonces
-\begin{equation*}
-    L(f*g^{-1})(2) = \log(1)(f*g^{-1})(1)(f*g^{-1})^{-1}(2) + \log(2)(f*g^{-1})(2)(f*g^{-1})(1) = 0,
-\end{equation*}
-pero $\log(1)=0$, por tanto $\log(2)(f*g^{-1})(2)(f*g^{-1})(1)=0$ y dado que $(f*g^{-1})(1) \ne 0$, entonces $(f*g^{-1})(2)=0$. Supóngase que $(f*g^{-1})(d)=0$, para cada $1<d<n$. Entonces $L(f*g)=0$ implica que
-\begin{equation*}
-	\log(n)(f*g^{-1})(n)(f*g^{-1})(1) + \sum_{\substack{d \mid n \\ d \ne 1,n}} \log(d)\underbrace{(f*g^{-1})(d)}_{0}(f*g^{-1})^{-1} \left( \frac{n}{d} \right) = 0,
-\end{equation*}
-pues $\log(1)=0$, por tanto, $\log(n)(f*g^{-1})(n)(f*g^{-1})(1)=0$ y por tanto $(f*g^{-1})(n)=0$. Esto prueba que para cada $n>1$, $(f*g^{-1})=0$. Así pues, se tiene que $f*g^{-1}=I$, por tanto, $f=g$.
-\end{proof}
-
-Se denota $\mathcal{A}^\prime=\{ f \in \mathcal{A}_{\mathbb{R}} \std f(n) = 0,\forall n \ne p^\alpha, p \text{ primo y } \alpha \in \mathbb{N} \}$. La siguiente proposición es una caracterización de las funciones multiplicativas respecto al conjunto $\mathcal{A}^\prime$ y al isomorfismo $L$.
-
-\begin{proposition}
-$f \in \mathcal{M}$ si y sólo si $L f \in \mathcal{A}^\prime$.
-\end{proposition}
-\begin{proof}
-Supóngase primero que $f$ es multiplicativa. Entonces $f(1)=1$, por tanto, $L f(1)=\log f(1)=\log 1 = 0$. Si $N>1$ no es potencia de ningún primo, entonces $N=m n$, con $(m,n)=1$ y $n,m>1$. Luego
-\begin{align*}
-	L f(N) = L f(m n) &= \sum_{d \mid m n} \log(d)f(d)f^{-1} \left( \frac{m n}{d} \right) \\
-					  &= \sum_{d \mid m}\sum_{e \mid n} f(d)f(e)f^{-1}\left( \frac{m}{d} \right)f^{-1}\left( \frac{n}{e} \right)(\log(d)+\log(e)) \\
-					  &= \sum_{d \mid m} \log(d)f(d)f^{-1}\left( \frac{m}{d} \right)\sum_{e \mid n} f(e)f^{-1}\left( \frac{n}{e} \right) \\
-					  &+ \sum_{e \mid n} \log(e)f(e)f^{-1}\left( \frac{n}{e} \right)\sum_{d \mid m}f(d)f^{-1}\left( \frac{m}{e} \right) \\
-					  &= L f(m)\sum_{e \mid n} f(e)f^{-1}\left( \frac{n}{e} \right)+L f(n) \sum_{d \mid m}f(d)f^{-1}\left( \frac{m}{d} \right) \\
-					  &= L f(m)I(n) + L f(n)I(m) = 0,
-\end{align*}
-pues $m,n>1$. Luego $f \in \mathcal{A}^\prime$. 
-\bigskip
-
-Recíprocamente, supóngase que $Lf \in \mathcal{A}^\prime$. En particular se tilene que $Lf(1)=0$ y por tanto $f(1)=1$. Se definirá una función multiplicativa $g$ y se probará que coincide con $f$.
-\begin{enumerate}[label=\textnormal{(\arabic*)},ref=\textnormal{\arabic*}]
-    \item Se define $g(1)=1=f(1)$.
-    \item Para cada primo, se define
-        \begin{equation*}
-            g(n) = \prod_{p \mid n} f(p^\nu),
-        \end{equation*}
-        donde $\nu := \max \{ \alpha \std p^\alpha \mid n \}$.
-    \item $g$ es multiplicativa, pues $(m,n)=1$ implica que
-        \begin{equation*}
-            g(m n) = \prod_{p \mid m n} f(p^\nu) = \prod_{p \mid n} f(p^\nu) \prod_{p \mid n} f(p^\nu) = g(m) g(n).
-        \end{equation*}
-    \item \label{it:mul2} $g$ coincide con $f$ en todas las potencias de primos, pues si $q$ es un primo y $\alpha \in \mathbb{N}$,
-        \begin{equation*}
-            g(q^{\alpha}) = \prod_{p \mid q^{\alpha}} f(p^\nu) = f(q^{\alpha}).
-        \end{equation*}
-    \item $g^{-1}$ coincide con $f^{-1}$ en todas las potencias de primos, pues si $q$ es primo,
-        \begin{equation*}
-            g^{-1}(q) = - \sum_{\substack{d \mid q \\ d \ne q}} g \left( \frac{q}{d} \right) g^{-1}(d) = -g(q)g^{-1}(1) = -g(q) = -f(q) = f^{-1}(q),
-        \end{equation*}
-        por el \cref{it:mul2}. Además, de forma recursiva se tiene que
-        \begin{align*}
-            g^{-1}(q^\alpha) &= -[g(q^{\alpha-1})g^{-1}(1)+\cdots+g(q)g^{-1}(q^{\alpha-1})] \\
-                             &= -[f(q^{\alpha-1})f^{-1}(1)+\cdots+f(q)f^{-1}(q^{\alpha-1})] = f^{-1}(q^\alpha),
-        \end{align*}
-        donde $g^{-1}$ coincide con $f^{-1}$ en $1,q,q^2,\ldots,q^{\alpha-1}$.
-    \item El punto anterior implica que $Lf(q^\alpha)=Lg(q^\alpha)$ para todo primo $q$ y para todo $\alpha \in \mathbb{N}$, pues
-        \begin{equation*}
-            Lf(q^\alpha) = \sum_{d \mid p^\alpha} \log(d) f(d)f^{-1}\left( \frac{n}{d} \right) = \sum_{d \mid p^\alpha} \log(d) g(d)g^{-1}\left( \frac{n}{d} \right) = Lg(q^\alpha).
-        \end{equation*}
-        Además, como $g$ es multiplicativa, entonces $Lg(n)=0$ para todo $n$ no potencia de algún primo, por la primera parte de esta demostración. Luego, por hipótesis se tiene que $Lf(n)=0=Lg(n)$ para todo $n$ no potencia de algún primo, así que de hecho $Lf(n)=Lg(n)$ para todo $n$, es decir, $Lf=Lg$ y como la aplicación $L$ es inyectiva, entonces $f=g$. Luego $f$ es multiplicativa, pues $g$ lo es.
-\end{enumerate}
-\end{proof}
-
-\begin{lemma}\label{prop:iso2}
-$(\mathcal{M},*) \cong (\mathcal{A}^\prime,+)$.
-\end{lemma}
-\begin{proof}
-Es fácil ver que $(\mathcal{A}^\prime,+)$ es un subgrupo de $(\mathcal{A}_{\mathbb{R}},+)$ y que $(\mathcal{M},*)$ es un subgrupo de $(P,*)$. Luego la restricción del homomorfismo a $L$ a $(\mathcal{M},*)$ sigue siendo un isomorfismo y su imagen es $(\mathcal{A}^\prime,+)$ por la proposición anterior.
-\end{proof}
-
-\begin{lemma}\label{prop:iso3}
-$(\mathcal{A}_{\mathbb{R}},+) \cong (\mathcal{A}^\prime,+)$.
-\end{lemma}
-\begin{proof}
-Sea
-\begin{align*}
-    \phi : (\mathcal{A}_{\mathbb{R}},+) & \longrightarrow (\mathcal{A}^\prime,+) \\
-    f & \longmapsto F,
-\end{align*}
-donde $F$ es la función definida como $F(n)=f(p_n), \forall n \in \mathbb{N}$ y $p_n$ es el $n-$ésimo término en la sucesión de potencias de primos en orden ascendente.
-\bigskip
-
-Se tiene que $\phi$ es un homomorfismo, pues $\phi(f+g)(n)=(f+g)(p_n)=f(p_n)+g(p_n)=\phi(f)(n)+\phi(g)(n), \forall n \in \mathbb{N}$, luego $\phi(f+g)=F+G$. Se también tiene que $\phi$ es inyectivo, pues si $f,g \in (\mathcal{A}^\prime,+)$ son tales que $\phi(f)=\phi(g)$, entonces $f(p_n)=g(p_n), \forall n \in \mathbb{N}$, además $f(n)=g(n)=0$ si $n$ no es potencia de algún primo, de manera que $f(n)=g(n), \forall n \in \mathbb{N}$, es decir, $f=g$.
-\bigskip
-
-Finalmente se tiene que $\phi$ es suprayectivo, pues si $F \in (\mathcal{A}^\prime,+)$, defínase $f(p_n)=F(n), \forall n \in \mathbb{N}$ y $f(n)=0$ para toda $n$ no potencia de algún primo. Entonces $f \in (\mathcal{A}_{\mathbb{R}},+)$ y $\phi(f)(n)=f(p_n)=F(n), \forall n \in \mathbb{N}$, es decir, $\phi(f)=F$.
-\end{proof}
-
-\begin{lemma}\label{prop:iso4}
-$(\mathcal{A}_{\mathbb{R}},+) \cong (\mathcal{A}_1,+)$, donde $\mathcal{A}_1 = \{ f \in \mathcal{A} \std f(1) \in \mathbb{R} \}$.
-\end{lemma}
-\begin{proof}
-Es claro que $(\mathcal{A}_1,+)$ es un grupo aditivo. Defínase
-\begin{align*}
-    \psi : (\mathcal{A}_{\mathbb{R}},+) & \longrightarrow (\mathcal{A}_1,+) \\
-    f & \longmapsto F
-\end{align*}
-donde $F$ es la función definida como $F(n)=f(2n-2)+i f(2n-1), \forall n>1$ y $F(1)=f(1)$. Se tiene que $\psi$ es un homomorfismo, pues $\psi(f+g)(1)=(f+g)(1)=f(1)+g(1)=\psi(f)(1)+\psi(g)(1)$, además,
-\begin{align*}
-    \psi(f+g)(n) &= (f+g)(2n-2)+i (f+g)(2n-1) \\
-                 &= f(2n-2)+g(2n-2)+i f(2n-1)+i g(2n-1) \\
-                 &= [f(2n-2)+i f(2n-1)] + [g(2n-2)+i g(2n-1)] \\
-                 &= \psi(f)(n)+\psi(g)(n),
-\end{align*}
-luego $\psi(f+g)=\psi(f)+\psi(g)$.
-\bigskip
-
-El homomorfismo $\psi$ es también inyectivo, pues si $f,g \in (\mathcal{A}_{\mathbb{R}},+)$ son tales que $\psi(f)=\psi(g)$, entonces $f(n),g(n) \in \mathbb{R}, \forall n \in \mathbb{N}$ y además $f(2n-2)+i f(2n-1)=g(2n-2)+i g(2n-1)$, por tanto $f(2n-2)=g(2n-2)$ y $f(2n-1)=g(2n-1)$ y $f(1)=g(1)$, así que $f(n)=g(n), \forall n \in \mathbb{N}$, es decir $f=g$.
-\bigskip
-
-Finalmente, $\psi$ también es suprayectivo, pues dada $F \in (\mathcal{A}_1,+)$, se puede escribir $F=F_1+i F_2$, donde $F_1,F_2 \in \mathcal{A}_{\mathbb{R}}$. Defínase $g(1)=F(1)$ y 
-{\everymath{\displaystyle}
-    \begin{equation*}
-        g(n) = \begin{dcases}
-            \hfil F_1 \left( \frac{n}{2}+1 \right) & \text{si } n \text{ es par } \\
-            \hfil F_2 \left( \frac{n+1}{2} \right) & \text{si } n \text{ es impar y } n>1.
-        \end{dcases}
-    \end{equation*}
-}
-
-Entonces $g \in \mathcal{A}_{\mathbb{R}}$, $\psi(g)(1)=g(1)=F(1)$ y $\psi(g)(n)=g(2n-2)+i g(2n-1)=F_1(n)+i F_2(n)=F(n)$ para cada $n>1$, es decir, $\psi(g)=F$.
-\end{proof}
-
-\begin{lemma}\label{prop:iso5}
-$(\mathcal{A}_{\mathbb{R}},+) \cong (\mathcal{A},+)$.
-\end{lemma}
-\begin{proof}
-Defínase
-\begin{align*}
-    \gamma : (\mathcal{A}_{\mathbb{R}},+) & \longrightarrow (\mathcal{A},+) \\
-    f & \longmapsto F,
-\end{align*}
-donde $F$ es la función definida como $F(n)=f(2n-1)+if(2n), \forall n \in \mathbb{N}$. Se tiene que $\gamma$ es un homomorfismo, pues
-\begin{align*}
-    \gamma(f+g)(n) &= (f+g)(2n-1)+i (f+g)(2n) \\
-                   &= f(2n-1)+g(2n-1)+i f(2n)+i g(2n) \\
-                   &= [f(2n-1)+i f(2n)]+[g(2n-1)+i g(2n)] \\
-                   &= \gamma(f)(n)+\gamma(g)(n),
-\end{align*}
-por tanto, $\gamma(f+g)=\gamma(f)+\gamma(g)$.
-\bigskip
-
-El homomorfismo $\gamma$ es también inyectivo, pues si $f,g \in \mathcal{A}_{\mathbb{R}}$ son tales que $\gamma(f)=\gamma(g)$, entonces $\gamma(f)(n)=\gamma(g)(n)$ para cada $n$, luego $f(2n-1)+i f(2n)=g(2n-1)+ i g(2n)$, por tanto $f(2n-1)=g(2n-1)$ y $f(2n)=g(2n)$ para cada $n$, en consecuencia $f(n)=g(n), \forall n \in \mathbb{N}$, es decir, $f=g$.
-\bigskip
-
-Finalmente, se tiene que $\gamma$ es suprayectivo, pues si $F \in \mathcal{A}$, se puede escribir $F=F_1+i F_2$, con $F_1, F_2 \in \mathcal{A}_{\mathbb{R}}$. Defínase
-{\everymath{\displaystyle}
-    \begin{equation*}
-        f(n) = \begin{dcases}
-            \hfil F_1 \left( \frac{n+1}{2} \right) & \text{si }n \text{ es impar } \\
-            \hfil F_2 \left( \frac{n}{2} \right) & \text{si }n \text{ es par}.
-        \end{dcases}
-    \end{equation*}
-}
-
-Entonces, $\gamma(f)(n)=f(2n-1)+i f(2n)=F_1(n)+i F_2(n)=F(n)$, para cada $n$, es decir, $f \in \mathcal{A}_{\mathbb{R}}$ es tal que $\gamma(f)=F$.
-\end{proof}
-
-El resultado principal de esta sección es el siguiente, corolario de los lemas \ref{prop:iso1}, \ref{prop:iso2}, \ref{prop:iso3}, \ref{prop:iso4} y \ref{prop:iso5}.
-
-\begin{theorem}
-Los grupos $(\mathcal{A}_{\mathbb{R}},+)$, $(P,*)$, $(\mathcal{M},*)$, $(\mathcal{A}^\prime,+)$, $(\mathcal{A}_1,+)$ y $(\mathcal{A},+)$ son todos isomorfos. 
-\end{theorem}

@@ -8,7 +8,7 @@
 \usepackage[utf8]{inputenc} %character codification
 
 %Layout
-\usepackage[left=3.0cm,right=3.0cm,top=3.0cm,bottom=3.3cm,headheight=0.8cm,asymmetric,showframe]{geometry} %page size
+\usepackage[left=3.0cm,right=3.0cm,top=3.0cm,bottom=3.3cm,headheight=0.8cm,asymmetric]{geometry} %page size
 %use headheight to control the distance between header and text
 %use asymmetric to fix marginpar notes to one side
 \usepackage{fancyhdr} %footers and headers
@@ -102,7 +102,7 @@
 
 %Section formatting, depends on titlesec
 
-\titlespacing*{\section}{0cm}{0.7cm}{0.7cm}
+\titlespacing*{\section}{0cm}{0.7cm}{0.45cm}
 \titlespacing*{\subsection}{0em}{0.7cm}{0.7cm}
 \titlespacing*{\subsubsection}{0em}{0.7cm}{0.7cm}
 %use * to apply to all instances
@@ -161,8 +161,10 @@
 %\renewcommand{\sectionmark}[1]{\markboth{\thesection.\enskip\scshape{#1}}{}}
 
 %section and subsection header, use \rightmark
-\renewcommand{\sectionmark}[1]{\markright{\thesection.\enskip\scshape{#1}}{}}
-\renewcommand{\subsectionmark}[1]{\markright{\thesubsection.\enskip\scshape{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection.\enskip\scshape{#1}}{\thesection.\enskip\scshape{#1}}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection.\enskip\scshape{#1}}}
+%if you need to update the left mark or both left and right at the same time, you should use \markboth
+%If you only need to update the right mark, you should always use \markright and never \markboth
 
 \makeindex
 
@@ -170,11 +172,11 @@
 
 \fancypagestyle{title-subsection}{
 	\fancyhf{} %clear footer and header
-	\fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
-	\fancyhead[LO]{\hspace{0.8cm}\small\scshape\nouppercase\notestitle} %left odd
-	\fancyhead[RO]{\small\thepage\hspace{0.8cm}} %right odd
-	\fancyhead[LE]{\hspace{0.8cm}\small\thepage} %left even
-	\fancyhead[RE]{\small\scshape\nouppercase\rightmark\hspace{0.8cm}} %right even
+	% \fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
+	\fancyhead[LO]{\small\scshape\nouppercase\leftmark} %left odd
+	\fancyhead[RO]{\small\thepage} %right odd
+	\fancyhead[LE]{\small\thepage} %left even
+	\fancyhead[RE]{\small\scshape\nouppercase\rightmark} %right even
 }
 
 \fancypagestyle{plain}{
@@ -188,7 +190,7 @@
 \setlength\fboxrule{0.7pt}
 
 %Metadata, depends on hyperref
-\title{\Huge\scshape\notestitle}
+\title{\LARGE\scshape\notestitle}
 \date{\today}
 \author{\normalsize\notesprof \\ \normalsize\notesauthor}
 \date{}
@@ -273,7 +275,7 @@
 \newtheoremstyle{definition}
 {\topsep} %Separación superior
 {\topsep} %Separación inferior
-{\itshape} %Fuente del cuerpo
+{} %Fuente del cuerpo
 {0em} %Sangría
 {\bfseries} %Fuente del encabezado
 {.} %Puntuación después del encabezado
@@ -299,7 +301,7 @@
 {\topsep} %Separación inferior
 {\rmfamily} %Fuente del cuerpo
 {0em} %Sangría
-{\scshape} %Fuente del encabezado
+{\itshape} %Fuente del encabezado
 {.} %Puntuación después del encabezado
 {0.5em} %Espacio después del encabezado
 {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}} %Ejercicio [número] [nombre]
@@ -311,12 +313,12 @@
 {\topsep} %Separación inferior
 {\rmfamily} %Fuente del cuerpo
 {0em} %Sangría
-{\scshape} %Fuente del encabezado
+{\itshape} %Fuente del encabezado
 {.} %Puntuación después del encabezado
 {0.5em} %Espacio después del encabezado
 {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}} %Ejemplo [número] [nombre]
 \theoremstyle{example}
-\newtheorem{example}{Ejemplo}[subsection]
+\newtheorem{example}{Ejemplo}[section]
 
 %Lectures
 \newcommand{\seclecture}[2]{
