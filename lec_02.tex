@@ -168,3 +168,34 @@ Y
 	(f*g)(n) = \sum_{i=1}^{k} f(d_i)g(d_{k+1-i}) = \sum_{i=1}^{k} g(d_i)f(d_{k+1-i})=(g*f)(n).
 \end{equation*}
 \end{proof}
+
+Se puede definir también una multiplicación por escalares en el conjunto de funciones aritméticas.
+
+\begin{definition}
+Dados $c \in \mathbb{C}$ y $f \in \mathcal{A}$, se define $c f \in \mathcal{A}$ como la función
+\begin{align*}
+    c f : \mathbb{N} & \longrightarrow \mathbb{C} \\
+    n & \longmapsto c f(n).
+\end{align*}
+\end{definition}
+
+Es una demostración rutinaria verificar la siguiente proposición.
+
+\begin{proposition}
+El grupo abeliano $(\mathcal{A}, +)$ junto con la multiplicación por escalares definida anterioremente constituyen un espacio vectorial sobre el campo $\mathbb{C}$, donde el elemento neutro aditivo es la función $\mathbf{0}$. De ahora en adelante, este espacio vectorial será llamado simplemente el espacio de las funciones aritméticas.
+\end{proposition}
+
+\begin{proposition}
+Si $c \in \mathbb{C}$ y $f, g \in \mathcal{A}$ entonces $c(f*g)=(c f)*g=f*(c g)$.
+\end{proposition}
+\begin{proof}
+Se tiene que para cualquier $n \in \mathbb{N}$,
+\begin{equation*}
+    (c(f*g))(n) = c(f*g)(n) = c \sum_{d \mid n} f(n) g \left( \frac{n}{d} \right) = \sum_{d \mid n} (c f(n)) g \left( \frac{n}{d} \right) = ((c f)*g)(n).
+\end{equation*}
+Luego $c(f*g)=(c f)*g$. Las demás igualdades se prueban similarmente.
+\end{proof}
+
+\begin{corollary}\label{cor:est1}
+El anillo $(\mathcal{A},+,*)$ es un álgebra conmutativa con identidad sobre el campo $\mathbb{C}$.
+\end{corollary}

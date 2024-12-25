@@ -22,16 +22,16 @@ La siguiente proposición es una consecuencia inmediata de las definiciones ante
 Toda función par $\Mod{r}$ es periódica con periodo $r$.
 \end{proposition}
 \begin{proof}
-Si $m \equiv n \pmod{r}$ entonces $r \mid m-n$, por tanto existe $q \in \mathbb{Z}$ tal que $m-n=q r$. Por demostrar que $(n,r)=(m,r)$. En efecto, como $(n,r) \mid n$ y $(n,r) \mid r$, entonces $(n,r) \mid n+qr=m$, luego $(n,r) \mid (m,r)$. Análogamente, se tiene que $(m,r) \mid m$ y $(m,r) \mid r$, por lo que $(m,r) \mid m-q r=n$, luego $(m,r) \mid (n,r)$. Se sigue que $(n,r)=(m,r)$ y por tanto $f(n)=f((n,r))=f((m,r))=f(m)$.
+Si $m \equiv n \pmod{r}$ entonces $r \mid m-n$, por tanto existe $q \in \mathbb{Z}$ tal que $m-n=q r$. Por demostrar que $(n,r)=(m,r)$. En efecto, como $(n,r) \mid n$ y $(n,r) \mid r$, entonces $(n,r) \mid n+qr=m$, luego $(n,r) \mid (m,r)$. Análogamente, se tiene que $(m,r) \mid (n,r)$. Se sigue que $(n,r)=(m,r)$ y por tanto $f(n)=f((n,r))=f((m,r))=f(m)$.
 \end{proof}
 
 \subsection{Sumas de Ramanujan}
 
 \begin{definition}[Sumas de Ramanujan]
 Se define la función aritmética $c_r$ como
-\begin{equation*}
+\begin{equation}\label{eq:ram0}
     c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d.
-\end{equation*}
+\end{equation}
 Esta función será referida como la suma de Ramanujan módulo $r$ o simplemente suma de Ramanujan cuando no haya riesgo de confusión.
 \end{definition}
 
@@ -116,9 +116,9 @@ es decir, $c_\Box(n)=\mu*\eta_\Box(n)$. Luego $c_\Box(n)$ debe ser multiplicativ
 \end{enumerate}
 \end{proof}
 
-Del la demostración del \cref{it:ram1} se puede rescatar el siguiente corolario, usando la inversión de Möbius (\cref{cor:mob1}).
+Del la demostración del \cref{it:ram1} se puede rescatar el siguiente corolario, usando la inversión de Möbius (\Cref{cor:mob1}).
 
-\begin{corollary}
+\begin{corollary}\label{cor:ram5}
 Para cada $n \in \mathbb{N}$ fijo se tiene
 \begin{equation*}
     \sum_{d \mid r} c_d(n) = \eta_r(n) = \begin{cases}
@@ -144,12 +144,9 @@ Si $r$ y $s$ dividen a $k$, entonces
 \begin{equation} \label{eq:ram2}
 \begin{split}
 \sum_{d \mid k} c_r (k/d) c_d (k/s) &= \sum_{d \mid k} c_d (k/s) \sum_{d' \mid (k/d,r)} \mu (r/d') d' \\
-                                                                              &= \sum_{d \mid k} c_d (k/s) \sum_{\substack{d' \mid r \\ d' \mid k/d}} \mu(r/d') d' \\
-                                                                              &= \sum_{\substack{d \mid k \\ d' \mid r \\ d' \mid k/d}} c_d (k/s) \mu (r/d') d' \\
-                                                                              &= \sum_{\substack{d \mid k/d' \\ d' \mid r \\ d' \mid r}} c_d(k/s) \mu(r/d')  d' \\
-                                                                              &= \sum_{\substack{d' \mid r \\ d' \mid k}} \mu(r/d') d' \sum_{d \mid k/d'} c_d(k/s) \\
-                                                                              &= \sum_{d' \mid (k,r)} \mu(r/d) d' \eta_{k/d'} (k/s), \text{por el corolario anterior} \\
-                                                                              &= \sum_{d' \mid r} \mu(r/d) d' \eta_{k/d'} (k/s),
+                                                                              &= \sum_{d \mid k} c_d (k/s) \sum_{\substack{d' \mid r \\ d' \mid k/d}} \mu(r/d') d' = \sum_{\substack{d \mid k \\ d' \mid r \\ d' \mid k/d}} c_d (k/s) \mu (r/d') d' \\
+                                                                              &= \sum_{\substack{d \mid k/d' \\ d' \mid r \\ d' \mid r}} c_d(k/s) \mu(r/d')  d' = \sum_{\substack{d' \mid r \\ d' \mid k}} \mu(r/d') d' \sum_{d \mid k/d'} c_d(k/s) \\
+                                                                              &= \sum_{d' \mid (k,r)} \mu(r/d) d' \eta_{k/d'} (k/s) = \sum_{d' \mid r} \mu(r/d) d' \eta_{k/d'} (k/s),
 \end{split}
 \end{equation}
 dado que $(k,r)=r$ por ser $r$ divisor de $k$ y dado que los conjuntos $\{ d,d' \in \mathbb{N} \std d \mid k, d' \mid r, d' \mid k/d \}$ y $\{ d,d' \in \mathbb{N} \std d \mid k/d', d' \mid r, d' \mid k \}$ son iguales. En efecto, si $d \mid k$ entonces $k/d$ es un entero, lueg $d' \mid k/d$ implica que $k/d=d' q'$, luego $k=d' q' d$, por tanto $d \mid k/d'$ y $d' \mid k$.
@@ -164,10 +161,8 @@ Si $s \centernot\mid r$ entonces $s \centernot\mid d'$ y por tanto $k/d' \center
 Si $s \mid r$ entonces la suma \eqref{eq:ram2} es igual a
 \begin{equation*}
 \begin{split}
-    \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') d' \frac{k}{d'} &= \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') k \\
-    &= \sum_{\substack{d' \mid r \\ s \mid d'}} \mu(r/d') k \\
-    &= k \sum_{\substack{d' \mid r \\ d'=se}} \mu(r/se) \\
-    &= k \sum_{e \mid r/s} \mu(r/se) \\
+    \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') d' \frac{k}{d'} &= \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') k = \sum_{\substack{d' \mid r \\ s \mid d'}} \mu(r/d') k \\
+    &= k \sum_{\substack{d' \mid r \\ d'=se}} \mu(r/se) = k \sum_{e \mid r/s} \mu(r/se) \\
     &= k \sum_{se \mid r} \mu(r/se) = \begin{cases}
         \hfil k & \text{si } r=s \\
         \hfil 0 & \text{en otro caso,}
@@ -175,6 +170,21 @@ Si $s \mid r$ entonces la suma \eqref{eq:ram2} es igual a
 \end{split}
 \end{equation*}
 pues $k/d' \mid k/s$ si y sólo si $s \mid d'$.
+\end{proof}
+
+\begin{corollary}\label{cor:ind}
+Las sumas de Ramanujan son linealmente independientes respecto a la suma sobre los divisores de $r$. Más específicamente, si $\alpha, \beta$ son funciones aritméticas tales que
+\begin{equation*}
+    \sum_{d \mid r} \alpha(d) c_d(n) = \sum_{d \mid r} \beta(d) c_d(n),
+\end{equation*}
+para todo $n \in \mathbb{N}$, entonces $\alpha(d)=\beta(d)$ para todo $d \mid r$.
+\end{corollary}
+\begin{proof}
+Basta probar que $\sum_{d \mid r} \alpha(d) c_d(n)=0$ implica que $\alpha(d)=0$ para todo $d \mid r$. Supóngase ésta hipótesis y sea $\delta \mid r$ arbitrario pero fijo. Si $e$ es un divisor de $r$, se tiene que $\sum_{d \mid r} \alpha(d) c_d(r/e)=0$, luego
+\begin{align*}
+    0 = \sum_{e \mid r} \left( \sum_{d \mid r} \alpha(d) c_d \left( \frac{r}{e} \right) \right) c_e \left( \frac{r}{\delta} \right)= \sum_{d \mid r} \alpha(d) \sum_{e \mid r} c_d \left( \frac{r}{e} \right) c_e \left( \frac{r}{\delta} \right) = \alpha(\delta) r,
+\end{align*}
+por el la proposición anterior, y dado que $r \ne 0$ entonces $\alpha(\delta)=0$. Como $\delta$ fue un divisor arbitrario de $r$, se tiene el resultado.
 \end{proof}
 
 \begin{lemma}
@@ -190,8 +200,6 @@ Si $d \mid r$ entonces $(n,d)=((n,r),d)$. En efecto, dado que $(n,d) \mid n$ y $
 \begin{corollary}
 La suma de Ramanujan módulo $r$ es par $\Mod{r}$.
 \end{corollary}
-
-El lema anterior permite probar uno de los resultados importantes de este capítulo, el cuál establece la existencia de una expansión finita de cualquier función par $\Mod{r}$, con sumas de Ramanujan como coeficientes. Para probarlo serán necesarios algunos resultados preliminares.
 
 \begin{definition}[Radical]
 Sea $n \in \mathbb{N}$. Se define el \emph{radical} de $n$, denotado por $n_*$ como
@@ -240,7 +248,7 @@ Si $f$ es multiplicativa y separable, entonces para cualesquiera $a,b \in \mathb
 \end{lemma}
 
 \begin{proof}
-(\textsc{\romannumeral 1}). Nótese que si $p$ es un primo y $m,n > 1$ entonces
+(\textsc{\romannumeral 1}) Nótese que si $p$ es un primo y $m,n > 1$ entonces
 \begin{equation*}
     f(p^m)f(p^n) = f(p) f(p) = f(p^{m+n})f((p^m,p^n)),
 \end{equation*}
@@ -253,7 +261,7 @@ pues $(p^m,p^n)=p^i$, con $i=\min \{ m,n \}$. Sean $a,b \in \mathbb{N}$ y escrí
                    &= f(p_1^{\alpha_1} \cdots p_r^{\alpha_r})f(p_1^{\beta_1} \cdots p_r^{\beta_r}) \\
                    &= f(a)f(b)
 \end{align*}
-(\textsc{\romannumeral 2}). Al igual que en la demostración anterior, si $F=\mu * f$, entonces
+(\textsc{\romannumeral 2}) Al igual que en la demostración anterior, si $F=\mu * f$, entonces
 \begin{equation*}
     \sum_{d \mid n} F(d) = f(n), \forall n \in \mathbb{N}.
 \end{equation*}
@@ -283,9 +291,9 @@ Además, por una demostración similar a la de la \cref{eq:mcd2}, se tiene que
 \begin{equation*}
     \left( (a,b)_*,\frac{a_*}{(a,b)_*} \right) = 1.
 \end{equation*}
-Finalmente,
+Finalmente, como $f$ es multiplicativa,
 \begin{equation*}
-    f(a) = f(a_*) = f((a,b)_*)f(a_*/(a,b)_*) = f((a,b)) = \sum_{\substack{d \mid a \\ (d,b)=1}} (\mu * f)(d).
+    f(a) = f(a_*) = f((a,b)_*)f(a_*/(a,b)_*) = f((a,b)) \sum_{\substack{d \mid a \\ (d,b)=1}} (\mu * f)(d).
 \end{equation*}
 \end{proof}
 
@@ -312,9 +320,9 @@ pero si $(r/(n,r),(n,r)/d)>1$ entonces $r/d$ debe tener un factor cuadrado, pues
 \begin{equation}\label{eq:par2}
 \begin{split}
     \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{r}{d} \right) d & = \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{r}{(n,r)} \right) \mu \left( \frac{(n,r)}{d} \right) d \\
-                                                                                                                                     &= \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{(n,r)}{d} \right) d \\
-                                                                                                                                                                                                                                        &= \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)},d \right)=1}} \mu(d) \frac{(n,r)}{d} \\
-                                                                                                                                                                                                                                        &= (n,r) \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r),d}=1 \right)}} \frac{\mu(d)}{d}
+    & = \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{(n,r)}{d} \right) d \\
+    & = \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)},d \right)=1}} \mu(d) \frac{(n,r)}{d} \\
+    & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r),d} \right)=1}} \frac{\mu(d)}{d}
 \end{split}
 \end{equation}
 pues $\mu$ es multiplicativa. Sea ahora $\Phi=\mu * \overline{\varphi}$, donde $\overline{\varphi}(s)=\varphi(s)/s$ para cada $s \in \mathbb{N}$. Se tiene entonces que
@@ -327,29 +335,29 @@ pues $\mu$ es multiplicativa. Sea ahora $\Phi=\mu * \overline{\varphi}$, donde $
 pues si $d \mid s$ y $c \mid s/d$, entonces $d/s$ es un entero y $s/d=e q$ para algún entero $q$, luego $s= d e q$ y por tanto $e \mid s$ y $d \mid s/e$. El recíproco es similar. Además, todos los términos en la penúltima suma son cero excepto aquel para el cual $s/e = 1$, es decir, $s=e$. Luego la suma \eqref{eq:par2} es igual a
 \begin{align*}
     (n,r) \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)},d \right)=1}} \Phi(d) & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)},d \right)=1}} (\mu * \overline{\varphi}(d)) \\
-                                                                                                                          & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}((n,r))}{\overline{\varphi} \left( (n,r), \frac{r}{(n,r)} \right)} \\
-                                                                                                                          & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}(r)\overline{\varphi}((n,r))}{\overline{\varphi}((n,r))\overline{\varphi} \left( \frac{r}{(n,r)} \right)} \\
-                                                                                                                          & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}(r)}{\overline{\varphi}\left( \frac{r}{(n,r)} \right)} \\
-                                                                                                                          & = (n,r)\mu \left( \frac{r}{(n,r)} \right) \frac{r \varphi(r)}{(n,r) r \varphi \left( \frac{r}{(n,r)} \right)} \\
-                                                                                                                          & = \frac{\mu \left( \frac{r}{(n,r)} \right) \varphi(r)}{\varphi \left( \frac{r}{(n,r)} \right)}
+    & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}((n,r))}{\overline{\varphi} \left( (n,r), \frac{r}{(n,r)} \right)} \\
+    & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}(r)\overline{\varphi}((n,r))}{\overline{\varphi}((n,r))\overline{\varphi} \left( \frac{r}{(n,r)} \right)} \\
+    & = (n,r) \mu \left( \frac{r}{(n,r)} \right) \frac{\overline{\varphi}(r)}{\overline{\varphi}\left( \frac{r}{(n,r)} \right)} \\
+    & = (n,r)\mu \left( \frac{r}{(n,r)} \right) \frac{r \varphi(r)}{(n,r) r \varphi \left( \frac{r}{(n,r)} \right)} \\
+    & = \frac{\mu \left( \frac{r}{(n,r)} \right) \varphi(r)}{\varphi \left( \frac{r}{(n,r)} \right)}
 \end{align*}
 donde la primera igualdad se cumple por definición de $\Phi$ y la ecuación \eqref{eq:par3}, la segunda por ser $\overline{\varphi}$ multiplicativa, separable y por el \Cref{lem:par0} (\textsc{\romannumeral 2}), la tercera por el \Cref{lem:par0} (\textsc{\romannumeral 1}) y la quinta por definición de $\overline{\varphi}$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:fou1}
 Toda función $f$ par $\Mod{r}$ tiene una expansión de la forma
 \begin{equation}\label{eq:ram3}
-    f(n) = \sum_{d \mid r} \alpha(d) c_n(n),
+    f(n) = \sum_{d \mid r} \alpha(d) c_d(n),
 \end{equation}
 y recíprocamente, toda función aritmética de esta forma es par $\Mod{r}$. Los coeficientes $\alpha(d)$ están dados por
-\begin{equation*}
+\begin{equation}\label{eq:ram6}
     \alpha(d) = \frac{1}{r} \sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right),
-\end{equation*}
+\end{equation}
 o por la fórmula equivalente,
 \begin{equation*}
-    \alpha(d) = \frac{1}{r \phi(d)} \sum_{m=1}^{r} f(m) c_d(m),
+    \alpha(d) = \frac{1}{r \varphi(d)} \sum_{m=1}^{r} f(m) c_d(m).
 \end{equation*}
-donde $\phi$ es la función phi de Euler.
+A los coeficientes $\alpha$ se les llamará \textbf{coeficientes de Fourier} de la función par $f$.
 \end{theorem}
 \begin{proof}
 Es claro que toda función de la forma \eqref{eq:ram3} es par $\Mod{r}$, pues por el lema anterior si $d \mid r$ entonces $c_d(n)=c_d((n,r))$. Nótese que
@@ -367,13 +375,191 @@ por el \Cref{lem:ram4}, donde $r=(n,r) q$, para algún $q \in \mathbb{N}$ y dond
 Por otro lado, de la demostración de la \cref{eq:gauss1} se puede rescatar el hecho de que el conjunto $\{ 1,2,\ldots,r \}$ es igual a $\bigcup_{e \mid r} \{ rx/e \std (x,e)=1, 1 \le x \le e \}$ y todos los conjuntos son disjuntos a pares, por tanto
 \begin{equation*}
 \begin{split}
-    \frac{1}{r \phi(d)}\sum_{m=1}^{r} f(m) c_d(m) &= \frac{1}{r \phi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \frac{rx}{e} \right) c_d \left( \frac{rx}{e} \right) \\
-                               &= \frac{1}{r \phi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \left( \frac{rx}{e},r \right) \right) c_d \left( \left( \frac{rx}{e},r \right) \right) \\
-                               &= \frac{1}{r \phi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \frac{r}{e} \right) c_d \left( \frac{r}{e} \right) \\
-                               &= \frac{1}{r \phi(d)}\sum_{e \mid r} f \left( \frac{r}{e} \right) c_d \left( \frac{r}{e} \right) \phi(e) \\
-                               &= \frac{1}{r \phi(d)}\sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right) \phi(d) \\
-                               &= \frac{1}{r}\sum_{e \mid r} \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right)
+    \frac{1}{r \varphi(d)}\sum_{m=1}^{r} f(m) c_d(m) &= \frac{1}{r \varphi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \frac{rx}{e} \right) c_d \left( \frac{rx}{e} \right) \\
+                               &= \frac{1}{r \varphi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \left( \frac{rx}{e},r \right) \right) c_d \left( \left( \frac{rx}{e},r \right) \right) \\
+                               &= \frac{1}{r \varphi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \frac{r}{e} \right) c_d \left( \frac{r}{e} \right) \\
+                               &= \frac{1}{r \varphi(d)}\sum_{e \mid r} f \left( \frac{r}{e} \right) c_d \left( \frac{r}{e} \right) \varphi(e) \\
+                               &= \frac{1}{r \varphi(d)}\sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right) \varphi(d) \\
+                               &= \frac{1}{r}\sum_{e \mid r} \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right),
 \end{split}
 \end{equation*}
-por ser $f$ par $\Mod{r}$. Además $(rx/e,r)=r/e$, pues $(x,e)=1$ implica que $(r/e)(x,e)=r/e$, y como $r/e$ es un entero positivo, entonces $(rx/e,r)=r/e$. Y la penúltima igualdad se cumple por el \Cref{cor:mcd1} y la fórmula de Hölder (\Cref{lem:holder}).
+donde la segunda igualdad se cumple por ser $f$ par $\Mod{r}$, la tercera por ser $(rx/e,r)=r/e$, pues $(x,e)=1$ implica que $(r/e)(x,e)=r/e$, y como $r/e$ es un entero positivo, entonces $(rx/e,r)=r/e$. La cuarta por definición de $\varphi$, y la penúltima igualdad se cumple por la fórmula de Hölder (\Cref{lem:holder}) y el \Cref{cor:mcd1}, pues $e$ y $d$ dividen a $d$, así que
+\begin{equation}\label{eq:holder}
+    c_d \left( \frac{r}{e} \right) \varphi(e) = \frac{\varphi(d)\mu \left( \displaystyle \frac{d}{(r/e,d)} \right)}{\varphi \left( \displaystyle \frac{d}{(r/e,d)} \right)} = \frac{\varphi(d)\mu \left( \displaystyle \frac{e}{(r/d,e)} \right)}{\varphi \left( \displaystyle \frac{e}{(r/d,e)} \right)} \varphi(e) = \varphi(d) c_e \left( \frac{r}{d} \right)
+\end{equation}
 \end{proof}
+
+\begin{corollary}
+Si $f$ y $f'$ son funciones pares $\Mod{r}$, entonces se verifican las siguientes implicaciones
+\begin{equation*}
+    f(n) = \sum_{d \mid r} f'(d) c_d(n), \forall n \in \mathbb{N} \implies f'(\delta) = \frac{1}{r \varphi(\delta)} \sum_{m=1}^{r} f(m) c_d(m), \forall \delta \mid r,
+\end{equation*}
+\begin{equation*}
+    f'(\delta) = \sum_{m=1}^{r} f(m) c_{\delta} (m), \forall d \mid r \implies f(n) = \frac{1}{r} \sum_{d \mid r} \frac{f'(d)}{\varphi(d)} c_d(n), \forall n \in \mathbb{N}.
+\end{equation*}
+\end{corollary}
+\begin{proof}
+En efecto, como $f$ es par, entonces $f$ tiene una única representación de la forma \eqref{eq:ram3}, por tanto se verifica la primera implicación. Para la segunda implicación se tiene que, de nuevo por la \cref{eq:ram3},
+\begin{equation*}
+    f(n) = \sum_{d \mid r} \left( \frac{1}{r \varphi(d)} \sum_{m=1}^{r} f(m) c_d(m) \right) c_d(n) = \frac{1}{r} \sum_{d \mid r} \frac{f'(d)}{\varphi(d)} c_d(n).
+\end{equation*}
+\end{proof}
+
+Considerando los casos $\delta=1$ y $n=r$ se tiene el siguiente corolario.
+
+\begin{corollary}
+Si $f$ y $f'$ son funciones pares $\Mod{r}$, entonces
+\begin{equation*}
+    f(n) = \sum_{d \mid r} f'(d) c_d(n), \forall n \in \mathbb{N} \implies f'(1) = \frac{1}{r} \sum_{m=1}^{r} f(m),
+\end{equation*}
+\begin{equation*}
+    f'(\delta) = \sum_{m=1}^{r} f(m) c_{\delta}(m), \forall d \mid r \implies f(r) = \frac{1}{r} \sum_{d \mid r} f'(d).
+\end{equation*}
+\end{corollary}
+
+Volviendo a la definición de la suma de Ramanujan módulo $r$, \cref{eq:ram0}, se puede considerar una clase más general de funciones, aquellas que se pueden escribir como
+\begin{equation*}
+    f(n) = \sum_{\delta \mid (n,r)} g(\delta), \forall n \in \mathbb{N},
+\end{equation*}
+donde $g$ es una función aritmética.
+\bigskip
+
+La siguiente proposición muestra que esta generalización preserva la modularidad respecto a $r$. Más aún, el \Cref{thm:fou1} permite caracterizar a las funciones pares módulo $r$ de esta forma.
+
+\begin{theorem}
+Toda función $f$ par módulo $r$ se puede expresar como
+\begin{equation}\label{eq:fou2}
+    f(n) = \sum_{\delta \mid (n,r)} g(\delta), \forall n \in \mathbb{N}.
+\end{equation}
+Y recíprocamente, toda función aritmética que tenga esta forma es par módulo $r$.
+\end{theorem}
+\begin{proof}
+Dado que $(n,r)=((n,r),r)$, es claro que toda función arimética que tenga dicha forma es par $\Mod{r}$. Supóngase que $f$ es par $\Mod{r}$. Por el \Cref{thm:fou1}, se puede escribir
+\begin{align*}
+    f(n) & = \sum_{d \mid r} \alpha(d) c_d(n) = \sum_{d \mid r} \alpha(d) \sum_{\delta \mid (n,d)} \mu \left( \frac{d}{\delta} \right) \delta \\
+         & = \sum_{\delta \mid (n,d)} \sum_{d \mid r} \alpha(d) \mu \left( \frac{d}{\delta} \right) \delta = \sum_{\delta \mid (n,r)} \delta \sum_{d \mid r} \mu \left( \frac{d}{\delta} \right) \delta = \sum_{\delta \mid (n,r)} g(\delta) 
+\end{align*}
+\end{proof}
+
+En vista de que toda función par tiene al menos dos representaciones, la del teorema anterior y la del \Cref{thm:fou1}, cabe preguntarse si existe alguna relación entre ellas. El siguiente teorema da respuesta a esta inquietud.
+
+\begin{theorem}
+Si $f$ es par módulo $r$, entonces sus respectivas expansiones \eqref{eq:ram3} y \eqref{eq:fou2} están relacionadas mediante la fórmula
+\begin{equation*}
+    \alpha(d) = \frac{1}{r} \sum_{e \mid r/d} g \left( \frac{r}{e} \right) e.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Se tiene que
+\begin{align*}
+    \alpha(d) = \frac{1}{r} \sum_{\delta \mid r} f \left( \frac{r}{\delta} \right) c_{\delta} \left( \frac{r}{d} \right) & = \frac{1}{r} \sum_{\delta \mid r} c_{\delta} \left( \frac{r}{d} \right) \sum_{e \mid (r/\delta,\delta)} g(e) = \frac{1}{r} \sum_{\delta \mid r} c_{\delta} \left( \frac{r}{d} \right) \sum_{e \mid r/\delta} g(e) \\
+              & = \frac{1}{r} \sum_{\delta \mid r} c_{\delta} \left( \frac{r}{d} \right) \sum_{e \mid r/\delta} g(e) = \frac{1}{r} \sum_{e \mid r} g \left( \frac{r}{e} \right) \sum_{\delta \mid e} c_{\delta} \left( \frac{r}{d} \right) \\
+              & = \frac{1}{r} \sum_{e \mid r} g \left( \frac{r}{e} \right) \cdot \begin{cases}
+                  \hfil e & \text{si } e \mid r/d \\
+                  \hfil 0 & \text{en otro caso} \\
+              \end{cases} = \frac{1}{r} \sum_{e \mid r/d} g \left( \frac{r}{e} \right) e.
+\end{align*}
+por el \cref{cor:ram5}.
+\end{proof}
+
+\subsection{El subespacio de funciones pares}
+
+Recuérdese del \cref{cor:est1} que el anillo $(\mathcal{A}, +, *)$ es un álgebra conmutativa con identidad. Se tiene que el conjunto de funciones pares es un subespacio de $\mathcal{A}$, pero no es un subanillo, pues en general $(f*g)(n) \ne (f*g)((n,r))$ aún cuando $f$ y $g$ sean pares $\Mod{r}$, tome por ejemplo dos funciones constantes. Se denotará como $\mathcal{A}_r$ al conjunto de funciones pares módulo $r$.
+
+\begin{proposition}
+El conjunto $\mathcal{A}_r$ es una subespacio de $\mathcal{A}$.
+\end{proposition}
+\begin{proof}
+Basta verificar las siguientes condiciones:
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+\item $\mathcal{A}_r \ne \emptyset$
+\item $f, g \in \mathcal{A}_r$ implica $f+g \in \mathcal{A}_r$
+\item $c \in \mathbb{C}$ y $f \in \mathcal{A}_r$ implica $c f \in \mathcal{A}$.
+\end{enumerate}
+Claro que $\mathbf{0} \in \mathcal{A}_r$. Sea $n \in \mathbb{N}$ y supóngase que $f, g \in \mathcal{A}_r$. Se tiene que $(c f)(n) = c f(n) = c f((n,r)) = (c f)((n,r))$, luego $c f \in \mathcal{A}_r$.
+\bigskip
+
+Además, $(f+g)(n)=f(n)+g(n)=f((n,r))+g((n,r))=(f+g)((n,r))$, así que $f+g \in \mathcal{A}_r$.
+\bigskip
+\end{proof}
+
+El \cref{cor:ind} afirma que las sumas de Ramanujan $\mathcal{B}_r = \{ c_d \}_{d \mid r}$ son linealmente independientes respecto a la suma sobre los divisores de $r$, además el \Cref{thm:fou1} nos permite expresar cualquier función par como una suma de este tipo. En otras palabras, el conjunto $\mathcal{B}_r$ es una base del espacio vectorial $\mathcal{A}_r$.
+
+\begin{corollary}
+El espacio vectorial $\mathcal{A}_r$ tiene dimensión $d(r)$.
+\end{corollary}
+
+En lo que sigue de esta sección se verá que los coeficientes de la expansión \eqref{eq:ram3} pueden ser derivados de un producto interno en este espacio de funciones.
+
+\begin{proposition}
+La operación $\langle \phantom{f},\phantom{g} \rangle : \mathcal{A}_r\times \mathcal{A}_r \longrightarrow \mathbb{R}$ definida como
+\begin{equation*}
+    \langle f,g \rangle = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)}
+\end{equation*}
+es un producto interno en $\mathcal{A}_r$.
+\end{proposition}
+\begin{proof}
+Sean $c \in \mathbb{C}$ y $f,g,h \in \mathcal{A}_r$. Escríbase $f(n)=f_1(n)+ i f_2(n)$ para todo $n \in \mathbb{N}$, donde $f_1,f_2 \in \mathcal{A}_{\mathbb{R}}$. Entonces
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+\item \begin{align*}
+        \langle f,f \rangle & = \sum_{d \mid r} \varphi(d) \left[ f_1 \left( \frac{r}{d} \right) + i f_2 \left( \frac{r}{d} \right) \right] \overline{\left[ f_1 \left( \frac{r}{d} \right) + i f_2 \left( \frac{r}{d} \right) \right]} \\
+                            & = \sum_{d \mid r} \varphi(d) \left[ f_1^2 \left( \frac{r}{d} \right) + f_2^2 \left( \frac{r}{d} \right) \right] \ge 0
+\end{align*}
+Además, si $\langle f,f \rangle=0$, como todos los términos de la suma anterior son positivos, se debe tener que $f_1(d)=f_2(d)=0$ para todo $d$ divisor de $r$. Si $n \in \mathbb{N}$ entonces $f_1(n)=f((n,r))=0$, pues $f$ es par $\Mod{r}$ y $(n,r) \mid r$. Análogamente se tiene $f_2(n)=0$. Luego $f(n)=f_1(n)+i f_2(n)=0$ para cada $n \in \mathbb{N}$, es decir $f=\mathbf{0}$.
+\item \begin{align*}
+        \langle f+g,h \rangle & = \sum_{d \mid r} \varphi(d) (f+g) \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)} = \sum_{d \mid r} \varphi(d) \left[ f \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} + g \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} \right] \\
+                              & = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} + \sum_{d \mid r} g \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} = \langle f,h \rangle + \langle g,h \rangle
+\end{align*}
+\item \begin{equation*}
+    \langle c f,g \rangle = \sum_{d \mid r} \varphi(d) c f \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)} = c \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{g\left( \frac{r}{d} \right)} = c \langle f,g \rangle
+\end{equation*}
+\item \begin{equation*}
+    \overline{\langle g,f \rangle} = \overline{\sum_{d \mid r} \varphi(d) g \left( \frac{r}{d} \right) \overline{f \left( \frac{r}{d} \right)}} = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)} = \langle f,g \rangle
+\end{equation*}
+\end{enumerate}
+\end{proof}
+
+El producto interno así definido podría haberse escrito sin el factor $\varphi(d)$ dentro de la suma. Su uso se justifica al usar la ecuación \eqref{eq:holder} para probar que este producto interno hace de $\mathcal{B}_r$ una base ortogonal de $\mathcal{A}_r$.
+
+\begin{proposition}
+Si $i,j$ son divisores positivos de $r$, entonces
+\begin{equation*}
+    \langle c_i,c_j \rangle = \begin{cases}
+        \hfil r \varphi(j) & \text{si } i=j \\
+        \hfil 0 & \text{en otro caso}.
+    \end{cases}
+\end{equation*}
+\end{proposition}
+\begin{proof}
+En efecto,
+\begin{equation*}
+    \langle c_i,c_j \rangle = \sum_{d \mid r} \varphi(d) c_i \left( \frac{r}{d} \right) c_j \left( \frac{r}{d} \right) = \sum_{d \mid r} c_i \left( \frac{r}{d} \right) \varphi(j) c_d \left( \frac{r}{j} \right) = 
+    \begin{cases}
+        \hfil r \varphi(j) & \text{si } i=j \\
+        \hfil 0 & \text{en otro caso},
+    \end{cases}
+\end{equation*}
+donde la segunda igualdad se cumple por la \cref{eq:holder} y la tercera por el \Cref{lem:ram4}.
+\end{proof}
+
+\begin{corollary}
+El conjunto
+\begin{equation*}
+    \mathcal{B}'_r = \left\{ c'_d = \frac{1}{\sqrt{r \varphi(d)}} c_d \right\}_{d \mid r}
+\end{equation*}
+es una base ortonormal de $\mathcal{A}_r$.
+\end{corollary}
+
+Como consecuencia del corolario anterior, toda función $f$ par $\Mod{r}$ debe tener una expansión de la forma $\sum_{e \mid r} \beta(e) c'_e$. Además, si $d$ es un divisor arbitrario de $r$, entonces
+\begin{equation*}
+    \left\langle f, c'_d \right\rangle = \left\langle \sum_{e \mid r} \beta(e) c'_e,c'_d \right\rangle = \sum_{e \mid r} \beta(e) \left\langle c'_e,c'_d \right\rangle = \beta(d),
+\end{equation*}
+pero $f$ también tiene una única representación de la forma $\sum_{e \mid r} \alpha(d) c_d$, en consecuencia, $\alpha(d) = \beta(d)/\sqrt{r \varphi(d)}$ para cada $d$ divisor de $r$. Por tanto,
+\begin{align*}
+    \alpha(d) & = \frac{\beta(d)}{\sqrt{r \varphi(d)}} = \frac{1}{\sqrt{r \varphi(d)}} \left\langle f, c'_d \right\rangle \\
+                                                     & = \frac{1}{\sqrt{r \varphi(d)}} \sum_{e \mid r} \varphi(e) f \left( \frac{r}{e} \right) c'_d \left( \frac{r}{e} \right) \\
+                                                     & = \frac{1}{\sqrt{r \varphi(d)}} \sum_{e \mid r} \varphi(e) f \left( \frac{r}{e} \right) \frac{1}{\sqrt{r \varphi(d)}} c_d \left( \frac{r}{e} \right) \\
+                                                     & = \frac{1}{r \varphi(d)} \sum_{e \mid r} f \left( \frac{r}{e} \right) \varphi(d) c_e \left( \frac{r}{d} \right) \\
+                                                     & = \frac{1}{r} \sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right),
+\end{align*}
+donde la cuarta igualdad se cumple nuevamente por \eqref{eq:holder}. Esta es la \cref{eq:ram6}. Como es usual en el análisis funcional, ahora se pueden llamar propiamente \emph{coeficientes de Fourier} a los coeficientes $\alpha$ del \Cref{thm:fou1}.

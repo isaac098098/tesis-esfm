@@ -4,20 +4,20 @@
 \markboth{Introducción}{Introducción}
 \addcontentsline{toc}{section}{Introducción}
 
-En 1640 Fermat afirmó que poseía una demostración del hecho de que si $p$ es un número primo y $x$ es cualquier entero no divisible por $p$, entonces $x^{p-1}-1$ es divisible por $p$. Ahora llamado Teorema de Fermat, es uno de los teoremas fundamentales de la teoría de números \cite{Di1}. Este resultado fue generalizado más tarde por Euler en 1760: si $\varphi(n)$ denota el número de enteros positivos no mayores a $n$ que son primos relativos a $n$, entonces $x^{\varphi(n)-1}-1$ es divisible por $p$.
-Aunque la función $\varphi$ de Euler se definió para enunciar la generalización anterior, ésta posee remarcables propiedades que hacen valer la pena estudiarla por sí misma. Por ejemplo, en 1801, Gauss probó que si $n\in\mathbb{N}$ y $d_1,d_2,\cdots,d_k$ son todos los divisores positivos de $n$, entonces $\varphi(d_1)+\varphi(d_2)+\cdots+\varphi(d_k)=n$.
+En 1640 Fermat afirmó que poseía una demostración del hecho de que si $p$ es un número primo y $x$ es cualquier entero no divisible por $p$, entonces $x^{p-1}-1$ es divisible por $p$. Ahora llamado Teorema de Fermat, es uno de los teoremas fundamentales de la teoría de números. Este resultado fue generalizado más tarde por Euler en 1760: si $\varphi(n)$ denota el número de enteros positivos no mayores a $n$ que son primos relativos a $n$, entonces $x^{\varphi(n)-1}-1$ es divisible por $p$.
+Aunque la función $\varphi$ de Euler se definió para enunciar la generalización anterior, ésta posee remarcables propiedades que hacen valer la pena estudiarla por sí misma. Gauss (1801) probó que si $n\in\mathbb{N}$ y $d_1,d_2,\cdots,d_k$ son todos los divisores positivos de $n$, entonces $\varphi(d_1)+\varphi(d_2)+\cdots+\varphi(d_k)=n$.
 \bigskip
 
-A. F. Möbius definió la función $\mu(n)$ como cero si $n$ es divisible por un cuadrado distinto de 1, y como $(-1)^k$ si $n$ es producto de $k$ primos distintos, mientras que $\mu(1)=1$ y empleó dicha función en la inversión de series:
+Por otro lado, en 1832 A. F. Möbius definió la función $\mu(n)$ como cero si $n$ es divisible por un cuadrado distinto de 1, y como $(-1)^k$ si $n$ es producto de $k$ primos distintos, mientras que $\mu(1)=1$ y empleó dicha función en la inversión de series:
 \begin{equation*}
     F(x) = \sum_{s=1}^{\infty} \frac{f(s x)}{s^n} \text{ implica } f(x) = \sum_{s=1}^{\infty} \mu(s) \frac{F(s x)}{s^n}.
 \end{equation*}
 
-Dedekind probó que si $F(m) = \sum f(d)$, donde $d$ recorre todos los divisores positivos de $m$, entonces
+Dedekind (1857) probó que si $F(m) = \sum f(d)$, donde $d$ recorre todos los divisores positivos de $m$, entonces
 \begin{equation*}
     f(n) = F(n) - \sum F \left( \frac{n}{a} \right) + \sum F \left(  \frac{n}{a b} \right) - \sum F \left( \frac{n}{a b c} \right) + \cdots,
 \end{equation*}
-donde las sumas se extienden sobre todas las combinaciónes de los distintos factores primos $a, b, \ldots$ de $n$. Laguerre expresó la ecuación anterior como
+donde las sumas se extienden sobre todas las combinaciónes de los distintos factores primos $a, b, \ldots$ de $n$. Laguerre (1863) expresó la ecuación anterior como
 \begin{equation*}
     f(n) = \sum \mu \left(  \frac{n}{d} \right) F(d).
 \end{equation*}
@@ -26,10 +26,30 @@ En particular, como $\sum \varphi(d) = n$, se tiene
     \varphi(n) = n - \sum \frac{n}{a} + \sum \frac{n}{a b} - \cdots = n \left( 1 - \frac{1}{a} \right) \left( 1 - \frac{1}{b} \right) \cdots
 \end{equation*}
 
-F. Mertens notó que $\sum \mu(d) = 0$ si $n>1$, donde $d$ recorre todos los divisores positivos de $n$.
+En 1874, F. Mertens notó que $\sum \mu(d) = 0$ si $n>1$, donde $d$ recorre todos los divisores positivos de $n$.
+N. V. Bugaiev (1888) consideró la función $\nu(x)$ con valor $\log p$ si $x$ es potencia de un primo $p$ y con valor 0 en otro caso. Si $d$ recorre todos los divisores positivos de $n$, $\sum \nu(d) = \log n$ implica que $\sum \mu(d) \log d = -\nu(n)$. Bugaiev llamó a $F(n) = \sum f(d)$, la integral numérica de $f(n)$, donde la suma es sobre todos los divisores positivos $d$ de $n$, y llamó a $f(n)$ la derivada numérica de la función $F(n)$ \cite{Di1}.
 \bigskip
 
-N. V. Bugaiev consideró la función $\nu(x)$ con valor $\log p$ si $x$ es potencia de un primo $p$ y con valor 0 en otro caso. Si $d$ recorre todos los divisores positivos de $n$, $\sum \nu(d) = \log n$ implica que $\sum \mu(d) \log d = -\nu(n)$. Bugaiev llamó a $F(n) = \sum f(d)$, la integral numérica de $f(n)$, donde la suma es sobre todos los divisores positivos $d$ de $n$, y llamó a $f(n)$ la derivada numérica de la función $F(n)$.
+En 1857 Liouville estableció sin prueba un gran número de identidades interesantes similares a las anteriores, en sus cuatro artículos \emph{Sur quelques functions numeriques}, sobre funciones ariméticas específicas, como la suma y número de divisores de un entero, la función $\varphi$ de Euler, la función de Möbius $\mu$, su propia función $\lambda$, etc. Afirmó que estaba en posesión de un método general de extrema simplicidad, con el que tales identidades se podrían escribir a voluntad. Tales identidades provaron ser un valioso punto de partida para la evaluación asintótica de funciones aritméticas, pero su interés peculiar era más bien  de naturaleza algebráica \cite{Bell1}. 
 \bigskip
 
-En 1857 Liouville estableció sin prueba un gran número de identidades interesantes, en sus cuatro artículos \emph{Sur quelques functions numeriques}, sobre funciones ariméticas específicas, como la suma y número de divisores de un entero, la función $\varphi$ de Euler, la función de Möbius $\mu$, su propia función $\lambda$, etc. Afirmó que estaba en posesión de un método general de extrema simplicidad, con el que tales identidades se podrían escribir a voluntad. Tales identidades provaron ser un valioso punto de partida para la evaluación asintótica de funciones aritméticas, pero su interés peculiar era más bien algebráico.
+En 1911, al buscar pruebas para las fórmulas de Liouville, E. T. Bell construyó un método general con las características deseadas y lo extendió a otros campos además de los números racionales. Aunque Bell tenía intenciones de publicar su teoría completa en 1915, no fue sino hasta 1927 que una introducción desde un punto de vista lógico fue publicada en \cite{Bell2}. En lo concerniente a los \textit{enteros racionales}, terminología de la época para referirse a los números enteros, en 1912 y 1915 \cite{Bell1}, probó el teorema de inversión de Möbius, el cuál es un análogo a la inversión de series de Möbius en un contexto puramente aritmético y lo aplicó a numerosos ejemplos.
+\bigskip
+
+Bell (1928), llamó a una función $f(x)$ \emph{función numérica} si $f(1) \ne 0$ y $f(x)$ está definida para todo entero mayor que cero. El lector que recorra este trabajo podrá darse cuenta de que esta definición coincide con la de una función aritmética \emph{invertible} (\textsf{citar definición}). También llamó a una función \emph{factorizable} a una función numérica $g(x)$ tal que $g(1)=1$ y $g(m n)=g(m)g(n)$ para todos los pares $(m,n)$ de primos relativos positivos, que en este trabajo serán referidas como \emph{funciones multiplicativas}.
+\bigskip
+
+Asimismo, Bell consideró la función \textit{unidad} (aquí llamada \emph{identidad}) $\varepsilon(x)$ definida como $\varepsilon(1)=1$ y $\varepsilon(n)=0$ para cada $n>1$ y probó que para cualquier función numérica existe otra función numérica tal que
+\begin{equation*}
+    \sum f(d) f'(d) = \varepsilon(n) \tag{$n=1,2,3,\ldots$},
+\end{equation*}
+donde la suma se extiende sobre todos los pares de enteros $(d,\delta)$ tales que $d,\delta >0$ y $n = d \delta$, y llama a $f'(x)$ la \textit{recíproca} de $f(x)$, que aquí se le dará el nombre de \textit{inversa} de $f$.
+\bigskip
+
+El lector con conocimiento básico de álgebra abstracta puede comenzar a identificar lo que está sucediendo aquí. Hasta ahora, resulta que la función $\varepsilon$ está actuando como la identidad respecto a la operación de anterior, es decir, hasta ahora el conjunto de funciones aritméticas contituye un \emph{monoide}. ¿Será esta operación también asociativa o conmutativa? La repuesta a estas preguntas es afirmativa y más aún, con la operación de suma de funciones punto a punto, este conjunto forma un anillo conmutativo con identidad y resulta ser también un dominio entero y de factorización única. En el primer capítulo, el objetivo de este trabajo es presentar algunos resultados sobre la esctructura del anillo de funciones aritméticas en un contexto puramente algebraico, condensando y resumiendo los resultados probados en \cite{Ca1959}, \cite{Nish1} y \cite{Bell1}, en notación algebraica moderna. Después, se exponen varias isomorfismos entre los subgrupos del anillo de funciones aritméticas, aditivos y multiplicativos. Al final de este capítulo se presentan algunas funciones aritméticas conocidas y algunas relaciones entre ellas, derivadas fácilmente con los resultados probados en las secciones anteriores. (agregar varias relaciones entre funciones, algebráicas, tal vez una tabla).
+\bigskip
+
+El segundo capítulo se ocupa de presentar dos clases de funciones, llamadas funciones \emph{pares} y funciones \emph{periódicas}, y se probará que son equivalentes. Se presenta una teoría análoga a la teoría de Fourier del análisis real, usando únicamente propiedades de divisibilidad de los enteros. Además, se introducen las sumas de Ramanujan y algunas propiedades topológicas del espacio vectorial formado por las combinaciones lineales finitas de estas. Al final del capítulo se presenta un resultado relativo a la expasión finita de cualquier función aritmética con sumas de Ramanujan como coeficientes (y la unicidad de esta representación) (y también a la densidad de estas funciones en el conjunto de todas las funciones aritméticas). Los resultados presentados en este capítulo se pueden encontrar en \cite{Coh1}.
+\bigskip
+
+En el último capítulo se presenta una aplicación de los resultados expuestos en el segundo capítulo, usándolos para el procesamiento discreto de señales, haciendo énfasis en la simplicidad de los cálculos realizados.
