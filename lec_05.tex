@@ -2,7 +2,7 @@
 \newpage
 \section{Funciones pares}
 
-Al estudiar el espacio de funciones aritméticas se puede hacer una analogía con la teoría de Fourier del análisis para funciones definidas en todo el plano real o complejo, para la cuál se necesitará la noción de periodicidad. En este capítulo se considerarán dos clases de funciones aritméticas que capturan esta noción y se probará que son equivalentes. También se expondran resultados análogos a los de análisis respecto a funciones periódicas. Estos  resultados se puede encontrar en \cite{Coh1}.
+Al estudiar el espacio de funciones aritméticas se puede hacer una analogía con la teoría de Fourier del análisis para funciones definidas en todo el plano real o complejo, para la cuál se necesitará la noción de periodicidad. En este capítulo se considerará una clase de funciones aritméticas que captura esta noción. También se expondran resultados análogos a los de análisis respecto a funciones periódicas. Estos resultados se puede encontrar en \cite{Coh1}.
 
 \begin{remark}
 Durante todo el capítulo se supondrá que $r$ es un entero positivo arbitrario pero fijo.
@@ -27,13 +27,72 @@ Si $m \equiv n \pmod{r}$ entonces $r \mid m-n$, por tanto existe $q \in \mathbb{
 
 \subsection{Sumas de Ramanujan}
 
-\begin{definition}[Sumas de Ramanujan]
-Se define la función aritmética $c_r$ como
-\begin{equation}\label{eq:ram0}
+En 1918, Ramanujan publicó el artículo \cite{Ram1}, que contiene varias fórmulas notables expresando algunas funciones sobre $\mathbb{N}$ como el límite puntual de ciertas series trigonométricas. Por ejemplo, probó que
+\begin{align*}
+    \frac{\sigma(n)}{n} = \frac{\pi^2}{6} \bigg( 1 & + \frac{(-1)^n}{2^2} + \frac{2 \cos \left( \frac{2}{3} \pi n \right)}{3^2} + \frac{2 \cos \left( \frac{1}{2} \pi n \right)}{4^2} \\
+                                                   & + \frac{2 \left[ \cos \left( \frac{2}{5}\pi n \right) + \cos \left( \frac{4}{5} \pi n \right) \right]}{5^2} + \frac{2 \cos \left(  \frac{1}{3} \pi n \right)}{6^2} + \cdots \bigg),
+\end{align*}
+o escrito de otra manera,
+\begin{equation*}
+    \frac{\sigma(n)}{n} = \frac{\pi^2}{6} \sum_{r=1}^{\infty} \frac{c_r(n)}{r^2},
+\end{equation*}
+donde
+\begin{equation*}
+    c_r(n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \cos \left( \frac{2 \pi}{r} a n \right).
+\end{equation*}
+Estas sumas son conocidas como \textrm{sumas de Ramanujan}. El valor $c_r(n)$ es de hecho la suma de las $n$-ésimas potencias de las raíces primitivas de la unidad.
+
+\begin{proposition}
+Para toda $n \in \mathbb{N}$ se tiene que
+\begin{equation*}
+    c_r(n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi /r) a n},
+\end{equation*}
+donde $i$ es la unidad imaginaria.
+\end{proposition}
+
+\begin{proof}
+En efecto,
+\begin{align*}
+    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi / r) a n} = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \cos \left( \frac{2 \pi}{r} a n \right) + i \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right).
+\end{align*}
+Pero $(a,r)=1$ si y sólo si $(a-r,r)=1$. Además, si $1 \le a \le r-1$ entonces $1 \le r-a \le r-1$, por tanto
+\begin{align*}
+    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right) = \sum_{\substack{a=1 \\ (r-a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} (r-a) n \right) & = \sum_{\substack{a=1 \\ (r-a)=1}}^{r} - \sin \left( \frac{2 \pi}{r} a n \right) \\
+                                                                                 &= - \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right).
+\end{align*}
+Se sigue que la parte imaginaria de la suma original se anula y se tiene la igualdad deseada.
+\end{proof}
+
+En el siguiente capítulo se verá que esta expresión aparece de forma natural al calcular los coeficientes de Fourier clásicos de cierta función aritmética.
+
+\begin{proposition}
+Para toda $n \in \mathbb{N}$ se tiene que
+\begin{equation*}
     c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d.
-\end{equation}
-Esta función será referida como la suma de Ramanujan módulo $r$ o simplemente suma de Ramanujan cuando no haya riesgo de confusión.
-\end{definition}
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Por la proposición ?? se tiene que la suma $\sum_{d \mid k} \mu(d)$ es igual a $1$ si $k=1$ e igual a 0 en otro caso, luego por la proposición anterior,
+\begin{align*}
+    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} & = \sum_{a=1}^{r} e^{i(2 \pi / r) a n} \left( \sum_{d \mid (a,r)} \mu(d) \right) = \sum_{\substack{d \mid a \\ d \mid r}} \sum_{a=1}^{r}  \mu(d) e^{i(2 \pi / r) a n} \\
+           & = \sum_{d \mid r} \mu(d) \sum_{\substack{d \mid a \\ 1 \le a \le r}} e^{i(2 \pi / r) a n} = \sum_{d \mid r} \mu(d) \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n} \\
+\end{align*}
+El valor de la suma interior depende de si $r/d$ divide a $n$ o no. Si lo hace, cada uno de sus términos es igual a 1 y por tanto la suma vale $r/d$. Si este no es el caso se puede sumar,
+\begin{align*}
+    \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n} = \frac{e^{i(2 \pi / r) / (r/d)} (e^{i(2 \pi n)} - 1)}{e^{i(2 \pi / r) / (r/d)} - 1} = 0,
+\end{align*}
+pues el denominador no se anula. Luego
+\begin{align*}
+    c_r (n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} = \sum_{d \mid r} \mu(d) \begin{cases}
+               \hfil r/d & \text{si } r/d \mid n \\
+               \hfil 0 & \text{en otro caso}
+           \end{cases} = \sum_{\substack{d \mid q \\ (r/d) \mid n}} \mu(d) (r/d) \\
+           = \sum_{\substack{d \mid r \\ d \mid n}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d.
+\end{align*}
+\end{proof}
+
+En lo que sigue de este capítulo se trabajará exclusivamente con ésta última representación de $c_r$ y se le referirá como \emph{suma de Ramanujan módulo} $r$ o simplemete \emph{suma de Ramanujan} cuando no haya riesgo de confusión.
 
 \begin{proposition}
 Algunas propiedades de la sumas de Ramanujan son las siguientes:
@@ -128,6 +187,19 @@ Para cada $n \in \mathbb{N}$ fijo se tiene
 \end{equation*}
 \end{corollary}
 
+Otro corolario notable de la proposición anterior es el siguiente.
+
+\begin{corollary}
+La suma de las raíces $r$-ésimas primitivas de la unidad es igual a $\mu(r)$.
+\end{corollary}
+
+\begin{proof}
+Por el punto (2) de la proposición anterior, se tiene que
+\begin{equation*}
+    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi / r) a} = c_r(1)  = \mu(r).
+\end{equation*}
+\end{proof}
+
 Las sumas de Ramanujan gozan de la siguiente propiedad de ``ortogonalidad''.
 
 \begin{lemma}\label{lem:ram4}
@@ -180,7 +252,7 @@ Las sumas de Ramanujan son linealmente independientes respecto a la suma sobre l
 para todo $n \in \mathbb{N}$, entonces $\alpha(d)=\beta(d)$ para todo $d \mid r$.
 \end{corollary}
 \begin{proof}
-Basta probar que $\sum_{d \mid r} \alpha(d) c_d(n)=0$ implica que $\alpha(d)=0$ para todo $d \mid r$. Supóngase ésta hipótesis y sea $\delta \mid r$ arbitrario pero fijo. Si $e$ es un divisor de $r$, se tiene que $\sum_{d \mid r} \alpha(d) c_d(r/e)=0$, luego
+Basta probar que $\sum_{d \mid r} \alpha(d) c_d(n)=0$ implica que $\alpha(d)=0$ para todo $d \mid r$. Supóngase la hipótesis y sea $\delta \mid r$ arbitrario pero fijo. Si $e$ es un divisor de $r$, se tiene que $\sum_{d \mid r} \alpha(d) c_d(r/e)=0$, luego
 \begin{align*}
     0 = \sum_{e \mid r} \left( \sum_{d \mid r} \alpha(d) c_d \left( \frac{r}{e} \right) \right) c_e \left( \frac{r}{\delta} \right)= \sum_{d \mid r} \alpha(d) \sum_{e \mid r} c_d \left( \frac{r}{e} \right) c_e \left( \frac{r}{\delta} \right) = \alpha(\delta) r,
 \end{align*}
