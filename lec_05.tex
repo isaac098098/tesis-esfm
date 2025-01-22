@@ -18,7 +18,7 @@ Una función aritmética se dice \textbf{periódica} con periodo $r$ (o periódi
 
 La siguiente proposición es una consecuencia inmediata de las definiciones anteriores.
 
-\begin{proposition}
+\begin{proposition}\label{prop:mod->per}
 Toda función par $\Mod{r}$ es periódica con periodo $r$.
 \end{proposition}
 \begin{proof}
@@ -60,7 +60,7 @@ Pero $(a,r)=1$ si y sólo si $(a-r,r)=1$. Además, si $1 \le a \le r-1$ entonces
     \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right) = \sum_{\substack{a=1 \\ (r-a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} (r-a) n \right) & = \sum_{\substack{a=1 \\ (r-a)=1}}^{r} - \sin \left( \frac{2 \pi}{r} a n \right) \\
                                                                                  &= - \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right).
 \end{align*}
-Se sigue que la parte imaginaria de la suma original se anula y se tiene la igualdad deseada.
+Se sigue que la parte imaginaria de la primera suma se anula y se tiene la igualdad deseada.
 \end{proof}
 
 En el siguiente capítulo se verá que esta expresión aparece de forma natural al calcular los coeficientes de Fourier clásicos de cierta función aritmética.
@@ -75,7 +75,7 @@ Para toda $n \in \mathbb{N}$ se tiene que
 \begin{proof}
 Por la proposición ?? se tiene que la suma $\sum_{d \mid k} \mu(d)$ es igual a $1$ si $k=1$ e igual a 0 en otro caso, luego por la proposición anterior,
 \begin{align*}
-    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} & = \sum_{a=1}^{r} e^{i(2 \pi / r) a n} \left( \sum_{d \mid (a,r)} \mu(d) \right) = \sum_{\substack{d \mid a \\ d \mid r}} \sum_{a=1}^{r}  \mu(d) e^{i(2 \pi / r) a n} \\
+    c_r(n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} & = \sum_{a=1}^{r} e^{i(2 \pi / r) a n} \left( \sum_{d \mid (a,r)} \mu(d) \right) = \sum_{\substack{d \mid a \\ d \mid r}} \sum_{a=1}^{r}  \mu(d) e^{i(2 \pi / r) a n} \\
            & = \sum_{d \mid r} \mu(d) \sum_{\substack{d \mid a \\ 1 \le a \le r}} e^{i(2 \pi / r) a n} = \sum_{d \mid r} \mu(d) \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n} \\
 \end{align*}
 El valor de la suma interior depende de si $r/d$ divide a $n$ o no. Si lo hace, cada uno de sus términos es igual a 1 y por tanto la suma vale $r/d$. Si este no es el caso se puede sumar,

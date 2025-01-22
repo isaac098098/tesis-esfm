@@ -1,25 +1,86 @@
-%%% Divisibilidad
+%%% Signal processing
 \newpage
-\appendix
-\section{Divisibilidad}
+\section{Procesamiento de señales}
 
-\begin{proposition}
-Si $r \in \mathbb{N}$, $r=e q_1$, $r= d q_2$, $d=(q_1,d)k_1$ y $e=(q_2,e) k_2$ entonces $k_1=k_2$.
-\end{proposition}
-\begin{proof}
-Nótese que $q_1,q_2$ enteros positivos, además $(q_1 q_2, r) = (q_1 q_2, r)$, luego $(q_1 q_2,e q_1)=(q_1 q_2,d q_2)$ y por tanto $q_1 (q_2,e)=q_2 (q_1,d)$ por la proposición anterior. Luego, dado que $r=(q_2,e)k_2 q_1=(q_1,d)k_1 q_2$, la ley de cancelación implica que $k_1 = k_2$.
-\end{proof}
+Una \emph{señal} es una descripción de un fenómeno que evoluciona en el tiempo o espacio; el \emph{procesamiento de señales} se refiere a cualquier operación manual o mecánica que modifique, analice o manipule de otra forma la información contenida en una señal. Considérese, por ejemplo, la temperatura ambiente; se puede medir su evolución coon el tiempo de muchas formas y los datos resultantes representan una ``señal'' de temperatura. Algunas operaciones sobre esta señal se pueden hacer incluso a mano, por ejemplo calcular la temperatura promedio en un mes o graficar la señal en una hoja de papel.
 
-\begin{corollary}\label{cor:mcd1}
-Si $r \in \mathbb{N}$, $e \mid r$ y $d \mid r$ con $e,r \in \mathbb{N}$, entonces
-\begin{equation*}
-    d/\left( r/e,d \right) = e/\left( r/d,e \right).
+\bigskip
+
+El adjetivo ``digital'' proviene de \emph{digitus}, palabra latina para dedo. En este contexto, se refiere a un paradigma en el que el mundo físico se puede describir usando únicamente números enteros.
+El \emph{procesamiento digital de señales} es por tanto una rama del procesamiento de señales en la cual todo, incluido el tiempo, es descrito en términos de números enteros. En el procesamiento de digital de señales, la representación abstracta subyacente siempre es el conjunto de números naturales, independientemente de la naturaleza de la señal \cite{Prand1}.
+
+\begin{definition}
+Más específicamente, una \emph{señal} es cualquier función $x : \mathbb{Z} \longrightarrow \mathbb{C}$.
+\end{definition}
+
+\begin{remark}
+Es necesario establecer las dos convenciones siguientes a lo largo del capítulo, siguiendo la notación estándar en la literatura de procesamiento de señales:
+\begin{itemize}
+\item El valor de una señal $x$ en un índice entero $n$ se denotará como $x[n]$, con corchetes en vez de paréntesis.
+\item A partir de ahora se le denotará $j$ a la unidad imaginaria, es decir, $j = \sqrt{-1}$.
+\end{itemize}
+\end{remark}
+% \subsection{Señales simétricas}
+
+En este capítulo se estudiará una clase particular de señales periódicas, llamadas señales \emph{simétricas} o \emph{pares}, con las herramientas del capítulo anterior. Estas señales no son más que funciones aritméticas pares definidas en los enteros.
+
+\subsection{Transformada Discreta de Fourier}
+
+\begin{definition}[Señal periódica]
+Desde luego, una señal periódica con periodo $r \in \mathbb{N}$ es una señal para la cual $x[n] = x[n + k r]$ para cada $n,k \in \mathbb{Z}$.
+\end{definition}
+
+Una señal periódica con periodo $r$ contiene toda su información en un periodo, en el cuál toma $r$ valores complejos. Considérese pues un arreglo con estos valores, es decir, un elemento de $\mathbb{C}^r$.
+\bigskip
+
+Sea $W_r = e^{-j(2 \pi / r)}$ y considérese el producto interno $\langle x,y \rangle = \sum_{n=1}^{r} \overline{x[n]} y[n]$ en $\mathbb{C}^r$. Se sabe, véase por ejemplo \cite{Prand1}, que el conjunto $\{ w_k \}_{k=1}^r,$ donde \begin{equation*}
+    w_k = (W_r^{-k}, W_r^{-2 k}, \ldots, W_r^{-(r-1) k}, 1) \in \mathbb{C}^r, w=1,\ldots,r,
 \end{equation*}
-\end{corollary}
+es una base ortogonal de $\mathbb{C}^r$. En efecto,
+\begin{equation*}
+    \langle w_m, w_n \rangle = \sum_{i=1}^{r} \overline{W_r^{-m i}} W_r^{-n i} = \sum_{i=1}^{r} W_r^{(m-n)i} = \begin{cases}
+        \hfil r & \text{si } m=n \\[7pt]
+        \hfil \displaystyle\frac{1-W_r^{(m-n)r}}{1-W_r^{m-n}} = 0 & \text{en otro caso}.
+    \end{cases}
+\end{equation*}
 
-\begin{theorem}[Lema de Euclides]
-Si $a \mid bc$ y $(a,b)=1$ entonces $a \mid c$.
-\end{theorem}
-\begin{proof}
-Si $(a,b)=1$, podemos escribir $1=a s+b t$, donde $s,t\in \mathbb{Z}$. Luego $c=a(s c)+b c(t)$ y como $a \mid a$ y $a \mid bc$ por hipótesis, entonces $a \mid c$.
-\end{proof}
+Por otro lado, si $x \in \mathbb{C}^r$, existen por tanto $X(k) \in \mathbb{C}, k=1,\ldots,r$, tales que $r x = \sum_{k=1}^{r} X[k] w_k$. Pero
+\begin{equation*}
+    \langle w_k, x \rangle = \left\langle w_k, \frac{1}{r} \sum_{n=1}^{r} X[n] w_n \right\rangle = \frac{1}{r} \sum_{n=1}^{r} \left\langle w_k, X[n] w_n \right\rangle = \frac{X[k]}{r} r = X[k].
+\end{equation*}
+
+En consecuencia,
+\begin{equation}\label{eq:analysis}
+    X[k] = \sum_{n=1}^{r} \overline{W_r^{-n k}} x[n] = \sum_{n=1}^{r} x[n] W_r^{n k}, \forall k=1,\ldots,r
+\end{equation}
+y
+\begin{equation}\label{eq:synthesis}
+    x[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] w_k[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] W_r^{- n k}, \forall n=1,\ldots,r.
+\end{equation}
+
+Las ecuaciones \eqref{eq:analysis} y \eqref{eq:synthesis} se conocen como las fórmulas de \emph{análisis} y \emph{síntesis} de la \emph{Transformada Discreta de Fourier} del elemento $x \in \mathbb{C}^r$, respectivamente.
+\bigskip
+
+Considere la ecuación de síntesis \eqref{eq:synthesis}. Dado que $W_r^{(n + i r) k} = W_r^{n k}$ para cada $i \in \mathbb{Z}$, entonces $x[n + i r] = x[n]$ para todos $i \in \mathbb{Z}$, $n=1,\ldots,r$, de manera que se puede extender $x \in \mathbb{C}^r$ a una señal periódica a todo $\mathbb{Z}$ de forma natural.
+\bigskip
+
+Si ahora $\tilde{x}$ es una señal periódica con periodo $r$ se pueden escribir, gracias a la observación anterior y a las fórmulas de análisis y síntesis,
+\begin{equation}\label{eq:analysis1}
+    \tilde{X}[k] = \sum_{n=1}^{r} \overline{W_r^{-n k}} \tilde{x}[n] = \sum_{n=1}^{r} \tilde{x}[n] W_r^{n k}, \forall k \in \mathbb{Z}
+\end{equation}
+y
+\begin{equation}\label{eq:synthesis2}
+    \tilde{x}[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] w_k[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] W_r^{- n k}, \forall n \in \mathbb{Z}.
+\end{equation}
+
+La representación \eqref{eq:synthesis2} de la señal $\tilde{x}$ se llama \emph{Serie Discreta de Fourier} y sus fórmulas de análisis y síntesis son idénticas a las anteriores para elementos de $\mathbb{C}^r$, con la diferencia de que los índices son válidos en todo el dominio $\mathbb{Z}$.
+
+\subsection{Señales simétricas}
+
+Las señales simétricas son un análogo a las funciones aritméticas pares estudiadas en el capítulo anterior.
+
+\begin{definition}[Señal simétrica]
+Una señal $x$ se dice \emph{simétrica módulo} $r$ si $x[n] = x[(n,r)]$ para cada $n \in \mathbb{Z}$.
+\end{definition}
+
+Toda señal simétrica módulo $r$ es periódica módulo $r$ y la demostración es idéntica a la de la \Cref{prop:mod->per}.
