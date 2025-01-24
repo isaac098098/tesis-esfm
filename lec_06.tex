@@ -18,6 +18,7 @@ Es necesario establecer las dos convenciones siguientes a lo largo del capítulo
 \begin{itemize}
 \item El valor de una señal $x$ en un índice entero $n$ se denotará como $x[n]$, con corchetes en vez de paréntesis.
 \item A partir de ahora se le denotará $j$ a la unidad imaginaria, es decir, $j = \sqrt{-1}$.
+\item Nuevamente, durante todo el capítulo se supondrá que $r$ es un entero positivo arbitrario pero fijo.
 \end{itemize}
 \end{remark}
 % \subsection{Señales simétricas}
@@ -58,22 +59,19 @@ y
     x[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] w_k[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] W_r^{- n k}, \forall n=1,\ldots,r.
 \end{equation}
 
-Las ecuaciones \eqref{eq:analysis} y \eqref{eq:synthesis} se conocen como las fórmulas de \emph{análisis} y \emph{síntesis} de la \emph{Transformada Discreta de Fourier} del elemento $x \in \mathbb{C}^r$, respectivamente.
+La ecuación \eqref{eq:analysis} se conoce como fórmula de \emph{análisis} o \emph{coeficientes de Fourier discretos} y la ecuación \eqref{eq:synthesis} como fórmula de \emph{síntesis} o \emph{reconstrucción} del elemento $x \in \mathbb{C}^r$.
 \bigskip
 
-Considere la ecuación de síntesis \eqref{eq:synthesis}. Dado que $W_r^{(n + i r) k} = W_r^{n k}$ para cada $i \in \mathbb{Z}$, entonces $x[n + i r] = x[n]$ para todos $i \in \mathbb{Z}$, $n=1,\ldots,r$, de manera que se puede extender $x \in \mathbb{C}^r$ a una señal periódica a todo $\mathbb{Z}$ de forma natural.
-\bigskip
-
-Si ahora $\tilde{x}$ es una señal periódica con periodo $r$ se pueden escribir, gracias a la observación anterior y a las fórmulas de análisis y síntesis,
+Considere la fórmula de síntesis. Dado que $W_r^{(n + i r) k} = W_r^{n k}$ para cada $i \in \mathbb{Z}$, entonces $x[n + i r] = x[n]$ para todos $i \in \mathbb{Z}$, $n=1,\ldots,r$, de manera que se puede extender $x \in \mathbb{C}^r$ a una señal periódica a todo $\mathbb{Z}$ de forma natural. Si $\tilde{x}$ es una señal periódica y se calcula la fórmula de reconstrucción con los valores de su periodo, dicha extensión coincide con $\tilde{x}$ en todo $\mathbb{Z}$, así que se puede escribir
 \begin{equation}\label{eq:analysis1}
     \tilde{X}[k] = \sum_{n=1}^{r} \overline{W_r^{-n k}} \tilde{x}[n] = \sum_{n=1}^{r} \tilde{x}[n] W_r^{n k}, \forall k \in \mathbb{Z}
 \end{equation}
 y
-\begin{equation}\label{eq:synthesis2}
-    \tilde{x}[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] w_k[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] W_r^{- n k}, \forall n \in \mathbb{Z}.
+\begin{equation}\label{eq:synthesis1}
+    \tilde{x}[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] w_k[n] = \frac{1}{r} \sum_{k=1}^{r} \tilde{X}[k] W_r^{- n k}, \forall n \in \mathbb{Z},
 \end{equation}
 
-La representación \eqref{eq:synthesis2} de la señal $\tilde{x}$ se llama \emph{Serie Discreta de Fourier} y sus fórmulas de análisis y síntesis son idénticas a las anteriores para elementos de $\mathbb{C}^r$, con la diferencia de que los índices son válidos en todo el dominio $\mathbb{Z}$.
+donde la fórmula \eqref{eq:analysis} se ha extendido implicitamente  a todos los enteros. Dicha extensión, la ecuación $\eqref{eq:analysis1}$, se llama \emph{transformada discreta de Fourier} de la señal $\tilde{x}$. La ecuación \eqref{eq:synthesis1} también será llamada fórmula de \emph{síntesis} o \emph{reconstrucción} de la señal $\tilde{x}$.
 
 \subsection{Señales simétricas}
 
@@ -83,4 +81,218 @@ Las señales simétricas son un análogo a las funciones aritméticas pares estu
 Una señal $x$ se dice \emph{simétrica módulo} $r$ si $x[n] = x[(n,r)]$ para cada $n \in \mathbb{Z}$.
 \end{definition}
 
-Toda señal simétrica módulo $r$ es periódica módulo $r$ y la demostración es idéntica a la de la \Cref{prop:mod->per}.
+Toda señal simétrica módulo $r$ es periódica módulo $r$ y la demostración es idéntica a la de la \Cref{prop:mod->per}. Una de las principales diferencias entre las señales periódicas y las simétricas, es que las últimas en general tienen una imagen más pequeña, más específicamente, la cardinalidad de su imagen no puede exceder $d(r)$.
+
+\begin{proposition}\label{prop:fou3}
+Si $x : \mathbb{Z} \longrightarrow \mathbb{C}$ es una señal simétrica módulo $r$, entonces $| x (Z) | \le d(r)$, donde $d(r)$ es el número de divisores de $r$.
+\end{proposition}
+
+\begin{proof}
+Para cada divisor positivo $d$ de $r$, sea
+\begin{equation*}
+    S_d = \left\{ \left( \frac{r}{d} \right) \alpha \std (\alpha,d) = 1, 1 \le \alpha \le d \right\}.
+\end{equation*}
+Por la proposición ??, se tiene que $\bigcup_{d \mid r} S_d = \{ 1,2,\ldots,r \}$.
+\bigskip
+
+Además, si $(r/d)\alpha \in S_d$ entonces
+\begin{equation}\label{eq:res1}
+    \left( \left( \frac{r}{d} \alpha \right),r \right) = \left( \left( \frac{r}{d} \right),r \right) = \frac{r}{d},
+\end{equation}
+pues $(\alpha,d)=1$ y $d \mid r$. Más aún, si $x$ es simétrica y $n, m \in S_e$ entonces $\alpha[n]=\alpha[m]$. En efecto, se debe tener que $n = (r/d) \alpha$ y $m = (r/d) y$ con $(\alpha,d)=(\beta,d)=1$ y $1 \le \alpha,\beta \le d$. Luego, como $x$ es simétrica,
+\begin{equation*}
+    x[n] = x \left[ \frac{r}{d} \alpha \right] = x \left[ \left( \frac{r}{d} \alpha, r \right) \right] = x \left[ \frac{r}{d} \right]
+\end{equation*}
+y
+\begin{equation*}
+    x[m] = x \left[ \frac{r}{d} \beta \right] = x \left[ \left( \frac{r}{d} \beta, r \right) \right] = x \left[ \frac{r}{d} \right],
+\end{equation*}
+por tanto $x[n]=x[m]$. Como $x$ es periódica con periodo $r$, hace falta conocer sus valores únicamente en los enteros $1,\ldots,r$. Así,
+\begin{equation*}
+    \{ x[1], \ldots, x[r] \} = \bigcup_{d \mid r} \left\{ x \left [\left( \frac{r}{d} \right) \alpha \right] \std (\alpha,d)=1, 1 \le \alpha \le d \right\} = \bigcup_{d \mid r} \{ x[r/d] \},
+\end{equation*}
+donde el último conjunto tiene a lo sumo $d(r)$ elementos.
+\end{proof}
+
+Los conjuntos $S_d$ de la proposición anterior de llaman \emph{sistemas de residuos} de los divisores $d$ de $r$ \cite{Sam1}. Al igual que con las sumas de Ramanujan, cada señal par se puede expresar como combinación lineal de señales indicadoras sobre los sistemas de residuos.
+
+\begin{definition}
+Si $d$ es un divisor de $r$, se define $h_{r,d} : \{ 1,\ldots,r \} \longrightarrow \mathbb{C}$ como
+\begin{equation*}
+    h_{r,d}[n] = \begin{cases}
+        \hfil 1 & \text{si } n \in S_d \\
+        \hfil 0 & \text{en otro caso.}
+    \end{cases}
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+Para cada $n \in \{ 1,2,\ldots,r \}$ se tiene $h_{r,d}[n]=h_{r,d}[(n,r)]$.
+\end{proposition}
+
+\begin{proof}
+Sea $d$ un divisor positivo de $r$ y sea $n \in \{ 1,2,\ldots,r \}$. Basta probar que $n \in S_d$ si y sólo si $(n,r) \in S_d$.
+\bigskip
+
+Si $n \in S_d$, entonces $n=(r/d) x$ con $(x,d)=1$ y $1 \le x \le d$. Además, como $(n,r) \mid n$ y $(n,r) \mid r$, existen $a,b \in \mathbb{N}$ tales que $n = (n,r) a$  y $r = (n,r) b$. Luego $(n,r) a = (r/d) x$ y por tanto $(n,r) a d = (n,r) b x$, así que $a d = b x$. Dado que $(a,b)=(n/(n,r), r/(n,r))=1$ y $a \mid b x$, entonces $a \mid x$ y por tanto $x = a q$, para algún $q \in \mathbb{N}$. Se sigue que $(n,r) = (r/d) q$ y además $1 \le q \le a q = x \le d$. Luego $(n,r) \in S_d$.
+\bigskip
+
+Recíprocamente, si $(n,r) \in S_d$, escríbase $(n,r) = (r/d) y$ con $(y,d)=1$ y $1 \le y \le d$. Como $(n,r) \mid r$ entonces $(r/d) y \mid r$, luego $r = (r/d) y q$ para algún $q \in \mathbb{N}$ y por tanto $r d = r y q$, así que $d = y q$, es decir $y \mid d$. Se debe tener por tanto que $y=(y,d)=1$, luego $(n,r)=(r/d)$ y como $n=(n,r)a$ para algún $a \in \mathbb{N}$, entonces $n = (r/d)a$. Además, como $n \le r$, entonces $(r/d) a \le r$, luego $r a \le r d$, es decir, $1 \le a \le d$ y por tanto $n \in S_d$.
+\end{proof}
+
+Las funciones $h_{r,d}$ se pueden extender de forma natural a una función simétrica a todo $\mathbb{Z}$ definiendo $h_{r,d}[n] = h_{r,d}[(n,r)]$ para cada $n \in \mathbb{Z}$ y abusando de la notación se le seguirá denotando $h_{r,d}$. Sin embargo, en lo que sigue será suficiente considerar únicamente su restricción a $\{ 1,2,\ldots,r \}$.
+
+\begin{proposition}\label{prop:fou2}
+Cualquier señal simétrica $x$ módulo $r$ se puede escribir como
+\begin{equation}\label{eq:res2}
+    x[n] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n],
+\end{equation}
+para todo $n \in \mathbb{Z}$.
+\end{proposition}
+
+\begin{proof}
+Sin pérdida de generalidad supóngase que $n \in \{ 1,2,\ldots,r \}$. Entonces existe un único $e \mid r$ tal que $n \in S_e$, es decir, tal que $n = (r/e) \alpha$, con $(e,\alpha)=1$ y $1 \le \alpha \le e$. Luego
+\begin{align*}
+    \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n] = \sum_{\substack{d \mid r \\ n \in S_d}} x \left[ \frac{r}{d} \right] & = x \left[ \frac{r}{e} \right] = x \left[ \left( \frac{r}{e},r \right) \right] \\
+                                                            & = x \left[ \left( \frac{r}{e} \alpha,r \right) \right] = x [(n,r)] = x[n]
+\end{align*}
+por \eqref{eq:res1} y por ser $x$ simétrica.
+\end{proof}
+
+La siguiente proposición muestra que las sumas de Ramanujan aparecen naturalmente como los coeficientes de Fourier clásicos en la fórmula de síntesis \eqref{eq:synthesis1} para las señales $h_{r,d}$.
+
+\begin{proposition}
+Los coeficientes de Fourier de la señal $h_{r,d}$ están dados por
+\begin{equation*}
+    H_{r,d}[k] =  c_d[k].
+\end{equation*}
+donde $c_d$ es la suma de Ramanujan módulo $d$.
+\end{proposition}
+
+\begin{proof}
+Utilizando \eqref{eq:analysis} para calcular los coeficientes de $h_{r,d}$ en \eqref{eq:synthesis1}, se tiene que:
+\begin{equation}\label{eq:res3}
+\begin{split}
+    H_{r,d}[k] = \sum_{n=1}^{r} h_{r,d}(n) W_r^{n k} = \sum_{\substack{n=1 \\ n \in S_d}}^{r} W_r^{n k} & = \sum_{\substack{n=1 \\ n=(r/d) x \\ 1 \le x \le d \\ (x,d)=1}}^{r} W_r^{n k} \\
+    &= \sum_{\substack{x = 1 \\ (x,d)=1}}^{d} W_d^{x k} = \sum_{\substack{x = 1 \\ (x,d)=1}}^{d} W_d^{-x k}  = c_d[k],
+\end{split}
+\end{equation}
+pues $e^{-i(2 \pi /r) n k}=e^{-i (2 \pi /d) x k}$ si $n=(r/d)x$.
+\end{proof}
+
+\begin{proposition}\label{prop:fou4}
+Si $x$ es una señal simétrica, sus coeficientes de Fourier discretos están dados por
+\begin{equation*}
+   X[k] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] c_d[k].
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Utilizando las ecuaciones ecuaciones \eqref{eq:analysis}, \eqref{eq:res2} y \eqref{eq:res3} se tiene que
+\begin{align*}
+    X[k] = \sum_{n=1}^{r} x[n] W_r^{n k} = \sum_{n=1}^{r} \sum_{d \mid r} x \left[ \frac{r}{d} \right] & h_{r,d}[n] W_r^{n k} = \sum_{d \mid r}x \left[ \frac{r}{d} \right] \sum_{n=1}^{r} h_{r,d}[n] W_r^{n k} \\
+                                         & = \sum_{d \mid r} x \left[ \frac{r}{d} \right] H_{r,d}[k] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] c_d[k].
+\end{align*}
+\end{proof}
+
+\begin{remark}
+Dado que $c_d[k] = c_d[(k,d)]$, la proposición anterior implica que la transformada discreta de Fourier de una señal simétrica módulo $r$ también es simétrica módulo $r$. Además tal ecuación define una extensión natural de $c_d$ a todo $\mathbb{Z}$.
+\end{remark}
+
+\begin{proposition}
+Si $x$ es una señal simétrica módulo $r$, entonces
+\begin{equation*}
+    x[n] = \frac{1}{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] c_d[n], \forall n \in \mathbb{Z}.
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Considere la transformada de Fourier discreta $X$ de $x$. Dado que $X$ también es simétrica módulo $r$, la \cref{prop:fou2} implica que
+\begin{equation*}
+    X[n] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n], \forall n \in \mathbb{Z},
+\end{equation*}
+luego, usando la fórmula de reconstrucción \eqref{eq:synthesis1}, se tiene
+\begin{align*}
+    x[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] W_r^{-n k} & = \frac{1}{r} \sum_{k=1}^{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] h_{r,d} [k] W_r^{-n k} \\
+         & = \frac{1}{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] \sum_{k=1}^{r} h_{r,d}[k] W_r^{-n k} = \frac{1}{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] c_d[n],
+\end{align*}
+para todo $n \in \mathbb{Z}$.
+\end{proof}
+
+\begin{example}
+Como ejemplo concreto, considere una señal $x$ arbitraria y simétrica módulo $r=10$. Por la \cref{prop:fou3}, $x$ puede tomar a lo sumo $d(10)=4$ valores y estos estarán agrupados en los sistemas de residuos de los divisores de $10$.
+\bigskip
+
+Específicamente, se tiene $S_1 = \{ 10 \}, S_2 = \{ 5 \}, S_5 = \{ 2, 4, 6, 8 \}, S_{10} = \{ 1, 3, 5, 7 \}$. Por tanto, $x[2]=x[4]=x[6]=x[8]$ y $x[1]=x[3]=x[5]=x[7]$. Luego los coeficientes $X[k]$, dados por \ref{prop:fou4}, son
+\begin{align*}
+    X[1] = X[3] = X[5] = X[7] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[1] = x[10] - x[5] - x[2] + x[1] \\
+    X[2] = X[4] = X[6] = X[8] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[2] = x[10] + x[5] - x[2] - x[1] \\
+    X[5] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[5] = x[10] - x[5] + 4 x[2] - 4 x[1] \\
+    X[10] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[10] = x[10] + x[5] + 4 x[2] + 4 x[1]. \\
+\end{align*}
+El cálculo de estos coeficientes se reduce entonces a calcular $c_d[k]$ para cada $d \mid r$ y $k \mid r$. A diferencia de la transformada discreta de Fourier clásica, éstos cálculos no requieren la implementación de las funciones $\sin$ y $\cos$ en un microprocesador. Las sumas de Ramanujan se puede implementar o bien usando la \cref{prop:ram4}, implementando sólo la función de Möbius, una una suma condicional y el máximo común divisor, o bien utilizando la fórmula cerrada sin sumatorias \ref{lem:holder} (fórmula de Hölder), pero implementando la función de Möbius, la función $\varphi$ de Euler y el máximo común divisor.
+\end{example}
+
+\begin{example}
+Suponga que se quiere obtener una señal simétrica $x$ módulo $3$ tal que $x[1]=x[2]=1$ y $x[3]=3$. Calculando sus coeficientes de Fourier, se tiene
+\begin{align*}
+    X[1] = X[2] & = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[1] = x[3] - x[1] = 2 \\
+    X[2] & = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[3] = x[3] + 2 x[1] = 5.
+\end{align*}
+Utilizando la fórmula de reconstrucción, se puede escribir
+\begin{equation*}
+x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1}{3} \left( 5 c_1[n] + 2 c_3[n] \right), \forall n \in \mathbb{Z}.
+\end{equation*}
+
+\begin{figure}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-3.5,
+            ymax=3.5,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot1.csv};
+            \addplot[black, thick] coordinates {(-12,3.5) (12,3.5)};
+            \addplot[black, thick] coordinates {(-12,-3.5) (12,-3.5)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$x[n] = \frac{1}{3} (5 c_1[n] + 2 c_3 [n])$}
+\label{fig:plot1}
+\end{figure}
+
+\begin{figure}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-6,
+            ymax=6,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot2.csv};
+            \addplot[black, thick] coordinates {(-12,6) (12,6)};
+            \addplot[black, thick] coordinates {(-12,-6) (12,-6)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$X[n] = 3 c_1[k] + c_3[k]$}
+\label{fig:plot2}
+\end{figure}
+
+Se puede calcular también su transformada discreta de Fourier usando la \cref{prop:fou4} para todo entero $k$,
+\begin{equation*}
+    X[k] = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[k] = 3 c_1[k] + c_3[k], \forall k \in \mathbb{Z}.
+\end{equation*}
+La gráfica de esta señal se muestra en la \Cref{fig:plot2}.
+\end{example}

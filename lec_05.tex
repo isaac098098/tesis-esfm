@@ -65,7 +65,7 @@ Se sigue que la parte imaginaria de la primera suma se anula y se tiene la igual
 
 En el siguiente capítulo se verá que esta expresión aparece de forma natural al calcular los coeficientes de Fourier clásicos de cierta función aritmética.
 
-\begin{proposition}
+\begin{proposition}\label{prop:ram4}
 Para toda $n \in \mathbb{N}$ se tiene que
 \begin{equation*}
     c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d.
@@ -202,7 +202,7 @@ Por el punto (2) de la proposición anterior, se tiene que
 
 Las sumas de Ramanujan gozan de la siguiente propiedad de ``ortogonalidad''.
 
-\begin{lemma}\label{lem:ram4}
+\begin{lemma}
 Si $r$ y $s$ dividen a $k$, entonces
 \begin{equation*}
     \sum_{d \mid k} c_r(k/d) c_d(k/s) = \begin{cases}
@@ -564,7 +564,7 @@ El espacio vectorial $\mathcal{A}_r$ tiene dimensión $d(r)$.
 En lo que sigue de esta sección se verá que los coeficientes de la expansión \eqref{eq:ram3} pueden ser derivados de un producto interno en este espacio de funciones.
 
 \begin{proposition}
-La operación $\langle \phantom{f},\phantom{g} \rangle : \mathcal{A}_r\times \mathcal{A}_r \longrightarrow \mathbb{R}$ definida como
+La operación $\langle \phantom{f},\phantom{g} \rangle : \mathcal{A}_r\times \mathcal{A}_r \longrightarrow \mathbb{C}$ definida como
 \begin{equation*}
     \langle f,g \rangle = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)}
 \end{equation*}

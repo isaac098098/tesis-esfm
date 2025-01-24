@@ -8,7 +8,7 @@
 \usepackage[utf8]{inputenc} %character codification
 
 %Layout
-\usepackage[left=3.0cm,right=3.0cm,top=3.0cm,bottom=3.3cm,headheight=0.8cm,asymmetric,showframe]{geometry} %page size
+\usepackage[left=3.0cm,right=3.0cm,top=3.0cm,bottom=3.3cm,headheight=0.8cm,asymmetric]{geometry} %page size
 %use headheight to control the distance between header and text
 %use asymmetric to fix marginpar notes to one side
 \usepackage{fancyhdr} %footers and headers
@@ -50,7 +50,7 @@
 %\setlength{\cftbeforesubsubsecskip}{2pt} %vertical space before subsubsection in toc
 \usepackage{titlesec} %custom sections title format
 \usepackage{enumitem} %lists formatting
-\usepackage{caption} %figure and table captions
+\usepackage[labelfont=bf]{caption} %figure and table captions
 \usepackage{float} %floats positioning, [H] option
 %\usepackage[tocskip=2pt]{parskip} %paragraph separation
 %use tocskip to add space in toc
@@ -63,6 +63,7 @@
 % Diagrams and plots
 \usepackage{tikz}
 \usepackage{pgfplots} %advanced data plotting
+\pgfplotsset{compat=1.18}
 
 %Tables
 \usepackage{array} %math arrays
