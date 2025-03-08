@@ -1,5 +1,5 @@
 %documentclass
-\documentclass[titlepage,letterpaper,twoside]{article}
+\documentclass[letterpaper,twoside]{article}
 %use twoside if using fancyhdr
 %use titlepage to center title
 
@@ -56,6 +56,7 @@
 %use tocskip to add space in toc
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
+\usepackage{ragged2e}
 
 % Bibliography and cites
 \usepackage{natbib}
@@ -80,8 +81,25 @@
 %\usepackage{relsize} %relative text resizing
 \usepackage{scalerel} %relative math text resizing
 \usepackage{xcolor}
+\usepackage{listings}
+\usepackage{changepage}
 
-%Preamble
+\definecolor{gray}{HTML}{f2f2f2}
+
+\lstset{
+    % backgroundcolor=\color{gray},
+    breaklines=true,
+    basicstyle=\ttfamily,
+    numberstyle=\ttfamily,
+    numbers=left,
+    numbersep=12pt,
+    frame=single,
+    framexleftmargin=12mm,
+    framextopmargin=2mm,
+    framexbottommargin=2mm,
+    rulecolor=\color{black},
+    framerule=0.6pt,
+}
 
 %Formatting
 \decimalpoint %decimal point

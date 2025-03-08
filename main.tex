@@ -1,16 +1,121 @@
-\newcommand{\notestitle}{Estructura del anillo de funciones aritméticas y una aplicación al procesamiento de señales}
-\newcommand{\notesprof}{Asesor Dr. Pablo Lam Estrada \emph{ESFM-IPN}}
-\newcommand{\notesauthor}{Borrador hecho por José Luis Juanico López}
-
 \input{preamble.tex}
 \begin{document}
-% \pagenumbering{roman}
-% \maketitle
-% \thispagestyle{plain}
-% \tableofcontents
-% \newpage
-% \pagestyle{title-subsection}
-% \pagenumbering{arabic}
+%%% Portada
+\phantomsection
+\markboth{Portada}{Portada}
+\addcontentsline{toc}{section}{Portada}
+\thispagestyle{empty}
+\pagenumbering{roman}
+\begin{center}
+    \begin{minipage}{0.1\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{img/ipn.jpg}
+    \end{minipage}
+    \hspace{10pt}
+    \begin{minipage}{0.7\textwidth}
+        \centering
+        {\Large\textsc{Instituto Politécnico Nacional}} \\
+        {\large\textsc{Escuela Superior de Física y Matemáticas}}
+        \medskip
+    \end{minipage}
+    \hspace{10pt}
+    \begin{minipage}{0.1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/esfm.jpg}
+    \end{minipage}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick, black] (0,0)--(0.99\textwidth,0);
+        \end{tikzpicture}
+    \end{center}
+\end{center}
+
+\vfill
+
+\begin{center}
+    \makebox[0.85\linewidth][s]{\LARGE \scshape Estructura del anillo de funciones}
+    \makebox[0.85\linewidth][s]{\LARGE \scshape aritméticas {} y {} una {} aplicación}
+    \makebox[0.85\linewidth][s]{\LARGE \scshape al {} procesamiento {} de {} señales}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+    \begin{minipage}{0.7\textwidth}
+        \centering
+        {\Large\textsc{Propuesta de Tesis}} \\
+        {\normalsize\textsc{Que para obtener el título de}} \\
+        {\normalsize\textsc{Licenciado en Física y Matemáticas}}
+        \medskip
+    \end{minipage}
+\end{center}
+
+\vspace{5pt}
+
+\begin{center}
+    \begin{minipage}{0.7\textwidth}
+        \centering
+        {\normalsize\textsc{Presenta}} \\
+        {\Large\textsc{José Luis Juanico López}}
+        \medskip
+    \end{minipage}
+\end{center}
+
+\hspace{10pt}
+
+\begin{center}
+    \begin{minipage}{0.7\textwidth}
+        \centering
+        {\normalsize\textsc{Asesor de Tesis}} \\
+        {\normalsize\textsc{Dr. Pablo Lam Estrada}}
+        \medskip
+    \end{minipage}
+\end{center}
+
+\vfill
+
+\begin{center}
+    \begin{minipage}{0.8\textwidth}
+        {\normalsize\textsc{Cuidad de México} \hfill {\small Marzo de 2025}}
+    \end{minipage}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\
+
+\newpage
+%%% Dedicatoria
+\phantomsection
+\markboth{Dedicatoria}{Dedicatoria}
+\addcontentsline{toc}{section}{Dedicatoria}
+\thispagestyle{plain}
+\
+\newpage
+\thispagestyle{empty}
+\
+
+\newpage
+%%% Agradecimientos
+\phantomsection
+\markboth{Agradecimientos}{Agradecimientos}
+\addcontentsline{toc}{section}{Agradecimientos}
+\thispagestyle{plain}
+\
+\newpage
+\thispagestyle{empty}
+\
+
+\newpage
+%%% Índice general
+\phantomsection
+\markboth{Índice general}{Índice general}
+\addcontentsline{toc}{section}{Índice general}
+\thispagestyle{plain}
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+\
 
 \input{lec_01.tex}
 \input{lec_02.tex}
@@ -19,6 +124,7 @@
 \input{lec_05.tex}
 \input{lec_06.tex}
 \input{lec_07.tex}
+\input{lec_08.tex}
 
 \input{eof.tex}
 \end{document}
