@@ -57,6 +57,7 @@
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
 \usepackage{ragged2e}
+\usepackage{epiolmec}
 
 % Bibliography and cites
 \usepackage{natbib}
@@ -111,6 +112,7 @@
 %\setlength{\textfloatsep}{0.1cm} %vertical spacing between floats and text
 \allowdisplaybreaks %allow equations to break across pages
 \linespread{1} %vertical spacing between lines, relative
+\renewcommand\ttdefault{cmtt}
 
 %Layout
 
@@ -196,6 +198,44 @@
 	\fancyhead[RO]{\small\thepage} %right odd
 	\fancyhead[LE]{\small\thepage} %left even
 	\fancyhead[RE]{\small\scshape\nouppercase\rightmark} %right even
+}
+
+\fancypagestyle{easter1}{
+	\fancyhf{} %clear footer and header
+	% \fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
+	\fancyhead[LO]{\small\scshape\nouppercase\leftmark} %left odd
+	\fancyhead[RO]{\small 3,141592...} %right odd
+	\fancyhead[LE]{\small 3,141592...} %left even
+	\fancyhead[RE]{\small\scshape\nouppercase\rightmark} %right even
+}
+
+\fancypagestyle{easter2}{
+	\fancyhf{} %clear footer and header
+	% \fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
+	\fancyhead[LO]{} %left odd
+	\fancyhead[RO]{} %right odd
+	\fancyhead[LE]{\small\thepage} %left even
+	\fancyhead[RE]{\footnotesize \texttt{Underfull \char`\\ hbox (badness 10000) in paragraph at lines $\aleph_0$-$\aleph_1$}} %right even
+}
+
+\fancypagestyle{easter3}{
+	\fancyhf{} %clear footer and header
+	\setlength{\headheight}{29pt} %hide header ruler
+	% \fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
+	\fancyhead[LO]{} %left even
+	\fancyhead[RO]{} %right even
+	\fancyhead[LE]{\small\scshape\nouppercase\leftmark} %left odd
+	\fancyhead[RE]{\fontfamily{cmr}\footnotesize\EOofficerIV\EOjaguar} %right odd
+}
+
+\fancypagestyle{easter4}{
+	\fancyhf{} %clear footer and header
+	\setlength{\headheight}{21pt} %hide header ruler
+	% \fancyheadoffset{0.5cm} %fancyhdr, left and right header offset
+	\fancyhead[LO]{\small\scshape\nouppercase\leftmark} %left odd
+	\fancyhead[RO]{\fontfamily{cmr}\footnotesize\EOxiii} %right odd
+	\fancyhead[LE]{} %left even
+	\fancyhead[RE]{} %right even
 }
 
 \fancypagestyle{plain}{
