@@ -68,7 +68,7 @@ Si $f,g \in \mathcal{A}$ y $f*g=0$ entonces $\mathcal{N}(f*g)=0 \implies \mathca
 Como ocurre en cualquier anillo con identidad, el conjunto de elementos invertibles forma un grupo respecto a la operación de multiplicación, en este caso, respecto a la convolución de Dirichlet. Este grupo se denotará $(\mathcal{A}^*,*)$ o simplemente como $\mathcal{A}^*$ cuando no haya riesgo de confusión.
 \end{remark}
 
-\begin{proposition}
+\begin{proposition}\label{prop:str1}
 $f \in \mathcal{A}^*$ si y sólo si $\mathcal{N}(f)=1$.
 \end{proposition}
 \begin{proof}
@@ -98,23 +98,31 @@ Si $\mathcal{N}(f)=p$ para algún número primo $p$, entonces $f$ es irreducible
 Como $p \ne 0$ y $p \ne 1$, entonces $f$ no es cero ni es una unidad. Además, si $f=g*h$ para algunas funciones $g,h \in \mathcal{A}$, entonces  $g,h \ne 0$,  pues en caso contrario $f=0$ y en consecuencia $\mathcal{N}(f)=0 \ne p$, así que $\mathcal{N}(f)$ y $\mathcal{N}(h)$ son enteros positivos. Luego $\mathcal{N}(f)=\mathcal{N}(g*h)=\mathcal{N}(g)\mathcal{N}(h)=p$ y como $p$ es primo, entonces $\mathcal{N}(g)=1$ o bien $\mathcal{N}(h)=1$, es decir, $g$ o $h$ es unidad. Como $g$ y $h$ fueron arbitrarios, entonces $f$ debe ser irreducible en $\mathcal{A}$.
 \end{proof}
 
-\begin{theorem}[Condición de la cadena ascendente] \label{thm:chain1}
-Si $\{ f_i \}_{i \in \mathbb{N}}$ es un un conjunto de funciones aritméticas con la propiedad de que $f_1 \ne 0$ y $f_i=f_{i+1}*g_i$ y $g_i$ no es unidad, para cada $i \in \mathbb{N}$, entonces $\{ f_i \}_{i \in \mathbb{N}}$ es un conjunto finito.
+\begin{theorem}\label{thm:chain1}
+No puede existir una sucesión $\{ f_i \}_{i \in \mathbb{N}}$ de funciones aritméticas con la propiedad de que $f_1 \ne 0$ y $f_i=f_{i+1}*g_{i+1}$ y $g_{i+1}$ no es unidad, para cada $i \in \mathbb{N}$.
 \end{theorem}
 \begin{proof}
-Supóngase que $\{ f_i \}_{i \in \mathbb{N}}$ es un conjunto infinito. Se tiene que $\mathcal{N}(i)=\mathcal{N}(f_{i+1})\mathcal{N}(g_{i+1})>\mathcal{N}(f_{i+1})$, para cada $i \in \mathbb{N}$, pues $g_{i+1}$ no es unidad, en particular $\mathcal{N}(f_1)>\mathcal{N}(f_i), \forall i \in \mathbb{N}$. Luego $\{ \mathcal{N}(f_i) \}_{i \in \mathbb{N}}$ es una sucesión en $\mathbb{N}$, por ser $\{ f_i \}_{i \in \mathbb{N}}$ infinito, y además estrictamente creciente, por tanto $\lim_{i \to \infty} \mathcal{N}(f_i)=\infty$, pero esto implica que $\mathcal{N}(f_1)>n, \forall n \in \mathbb{N}$, en particular $\mathcal{N}(f_1)>\mathcal{N}(f_1)$, lo cual es absurdo.
+Asuma que dicho conjunto existe. Nótese que $\mathcal{N}(f_1) = \mathcal{N}(f_2) \mathcal{N}(g_2) > \mathcal{N}(f_2)$, pues $g_2$ no es unidad. De hecho se tiene
+\begin{equation*}
+    \mathcal{N}(f_1) > \mathcal{N}(f_2) > \cdots > \mathcal{N}(f_i), \forall i \in \mathbb{N}.
+\end{equation*}
+Más aún, como cada uno de éstos números son enteros, entonces
+\begin{equation*}
+    \mathcal{N}(f_1) \ge \mathcal{N}(f_2) + 1 \ge \cdots \ge \mathcal{N}(f_{i+1}) + i, \forall i \in \mathbb{N}
+\end{equation*}
+En particular, como $\mathcal{N}(f_1) \ge 1$ por ser $f_1 \ne \mathbf{0}$, se tiene que $\mathcal{N}(f_1) \ge \mathcal{N}\left(f_{\mathcal{N}(f_1)+1}\right) + \mathcal{N}(f_1)$, luego $0 \ge \mathcal{N}\left(f_{\mathcal{N}(f_1)+1}\right)$ y por tanto $\mathcal{N}(f_{\mathcal{N}(f_1)+1}) = \mathbf{0}$, en consecuencia $f_{\mathcal{N}(f_1)+1} = \mathbf{0}$, lo cual no es posible, pues de ser así $f_1 = f_{\mathcal{N}(f_1)+1} \cdot g_{\mathcal{N}(f_1)+1} \cdots g_2 = \mathbf{0}$, contradiciendo la hipótesis.
 \end{proof}
 
-El teorema anterior permite probar inmediatamente que cualquier elemento no cero y no unidad de $\mathcal{A}$ se puede expresar como producto finito de elementos irreducibles de $A$.
+El teorema anterior permite probar que cualquier elemento no cero y no unidad de $\mathcal{A}$ se puede expresar como producto finito de elementos irreducibles de $A$.
 
 \begin{proposition}
 Si $f \in \mathcal{A}\setminus (\mathcal{A}^* \cup \{ \mathbf{0} \})$, entonces $f$ es producto finito de elementos irreducibles en $\mathcal{A}$.
 \end{proposition}
 \begin{proof}
-Como $f \ne \mathbf{0}$, en lo que sigue de esta demostración se debe tener que todas las funciones involucradas son distintas de cero. Se probará primero que $f$ tiene un factor irreducible. En efecto, si $f$ es irreducible, entonces no hay nada que probar. Supóngase que este no es el caso y por tanto $f=f_1*g_1$, donde $f_1$ y $g_1$ no son unidades. Si $f_1$ es irreducible hemos concluido. En caso contrario se tiene $f_1=f_2*g_2$, donde $f_2$ y $g_2$ no son unidades y además $f_1 \ne f_2$, pues de otra forma se tendría, por la ley de cancelación, que $I=g_2$, contradiciendo la elección de $g_2$. De manera inductiva se tiene una sucesión de funciones $\{ f_i \}_{i \in \mathbb{N}}$ tal que $f_i=f_{i+1}*g_{i+1}$, donde $g_{i+1}$ no es unidad y $f_i \ne f_{i+1}, \forall i \in \mathbb{N}$, luego dicho conjunto es infinito, lo que contradice el Teorema \ref{thm:chain1}. En consecuencia, el proceso anterior debe terminar y debe existir $M \in \mathbb{N}$ tal que $f_{M-1}=f_M*g_M$, donde $f_M$ es irreducible y $f_M \mid f$.
+Como $f \ne \mathbf{0}$, en lo que sigue de esta demostración se debe tener que todas las funciones involucradas son distintas de cero. Se probará primero que $f$ tiene un factor irreducible. En efecto, si $f$ es irreducible, entonces no hay nada que probar. Supóngase que este no es el caso y por tanto $f=f_1*g_1$, donde $f_1$ y $g_1$ no son unidades. Si $f_1$ es irreducible hemos concluido. En caso contrario, se tiene $f_1=f_2*g_2$, donde $f_2$ y $g_2$ no son unidades. De manera inductiva se tiene una sucesión de funciones $\{ f_i \}_{i \in \mathbb{N}}$ tal que $f_i=f_{i+1}*g_{i+1}$, donde $g_{i+1}$ no es unidad para cada $i \in \mathbb{N}$, lo cual es imposible por el teorema anterior. En consecuencia, este proceso debe terminar y debe existir $M \in \mathbb{N}$ tal que $f_M=f_{M+1}*g_{M+1}$, donde $f_{M+1}$ es irreducible y $f_{M+1} \mid f$.
 \bigskip
 
-Se probará ahora el resultado principal. Escribiendo $f_M=p_1$, se tiene que $f=p_1*q_1$, con $p_1$ irreducible. Si $q_1$ es una unidad, entonces $f$ es irreducible y ya terminamos. Si $q_1$ no es unidad, por el párrafo anterior, $q_1$ debe tener un factor irreducible, es decir, $q_1=p_2*q_2$, donde $p_2$ es irreducible, y por tanto no es unidad, además, $q_1 \ne q_2$ pues de otra forma se tendría, por la ley de cancelación, que $I=p_2$, lo que contradice la elección de $p_2$. Si $q_2$ es unidad, entonces $q_1$ es irreducible y $f=p_1*q_1$ es la factorización buscada. Si este proceso nunca terminara, de forma inductiva se tendría una sucesión $\{ q_i \}_{i \in \mathbb{N}}$ tal que $q_i=p_{i+1}*q_{i+1}$, con $p_i$ no unidad y además $q_i \ne q_{i+1},\forall i \in \mathbb{N}$, de tal manera que dicho conjunto es infinito, lo que contradice de nuevo el Teorema \ref{thm:chain1}. En consecuencia, el proceso eventualmente termina y por tanto existe $N \in \mathbb{N}$ tal que $q_N=p_{N+1}*q_{N+1}$, donde $q_{N+1}$ es unidad y $p_{N+1}$ es irreducible. Luego
+Se probará ahora el resultado principal. Escribiendo $f_{M+1}=p_1$, se tiene que $f=p_1*q_1$, con $p_1$ irreducible. Si $q_1$ es una unidad, entonces $f$ es irreducible y ya terminamos. Si $q_1$ no es unidad, nuevamente, $q_1$ debe tener un factor irreducible, es decir, $q_1=p_2*q_2$, donde $p_2$ es irreducible, y por tanto no es unidad. Si $q_2$ es unidad, entonces $q_1$ es irreducible y $f=p_1*q_1$ es la factorización buscada. Si este proceso nunca terminara, de forma inductiva se tendría una sucesión $\{ q_i \}_{i \in \mathbb{N}}$ tal que $q_i=p_{i+1}*q_{i+1}$, con $p_i$ no unidad, para cada $i \in \mathbb{N}$, lo que contradice de nuevo el Teorema \ref{thm:chain1}. En consecuencia, el proceso eventualmente termina y por tanto existe $N \in \mathbb{N}$ tal que $q_N=p_{N+1}*q_{N+1}$, donde $q_{N+1}$ es unidad y $p_{N+1}$ es irreducible. Luego
 \begin{equation*}
     f=p_1*p_2*\cdots*p_N*q_N,
 \end{equation*}
@@ -171,7 +179,7 @@ Un colorario de la proposición anterior y el \Cref{cor:fac1} es el siguiente.
 Si $f \in \mathcal{A}$ es tal que $f(1) = 0$ y $f(p) \ne 0$ para algún primo $p$, entonces $f$ es un elemento primo de $\mathcal{A}$.
 \end{corollary}
 
-Hasta aquí se tiene que el anillo $\mathcal{A}$ satisface cierto tipo de condición de la cadena ascendente. Sin embargo, la siguiente proposición muestra que en general no se cumple la condición de la cadena descendente, es decir, $\mathcal{A}$ no es artiniano.
+El \Cref{thm:chain1} afirma que el anillo $\mathcal{A}$ satisface una forma débil de condición de la cadena ascendente, ¿satisfará también la condición de la cadena descendente? Es decir, ¿es $\mathcal{A}$ artiniano? El siguiente contraejemplo desacredita esta observación.
 
 \begin{proposition}
 $\mathcal{A}$ no es un anillo artiniano.
@@ -192,12 +200,12 @@ Además, si $h \in \mathcal{A}$, se tienen dos casos. Si $h=\mathbf{0}$, entonce
 \end{equation*}
 Entonces $\mathcal{N}(f) = n < n+1$, es decir, $f \in I_n$, pero $f \notin I_{n+1}$.
 \end{enumerate}
-Se tiene pues una cadena descendente infinita de ideales de $\mathcal{A}$, luego $\mathcal{A}$ no es artiniano.
+Se tiene pues una cadena descendente de ideales distintos entre sí de $\mathcal{A}$, luego $\mathcal{A}$ no es artiniano.
 \end{proof}
 
 \subsection{Funciones multiplicativas}
 
-\begin{definition}[Función multiplicativa]
+\begin{definition}[Función multiplicativa]\label{def:mul1}
 Se dice que una función aritmética $f$ es \textbf{multiplicativa} si no es idénticamente cero y para todo $m,n \in \mathbb{N}$, $(m,n)=1$ implica que $f(m n)=f(m)f(n)$.
 \end{definition}
 
