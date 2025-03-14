@@ -2,7 +2,7 @@
 \subsection{Una norma para funciones aritméticas}
 
 \begin{definition}
-Sea $\mathcal{A}$ el conjunto de todas las funciones aritméticas. Definimos la función
+Sea $\mathcal{A}$ el conjunto de todas las funciones aritméticas. Se define
 \begin{align*}
     \mathcal{N} : \mathcal{A} & \longrightarrow \mathbb{N} \cup \{0\} \\
 	   f & \longmapsto \mathcal{N}(f)=
@@ -23,10 +23,10 @@ La función $\mathcal{N}$ definida anteriormente tiene las siguientes propiedade
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-(i) Si $f=0$ por definición se tiene que $\mathcal{N}(f)=0$. Si $f \neq 0$, entonces $\min \left\{n : f(n) \neq 0\right\}\neq 0$, i.e. $\mathcal{N}(f)\geq 1\neq 0$. Por tanto $\mathcal{N}(f)=0$ implica que $f=0$.
+({\scshape \romannumeral 1}) Si $f=0$ por definición se tiene que $\mathcal{N}(f)=0$. Si $f \neq 0$, entonces $\min \left\{n : f(n) \neq 0\right\}\neq 0$, i.e. $\mathcal{N}(f)\geq 1\neq 0$. Por tanto $\mathcal{N}(f)=0$ implica que $f=0$.
 \bigskip
 
-(ii) Si $f=0$ o $g=0$ entonces $\mathcal{N}(f)=0$ o $\mathcal{N}(g)=0$. Además $(f*g)(n)=\sum_{d \mid n} f(n)g(n/d)=0, \:\forall\: n \in\mathbb{N}$, es decir, $\mathcal{N}(f*g)=0=\mathcal{N}(f)\mathcal{N}(g)$. Supongamos pues que $f \neq 0$ y $g \neq 0$. Sean $a=\mathcal{N}(f)$ y $b=\mathcal{N}(g)$. Afirmamos que $a b=\min \left\{n : (f*g)(n) \ne 0\right\}=m$.
+({\scshape \romannumeral 2}) Si $f=0$ o $g=0$ entonces $\mathcal{N}(f)=0$ o $\mathcal{N}(g)=0$. Además $(f*g)(n)=\sum_{d \mid n} f(n)g(n/d)=0, \:\forall\: n \in\mathbb{N}$, es decir, $\mathcal{N}(f*g)=0=\mathcal{N}(f)\mathcal{N}(g)$. Supongamos pues que $f \neq 0$ y $g \neq 0$. Sean $a=\mathcal{N}(f)$ y $b=\mathcal{N}(g)$. Afirmamos que $a b=\min \left\{n : (f*g)(n) \ne 0\right\}=m$.
 \bigskip
 
 En efecto, se tiene
@@ -45,16 +45,16 @@ pues $b \le m/d$ implica que $d<a$ y $f(d)=0$. Pero esto contradice la elección
 
 \bigskip
 
-(iii) Sin pérdida de generalidad se puede suponer que $a \le b$, de tal manera que $\min \{ a,b \} = a$. Si $n<a$ entonces $(f+g)(n) = f(n) + g(n) = 0$, por lo que
+({\scshape \romannumeral 3}) Sin pérdida de generalidad se puede suponer que $a \le b$, de tal manera que $\min \{ a,b \} = a$. Si $n<a$ entonces $(f+g)(n) = f(n) + g(n) = 0$, por lo que
 \begin{equation*}
     \min \{ \mathcal{N}(f),\mathcal{N}(g) \}=a \le \min \{ n \std (f+g)(n) \ne 0 \}=\mathcal{N}(f+g).
 \end{equation*}
 
-(iv) Supóngase de nuevo sin pérdida de generaliad que $a<b$. Entonces
+({\scshape \romannumeral 4}) Supóngase de nuevo sin pérdida de generaliad que $a<b$. Entonces
 \begin{equation*}
 	(f+g)(a) = f(a) + f(a) = f(a) + 0 = f(a) \ne 0,
 \end{equation*}
-por tanto, $N(f+g) \le a = \min \{ a,b \}=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$. El resultado se sigue ahora del inciso (iii).
+por tanto, $N(f+g) \le a = \min \{ a,b \}=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$. El resultado se sigue ahora del punto ({\scshape \romannumeral 3}).
 
 \end{proof}
 \begin{theorem}
@@ -80,7 +80,7 @@ Si $f(1) \ne 0$, defínase
 \end{split}
 \end{equation}
 
-Es fácil verificar que la ecuación \eqref{eq:inv1} define a $f^{-1}$ de tal forma que $f*f^{-1} = I$, pues $f(1)f^{-1}(1)=1$ y si $n>1$ entonces
+Entonces la ecuación recursiva \eqref{eq:inv1} define a $f^{-1}$ de tal forma que $f*f^{-1} = I$, pues $f(1)f^{-1}(1)=1$ y si $n>1$ entonces
 \begin{align*}
 	(f*f^{-1})(n) = \sum_{d \mid n} f(d)f^{-1}\left( \frac{n}{d} \right) &= f(1)f^{-1}(n) + \sum_{\substack{d \mid n \\ d \ne n }} f(d)f^{-1}\left( \frac{n}{d} \right) \\
 	&= f(1)f^{-1}(n)-f(1)f^{-1}(n) = 0
@@ -129,7 +129,7 @@ Se probará ahora el resultado principal. Escribiendo $f_{M+1}=p_1$, se tiene qu
 donde $p_1,\ldots,p_{N}$ y $q_N$ son irreducibles.
 \end{proof}
 
-Habiendo llegado hasta aquí, uno puede sospechar que el dominio $\mathcal{A}$ es un dominio de factorización única. Esta sospecha es, de manera sorprendente, acertada. Sin embargo, la demostración de este hecho no es tan sencilla como la de la proposición anterior.
+Habiendo llegado tan lejos, se puede conjeturar que el dominio $\mathcal{A}$ es un dominio de factorización única. Esta sospecha es, de manera sorprendente, acertada. Sin embargo, la demostración de este hecho no es tan sencilla como la de la proposición anterior.
 
 \begin{theorem}
 $\mathcal{A}$ es un dominio de factorización única.
@@ -255,6 +255,8 @@ Claro que el conjunto $\mathcal{M}$ es no vacío, pues $I \in \mathcal{M}$. Veam
 por el \Cref{lem:div1}.
 \bigskip
 
+\thispagestyle{easter4}
+
 Como ya se probó al inicio de esta demostración, si $f$ es multiplicativa entonces $f(1)=1$, por lo que existe $f^{-1}$. Veamos que $f^{-1} \in \mathcal{M}$. Para esto construiremos, a partir de $f$, una función multiplicativa $g$ con la propiedad de que $f*g=I$, con lo que quedará demostrado que $f^{-1}$ es multiplicativa por la unicidad de la inversa. Se procede definiendo a $g$ de forma gradual:
 
 \begin{enumerate}[label=\textnormal{(\arabic*)},ref=\textnormal{\arabic*}]
@@ -291,8 +293,6 @@ Como ya se probó al inicio de esta demostración, si $f$ es multiplicativa ento
 \item Se sigue que $g=f^{-1}$ y como $g$ es multiplicativa, entonces $f^{-1}$ también lo es.
 \end{enumerate}
 \end{proof}
-
-\thispagestyle{easter4}
 
 \begin{corollary}
 Si $f*g$ es multiplicativa y $g$ es multiplicativa, entonces $f$ también lo es.

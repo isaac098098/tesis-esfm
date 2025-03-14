@@ -6,15 +6,11 @@ int mcd(int a, int b) {
     return b == 0 ? a > 0 ? a : -a : mcd(b, a % b);
 }
 
-int fun(int d) {
-    return d;
-}
-
 int dsum(int n) {
     int sum=0;
     for(int i=1; i<=n; i++)
         if((n % i) == 0)
-            sum+=fun(i);
+            sum+=i;
     return sum;
 }
 
@@ -53,9 +49,9 @@ int main(int argc, char** argv) {
     FILE* div=fopen("div.csv", "w");
     /*for(int j=-10; j <= atoi(argv[1]); j++)*/
     /*    fprintf(div, "%d, %d\n", j, mcd(3,j));*/
-    for(int j=-10; j <= atoi(argv[1]); j++)
-        fprintf(div, "%d, %1.5f\n", j, 3.0*ram(1,j)+ram(3,j));
-    /*fclose(div);*/
+    for(int j= atoi(argv[1]); j <= atoi(argv[2]); j++)
+        fprintf(div, "%d, %1.5f\n", j, 2.0*ram(1,j) - 2.0*ram(2,j) - 1.0*ram(3,j) + 1.0*ram(6,j));
+    fclose(div);
     /*printf("%d\n", ram(atoi(argv[1]), atoi(argv[2])));*/
     return 0;
 }

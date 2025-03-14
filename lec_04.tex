@@ -1,8 +1,7 @@
 %%% Algunas funciones
-\newpage
 \subsection{Algunas funciones aritméticas conocidas}
 
-A continuación se presentan algunas funciones aritméticas que aparecen frecuentemente en teoría de números.
+A continuación se presentan algunas funciones aritméticas de interés en teoría de números y algunas relaciones entre ellas con el producto de Dirichlet.
 
 \begin{definition}[Función idéntica]
 La función idéntica $N$ es tal que $N(n)=n$, para cada $n\in \mathbb{N}$.
@@ -13,7 +12,7 @@ Para cada $n\geq 1$, se define la función $\varphi$ de Euler $\varphi(n)$ como 
 \end{definition}
 
 \begin{definition}[Función de Mangoldt]
-Para todo $n\in\mathbb{N}$, definimos la función de Mangoldt como 
+Para todo $n\in\mathbb{N}$, se define la función de Mangoldt como 
 \begin{equation*}
 	\Lambda(n) =
 		\begin{cases}
@@ -32,14 +31,10 @@ Para cada $k\in\mathbb{C}$ se define la función divisor de orden $k$ como
 \begin{equation*}
 	\sigma_k(n)=\sum_{d \mid n} d^k.
 \end{equation*}
-A la función divisor de orden $1$ la llamaremos simplemente función divisor y se denotará como $\sigma$ en vez de $\sigma_1$. La función divisor de orden $0$ se denomina función número de divisores y se denota $d$.
+A la función divisor de orden $1$ se le llamrá simplemente función divisor y se denotará como $\sigma$ en vez de $\sigma_1$. La función divisor de orden $0$ se denomina función número de divisores y se denota $d$.
 \end{definition}
 
-Las funciones aritméticas por sí mismas pueden tener comportamientos aleatorios y difíciles de predecir, pero se pueden observar algunas regularidades cuando sumamos todos los valores que toma la función en los divisores positivos de un número natural dado. Para esto definimos la siguiente notación:
-
-Se tienen las siguientes propiedades básicas de algunas funciones aritméticas.
-
-\begin{proposition}
+\begin{proposition}\label{prop:mob2}
 Para todo $n\in\mathbb{N}$, se tiene que 
 \begin{equation*}
 	\sum_{d \mid n} \mu(d) = I(n) =
@@ -72,12 +67,12 @@ De acuerdo con la proposición anterior, se tiene $\mu*\mathbf{1}=\mathbf{1}*\mu
 lo cual es equivalente al enunciado.
 \end{proof}
 
-\begin{proposition}[Gauss]\label{eq:gauss1}
+\begin{theorem}[Gauss]\label{thm:gauss}
 Para todo $n\in\mathbb{N}$ se verifica que 
 \begin{equation*}
 	\sum_{d \mid n} \varphi(d)=n.
 \end{equation*}
-\end{proposition}
+\end{theorem}
 \begin{proof}
 La siguiente demostración es debida a Gauss en \cite{Gauss1}. Sea $n\in\mathbb{N}$ y sean $d_1,\cdots,d_k$ los distintos divisores positivos de $n$. Para cada $d_i$, sean $c_{i,1},\cdots,c_{i,m_i}$ todos los enteros positivos primos relativos y no mayores a $d_i$. Notemos que $\varphi(d_i)=m_i$. Afirmamos que el conjunto formado por los números 
 \begin{equation*}

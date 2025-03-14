@@ -1,5 +1,8 @@
 %%% Signal processing
 \newpage
+\thispagestyle{empty}
+\
+\newpage
 \section{Procesamiento de señales}
 
 Una \emph{señal} es una descripción de un fenómeno que evoluciona en el tiempo o espacio; el \emph{procesamiento de señales} se refiere a cualquier operación manual o mecánica que modifique, analice o manipule de otra forma la información contenida en una señal. Considérese, por ejemplo, la temperatura ambiente; se puede medir su evolución coon el tiempo de muchas formas y los datos resultantes representan una ``señal'' de temperatura. Algunas operaciones sobre esta señal se pueden hacer incluso a mano, por ejemplo calcular la temperatura promedio en un mes o graficar la señal en una hoja de papel.
@@ -21,7 +24,6 @@ Es necesario establecer las dos convenciones siguientes a lo largo del capítulo
 \item Nuevamente, durante todo el capítulo se supondrá que $r$ es un entero positivo arbitrario pero fijo.
 \end{itemize}
 \end{remark}
-% \subsection{Señales simétricas}
 
 En este capítulo se estudiará una clase particular de señales periódicas, llamadas señales \emph{simétricas} o \emph{pares}, con las herramientas del capítulo anterior. Estas señales no son más que funciones aritméticas pares definidas en los enteros.
 
@@ -73,18 +75,47 @@ y
 
 donde la fórmula \eqref{eq:analysis} se ha extendido implicitamente  a todos los enteros. Dicha extensión, la ecuación $\eqref{eq:analysis1}$, se llama \emph{transformada discreta de Fourier} de la señal $\tilde{x}$. La ecuación \eqref{eq:synthesis1} también será llamada fórmula de \emph{síntesis} o \emph{reconstrucción} de la señal $\tilde{x}$.
 
-\subsection{Señales simétricas}
+\subsection{Señales pares}
 
 Las señales simétricas son un análogo a las funciones aritméticas pares estudiadas en el capítulo anterior.
 
 \begin{definition}[Señal simétrica]
-Una señal $x$ se dice \emph{simétrica módulo} $r$ si $x[n] = x[(n,r)]$ para cada $n \in \mathbb{Z}$.
+Una señal $x$ se dice \emph{simétrica módulo} $r$ si $x[n] = x[r-n]$ para cada $n \in \mathbb{Z}$.
 \end{definition}
 
-Toda señal simétrica módulo $r$ es periódica módulo $r$ y la demostración es idéntica a la de la \Cref{prop:mod->per}. Una de las principales diferencias entre las señales periódicas y las simétricas, es que las últimas en general tienen una imagen más pequeña, más específicamente, la cardinalidad de su imagen no puede exceder $d(r)$.
+Una señal simétrica módulo $r$, como su nombre sugiere, es simétrica alrededor de la recta $n = r/2$ si se representa su gráfica en el plano y la señal toma valores reales. Más aún, si una señal simétrica es periódica con periodo $r$ es real, la parte imaginaria de su transformada de Fourier se anula.
+
+\begin{proposition}\label{prop:real}
+Si una señal $x$ simétrica módulo $r$ y periódica con periodo $r$ toma únicamente valores reales, entonces su transformada discreta de Fourier toma únicamente valores reales.
+\end{proposition}
+
+\begin{proof}
+Sea $k \in \mathbb{Z}$ arbitrario. Nótese que $W_r^{(r-n)k} = W_r^{rk-nk} = W_r^{-n k} = \overline{W_r^{nk}}$. Luego, su transformada discreta de Fourier es
+\begin{align*}
+    X[k] = \sum_{n=1}^{r} x[n] W_r^{n k} = \sum_{n=1}^{r} x[r-n] \overline{W_r^{(r-n) k}} & = \overline{\sum_{n=1}^{r} x[r-n] W_r^{(r-n) k}} \\
+                                                                                          & = \overline{\sum_{n=1}^{r} x[r] W_r^{r k}} = \overline{X[k]},
+\end{align*}
+donde la segunda igualdad se cumple por la observación anterior y por la simetría de $x$, la tercera por tomar $x$ únicamente valores reales y la cuarta reindexando y usando que $x$ es periódica con periodo $r$. Luego $X[k]$ es un complejo igual a su conjugado, para cada $k \in \mathbb{Z}$, es decir $X[k]$ es real, para cada $k \in \mathbb{Z}$.
+\end{proof}
+
+\begin{definition}[Señal par]
+Una señal par módulo $r$ es una función $x : \mathbb{Z} \longrightarrow \mathbb{C}$ tal que $x[n] = x[(n,r)], \forall n \in \mathbb{Z}$. Son una generalización de las funciones aritméticas pares, \cref{def:even}.
+\end{definition}
+
+Toda señal par módulo es periódica con periodo $r$ y simétrica módulo $r$. La demostración de lo primero es idéntica a la de la \Cref{prop:mod->per}.
+
+\begin{proposition}
+Cualquier señal $x$ par módulo $r$ es simétrica módulo $r$.
+\end{proposition}
+
+\begin{proof}
+Si $n \in \mathbb{Z}$, se tiene $x[n] = x[(n,r)] = x[(-n,r)] = x[(r-n,r)] = x[r-n]$.
+\end{proof}
+
+Las señales pares son mucho más restrictivas que las periódicas y las simétricas en cuanto al número de valores que pueden tomar y en general toman pocos valores. Específicamente, la cardinalidad de la imagen de una señal par módulo $r$ no puede exceder $d(r)$.
 
 \begin{proposition}\label{prop:fou3}
-Si $x : \mathbb{Z} \longrightarrow \mathbb{C}$ es una señal simétrica módulo $r$, entonces $| x (Z) | \le d(r)$, donde $d(r)$ es el número de divisores de $r$.
+Si $x : \mathbb{Z} \longrightarrow \mathbb{C}$ es una señal par módulo $r$, entonces $| x (Z) | \le d(r)$, donde $d(r)$ es el número de divisores de $r$.
 \end{proposition}
 
 \begin{proof}
@@ -92,14 +123,14 @@ Para cada divisor positivo $d$ de $r$, sea
 \begin{equation*}
     S_d = \left\{ \left( \frac{r}{d} \right) \alpha \std (\alpha,d) = 1, 1 \le \alpha \le d \right\}.
 \end{equation*}
-Por la proposición ??, se tiene que $\bigcup_{d \mid r} S_d = \{ 1,2,\ldots,r \}$.
+Por el \Cref{thm:gauss} se tiene que $\bigcup_{d \mid r} S_d = \{ 1,2,\ldots,r \}$.
 \bigskip
 
 Además, si $(r/d)\alpha \in S_d$ entonces
 \begin{equation}\label{eq:res1}
     \left( \left( \frac{r}{d} \alpha \right),r \right) = \left( \left( \frac{r}{d} \right),r \right) = \frac{r}{d},
 \end{equation}
-pues $(\alpha,d)=1$ y $d \mid r$. Más aún, si $x$ es simétrica y $n, m \in S_e$ entonces $\alpha[n]=\alpha[m]$. En efecto, se debe tener que $n = (r/d) \alpha$ y $m = (r/d) y$ con $(\alpha,d)=(\beta,d)=1$ y $1 \le \alpha,\beta \le d$. Luego, como $x$ es simétrica,
+pues $(\alpha,d)=1$ y $d \mid r$. Más aún, si $x$ es par y $n, m \in S_e$ entonces $\alpha[n]=\alpha[m]$. En efecto, se debe tener que $n = (r/d) \alpha$ y $m = (r/d) y$ con $(\alpha,d)=(\beta,d)=1$ y $1 \le \alpha,\beta \le d$. Luego, como $x$ es par,
 \begin{equation*}
     x[n] = x \left[ \frac{r}{d} \alpha \right] = x \left[ \left( \frac{r}{d} \alpha, r \right) \right] = x \left[ \frac{r}{d} \right]
 \end{equation*}
@@ -143,7 +174,7 @@ Recíprocamente, si $(n,r) \in S_d$, escríbase $(n,r) = (r/d) y$ con $(y,d)=1$ 
 Las funciones $h_{r,d}$ se pueden extender de forma natural a una función simétrica a todo $\mathbb{Z}$ definiendo $h_{r,d}[n] = h_{r,d}[(n,r)]$ para cada $n \in \mathbb{Z}$ y abusando de la notación se le seguirá denotando $h_{r,d}$. Sin embargo, en lo que sigue será suficiente considerar únicamente su restricción a $\{ 1,2,\ldots,r \}$.
 
 \begin{proposition}\label{prop:fou2}
-Cualquier señal simétrica $x$ módulo $r$ se puede escribir como
+Cualquier señal par $x$ módulo $r$ se puede escribir como
 \begin{equation}\label{eq:res2}
     x[n] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n],
 \end{equation}
@@ -156,7 +187,7 @@ Sin pérdida de generalidad supóngase que $n \in \{ 1,2,\ldots,r \}$. Entonces 
     \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n] = \sum_{\substack{d \mid r \\ n \in S_d}} x \left[ \frac{r}{d} \right] & = x \left[ \frac{r}{e} \right] = x \left[ \left( \frac{r}{e},r \right) \right] \\
                                                             & = x \left[ \left( \frac{r}{e} \alpha,r \right) \right] = x [(n,r)] = x[n]
 \end{align*}
-por \eqref{eq:res1} y por ser $x$ simétrica.
+por \eqref{eq:res1} y por ser $x$ par.
 \end{proof}
 
 La siguiente proposición muestra que las sumas de Ramanujan aparecen naturalmente como los coeficientes de Fourier clásicos en la fórmula de síntesis \eqref{eq:synthesis1} para las señales $h_{r,d}$.
@@ -181,7 +212,7 @@ pues $e^{-i(2 \pi /r) n k}=e^{-i (2 \pi /d) x k}$ si $n=(r/d)x$.
 \end{proof}
 
 \begin{proposition}\label{prop:fou4}
-Si $x$ es una señal simétrica, sus coeficientes de Fourier discretos están dados por
+Si $x$ es una señal par, sus coeficientes de Fourier discretos están dados por
 \begin{equation*}
    X[k] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] c_d[k].
 \end{equation*}
@@ -195,19 +226,21 @@ Utilizando las ecuaciones ecuaciones \eqref{eq:analysis}, \eqref{eq:res2} y \eqr
 \end{align*}
 \end{proof}
 
+\thispagestyle{easter2}
+
 \begin{remark}
-Dado que $c_d[k] = c_d[(k,d)]$, la proposición anterior implica que la transformada discreta de Fourier de una señal simétrica módulo $r$ también es simétrica módulo $r$. Además tal ecuación define una extensión natural de $c_d$ a todo $\mathbb{Z}$.
+Dado que $c_d[k] = c_d[(k,d)]$, la proposición anterior implica que la transformada discreta de Fourier de una señal par módulo $r$ también es par módulo $r$. Además tal ecuación define una extensión natural de $c_d$ a todo $\mathbb{Z}$.
 \end{remark}
 
 \begin{proposition}
-Si $x$ es una señal simétrica módulo $r$, entonces
+Si $x$ es una señal par módulo $r$, entonces
 \begin{equation*}
     x[n] = \frac{1}{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] c_d[n], \forall n \in \mathbb{Z}.
 \end{equation*}
 \end{proposition}
 
 \begin{proof}
-Considere la transformada de Fourier discreta $X$ de $x$. Dado que $X$ también es simétrica módulo $r$, la \cref{prop:fou2} implica que
+Considere la transformada de Fourier discreta $X$ de $x$. Dado que $X$ también es par módulo $r$, la \cref{prop:fou2} implica que
 \begin{equation*}
     X[n] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] h_{r,d}[n], \forall n \in \mathbb{Z},
 \end{equation*}
@@ -219,11 +252,11 @@ luego, usando la fórmula de reconstrucción \eqref{eq:synthesis1}, se tiene
 para todo $n \in \mathbb{Z}$.
 \end{proof}
 
+\subsection{Aplicaciones}
+
 \begin{example}
 Como ejemplo concreto, considere una señal $x$ arbitraria y simétrica módulo $r=10$. Por la \cref{prop:fou3}, $x$ puede tomar a lo sumo $d(10)=4$ valores y estos estarán agrupados en los sistemas de residuos de los divisores de $10$.
 \bigskip
-
-\thispagestyle{easter2}
 
 Específicamente, se tiene $S_1 = \{ 10 \}, S_2 = \{ 5 \}, S_5 = \{ 2, 4, 6, 8 \}, S_{10} = \{ 1, 3, 5, 7 \}$. Por tanto, $x[2]=x[4]=x[6]=x[8]$ y $x[1]=x[3]=x[5]=x[7]$. Luego los coeficientes $X[k]$, dados por \ref{prop:fou4}, son
 \begin{align*}
@@ -232,7 +265,7 @@ Específicamente, se tiene $S_1 = \{ 10 \}, S_2 = \{ 5 \}, S_5 = \{ 2, 4, 6, 8 \
     X[5] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[5] = x[10] - x[5] + 4 x[2] - 4 x[1] \\
     X[10] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[10] = x[10] + x[5] + 4 x[2] + 4 x[1]. \\
 \end{align*}
-El cálculo de estos coeficientes se reduce entonces a calcular $c_d[k]$ para cada $d \mid r$ y $k \mid r$. A diferencia de la transformada discreta de Fourier clásica, éstos cálculos no requieren la implementación de las funciones $\sin$ y $\cos$ en un microprocesador. Las sumas de Ramanujan se puede implementar o bien usando la \cref{prop:ram4}, implementando sólo la función de Möbius, una una suma condicional y el máximo común divisor, o bien utilizando la fórmula cerrada sin sumatorias \ref{lem:holder} (fórmula de Hölder), pero implementando la función de Möbius, la función $\varphi$ de Euler y el máximo común divisor.
+El cálculo de estos coeficientes se reduce entonces a calcular $c_d[k]$ para cada $d \mid r$ y $k \mid r$. A diferencia de la transformada discreta de Fourier clásica, éstos cálculos no requieren la implementación de las funciones $\sin$ y $\cos$. Las sumas de Ramanujan se puede implementar o bien usando la \Cref{prop:ram0}, implementando sólo la función de Möbius, una una suma condicional y el máximo común divisor, o bien utilizando la fórmula cerrada sin sumatorias \ref{lem:holder} (fórmula de Hölder), pero implementando la función de Möbius, la función $\varphi$ de Euler y el máximo común divisor.
 \end{example}
 
 \begin{example}
@@ -245,6 +278,39 @@ Utilizando la fórmula de reconstrucción, se puede escribir
 \begin{equation*}
 x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1}{3} \left( 5 c_1[n] + 2 c_3[n] \right), \forall n \in \mathbb{Z}.
 \end{equation*}
+
+Se puede calcular también su transformada discreta de Fourier usando la \cref{prop:fou4} para todo entero $k$,
+\begin{equation*}
+    X[k] = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[k] = 3 c_1[k] + c_3[k], \forall k \in \mathbb{Z}.
+\end{equation*}
+La gráfica de esta señal se muestra en la \Cref{fig:plot2}.
+\end{example}
+
+De acuerdo a la \Cref{prop:real}, como $x$ sólo toma valores reales entonces $X$ sólo toma valores reales. Se puede observar en la \Cref{fig:plot2} que $X[1] = X[2] = 2$ y $X[3] = 5$. Calculando la transformada de forma clásica usando la fórmula \eqref{eq:analysis}, se tiene
+\begin{align*}
+    X[1] & = \sum_{n=1}^{3} x[n] W_3^{n \cdot 1} = x[1] e^{-j(2 \pi / 3) \cdot 1} + x[2] e^{-j(2 \pi / 3) \cdot 2} + x[3] e^{-j(2 \pi / 3) \cdot 3} \\
+         & = \left( -\frac{1}{2} - \frac{\sqrt{3}}{2} i \right) + \left(  -\frac{1}{2} + \frac{\sqrt{3}}{2} i \right) + 3 = -1 + 3 = 2
+\end{align*}
+\begin{align*}
+    X[2] & = \sum_{n=1}^{3} x[n] W_3^{n \cdot 2} = x[1] e^{-j(2 \pi / 3) \cdot 2} + x[2] e^{-j(2 \pi / 4) \cdot 2} + x[3] e^{-j(2 \pi / 3) \cdot 6} \\
+         & = \left( -\frac{1}{2} + \frac{\sqrt{3}}{2} i \right) + \left(  -\frac{1}{2} - \frac{\sqrt{3}}{2} i \right) + 3 = -1 + 3 = 2
+\end{align*}
+\begin{align*}
+    X[1] = \sum_{n=1}^{3} x[n] W_3^{n \cdot 2} & = x[1] e^{-j(2 \pi / 3) \cdot 3} + x[2] e^{-j(2 \pi / 3) \cdot 6} + x[3] e^{-j(2 \pi / 3) \cdot 9} \\
+                                               & = 1 + 1 + 3 = 5
+\end{align*}
+
+\begin{example}
+En las Figuras \ref{fig:plot3}, \ref{fig:plot4}, \ref{fig:plot5} y \ref{fig:plot6}, se muestran las gráficas de las sumas de Ramanujan $c_3$ y $c_6$, con sus respectivas transformadas discretas de Fourier dadas por
+\begin{align*}
+    C_3[k] & = 2 c_1[k] - c_3[k], \forall k \in \mathbb{Z}, \\[5pt]
+    C_6[k] & = 2 c_1[k] - 2 c_2[k] - c_3[k] + c_6[k], \forall k \in \mathbb{Z},
+\end{align*}
+respectivamente. El código para generar estas gráficas se encuentra en el \Cref{sec:code}.
+\end{example}
+
+\null
+\vfill
 
 \begin{figure}
 \centering
@@ -267,10 +333,7 @@ x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1
     \end{tikzpicture}
 \caption{$x[n] = \frac{1}{3} (5 c_1[n] + 2 c_3 [n])$}
 \label{fig:plot1}
-\end{figure}
-
-\begin{figure}
-\centering
+\vspace{60pt}
     \begin{tikzpicture}
         \begin{axis}[
             width=\textwidth,
@@ -292,11 +355,94 @@ x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1
 \label{fig:plot2}
 \end{figure}
 
-Se puede calcular también su transformada discreta de Fourier usando la \cref{prop:fou4} para todo entero $k$,
-\begin{equation*}
-    X[k] = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[k] = 3 c_1[k] + c_3[k], \forall k \in \mathbb{Z}.
-\end{equation*}
-La gráfica de esta señal se muestra en la \Cref{fig:plot2}.
-\end{example}
+\null
+\vfill
 
-Agregar más ejemplos de señales pares y sus gráficas de transformada de Fourier. Agregar también el programa hecho en \texttt{C} para los cálculos. En el ejemplo anterior, calcular la transformada discreta con los métodos clásicos y ver que coindice.
+\begin{figure}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-3.5,
+            ymax=3.5,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot3.csv};
+            \addplot[black, thick] coordinates {(-12,3.5) (12,3.5)};
+            \addplot[black, thick] coordinates {(-12,-3.5) (12,-3.5)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$c_3[k]$}
+\label{fig:plot3}
+\vspace{60pt}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-6,
+            ymax=6,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot4.csv};
+            \addplot[black, thick] coordinates {(-12,6) (12,6)};
+            \addplot[black, thick] coordinates {(-12,-6) (12,-6)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$C_3[k] = 2 c_1[k] - c_3[k]$}
+\label{fig:plot4}
+\end{figure}
+
+\null
+\vfill
+
+\begin{figure}
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-3.5,
+            ymax=3.5,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot5.csv};
+            \addplot[black, thick] coordinates {(-12,3.5) (12,3.5)};
+            \addplot[black, thick] coordinates {(-12,-3.5) (12,-3.5)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$c_6[k]$}
+\label{fig:plot5}
+\vspace{60pt}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth,
+            height=8.0cm,
+            ymin=-6,
+            ymax=8,
+            xmin=-12,
+            xmax=12,
+            tick style={draw=none},
+            axis x line=middle,
+            axis line style={-}
+        ]
+            \addplot+[black, mark options={fill=black}, ycomb] table [col sep=comma] {plots/plot6.csv};
+            \addplot[black, thick] coordinates {(-12,8) (12,8)};
+            \addplot[black, thick] coordinates {(-12,-6) (12,-6)};
+        \end{axis}
+    \end{tikzpicture}
+\caption{$C_6[k] = 2 c_1[k] - 2 c_2[k] - c_3[k] + c_6[k]$}
+\label{fig:plot6}
+\end{figure}

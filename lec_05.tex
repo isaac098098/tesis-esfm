@@ -1,14 +1,17 @@
 %%% Funciones pares
 \newpage
+\thispagestyle{empty}
+\
+\newpage
 \section{Funciones pares}
 
-Al estudiar el espacio de funciones aritméticas se puede hacer una analogía con la teoría de Fourier del análisis para funciones definidas en todo el plano real o complejo, para la cuál se necesitará la noción de periodicidad. En este capítulo se considerará una clase de funciones aritméticas que captura esta noción. También se expondran resultados análogos a los de análisis respecto a funciones periódicas. Estos resultados se puede encontrar en \cite{Coh1}.
+Al estudiar el espacio de funciones aritméticas se puede hacer una analogía con la teoría de Fourier del análisis para funciones periódicas, al considerar la representación de una función periódica como suma de funciones sinusoidales. En este caso, estas funciones osciladoras serán las sumas de Ramanujan $c_r$ en vez de las funciones $\sin$ y $\cos$ del análisis real. Se considerarán las clases de funciones aritméticas pares y periódicas, siendo la primera una subclase propia de la segunda y se probará la existencia de dicha representación solo para las funciones pares.
 
 \begin{remark}
 Durante todo el capítulo se supondrá que $r$ es un entero positivo arbitrario pero fijo.
 \end{remark}
 
-\begin{definition}[Función par]
+\begin{definition}[Función par]\label{def:even}
 Una función aritmética se dice \textbf{par} $\Mod{r}$ si $f(n)=f((n,r))$, donde $(m,r)$ es el máximo común divisor de $n$ y $r$, para cada $n \in \mathbb{N}$.
 \end{definition}
 
@@ -66,7 +69,7 @@ Se sigue que la parte imaginaria de la primera suma se anula y se tiene la igual
 
 En el siguiente capítulo se verá que esta expresión aparece de forma natural al calcular los coeficientes de Fourier clásicos de cierta función aritmética.
 
-\begin{proposition}\label{prop:ram4}
+\begin{proposition}\label{prop:ram0}
 Para toda $n \in \mathbb{N}$ se tiene que
 \begin{equation*}
     c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d.
@@ -74,7 +77,7 @@ Para toda $n \in \mathbb{N}$ se tiene que
 \end{proposition}
 
 \begin{proof}
-Por la proposición ?? se tiene que la suma $\sum_{d \mid k} \mu(d)$ es igual a $1$ si $k=1$ e igual a 0 en otro caso, luego por la proposición anterior,
+Por la \Cref{prop:mob2} se tiene que la suma $\sum_{d \mid k} \mu(d)$ es igual a $1$ si $k=1$ e igual a 0 en otro caso, luego por la proposición anterior,
 \begin{align*}
     c_r(n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} & = \sum_{a=1}^{r} e^{i(2 \pi / r) a n} \left( \sum_{d \mid (a,r)} \mu(d) \right) = \sum_{\substack{d \mid a \\ d \mid r}} \sum_{a=1}^{r}  \mu(d) e^{i(2 \pi / r) a n} \\
            & = \sum_{d \mid r} \mu(d) \sum_{\substack{d \mid a \\ 1 \le a \le r}} e^{i(2 \pi / r) a n} = \sum_{d \mid r} \mu(d) \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n} \\
@@ -155,7 +158,7 @@ Por otro lado, se tiene que
     \sum_{d \mid r} \mu \left( \frac{r}{d} \right) \eta_d(n) = \sum_{\substack{d \mid r \\ d \mid n}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d = c_r(n),
 \end{equation*}
 es decir, $c_\Box(n)=\mu*\eta_\Box(n)$. Luego $c_\Box(n)$ debe ser multiplicativa para $n$ fijo, por ser producto de funciones multiplicativas.
-\item Tenemos los siguientes casos:
+\item Se tienen los siguientes casos
 \begin{itemize}
 \item Si $p^m \mid n$, entonces $(n,p^m)=p^m$, luego
     \begin{equation*}
@@ -442,10 +445,10 @@ Es claro que toda función de la forma \eqref{eq:ram3} es par $\Mod{r}$, pues po
                                      &= \frac{1}{r} f \left( \frac{r}{q} \right) r = f((n,r)) = f(n),
 \end{split}
 \end{equation*}
-por el \Cref{lem:ram4}, donde $r=(n,r) q$, para algún $q \in \mathbb{N}$ y donde la última igualdad se cumple por ser $f$ par $\Mod{r}$.
+por el \Cref{lem:holder}, donde $r=(n,r) q$, para algún $q \in \mathbb{N}$ y donde la última igualdad se cumple por ser $f$ par $\Mod{r}$.
 \bigskip
 
-Por otro lado, de la demostración de la \cref{eq:gauss1} se puede rescatar el hecho de que el conjunto $\{ 1,2,\ldots,r \}$ es igual a $\bigcup_{e \mid r} \{ rx/e \std (x,e)=1, 1 \le x \le e \}$ y todos los conjuntos son disjuntos a pares, por tanto
+Por otro lado, de la demostración de \Cref{thm:gauss} se puede rescatar el hecho de que el conjunto $\{ 1,2,\ldots,r \}$ es igual a $\bigcup_{e \mid r} \{ rx/e \std (x,e)=1, 1 \le x \le e \}$ y todos los conjuntos son disjuntos a pares, por tanto
 \begin{equation*}
 \begin{split}
     \frac{1}{r \varphi(d)}\sum_{m=1}^{r} f(m) c_d(m) &= \frac{1}{r \varphi(d)}\sum_{e \mid r} \sum_{\substack{(x,e)=1 \\ 1 \le x \le e}} f \left( \frac{rx}{e} \right) c_d \left( \frac{rx}{e} \right) \\
@@ -490,7 +493,7 @@ Si $f$ y $f'$ son funciones pares $\Mod{r}$, entonces
 \end{equation*}
 \end{corollary}
 
-Volviendo a la definición de la suma de Ramanujan módulo $r$, \cref{eq:ram0}, se puede considerar una clase más general de funciones, aquellas que se pueden escribir como
+La \Cref{prop:ram0} sugiere considerar una clase más general de funciones, aquellas que se pueden escribir como
 \begin{equation*}
     f(n) = \sum_{\delta \mid (n,r)} g(\delta), \forall n \in \mathbb{N},
 \end{equation*}
@@ -612,7 +615,7 @@ En efecto,
         \hfil 0 & \text{en otro caso},
     \end{cases}
 \end{equation*}
-donde la segunda igualdad se cumple por la \cref{eq:holder} y la tercera por el \Cref{lem:ram4}.
+donde la segunda igualdad se cumple por la \cref{eq:holder} y la tercera por el \Cref{lem:holder}.
 \end{proof}
 
 \begin{corollary}
@@ -635,4 +638,4 @@ pero $f$ también tiene una única representación de la forma $\sum_{e \mid r} 
                                                      & = \frac{1}{r \varphi(d)} \sum_{e \mid r} f \left( \frac{r}{e} \right) \varphi(d) c_e \left( \frac{r}{d} \right) \\
                                                      & = \frac{1}{r} \sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right),
 \end{align*}
-donde la cuarta igualdad se cumple nuevamente por \eqref{eq:holder}. Esta es la \cref{eq:ram6}. Como es usual en el análisis funcional, ahora se pueden llamar propiamente \emph{coeficientes de Fourier} a los coeficientes $\alpha$ del \Cref{thm:fou1}.
+donde la cuarta igualdad se cumple nuevamente por \eqref{eq:holder}. Esta es la \cref{eq:ram6}. Ahora se pueden llamar propiamente \emph{coeficientes de Fourier} a los coeficientes $\alpha$ del \Cref{thm:fou1} por ser derivados de un producto interno.

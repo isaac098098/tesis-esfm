@@ -1,12 +1,115 @@
-%%% Códigos
-\newpage
-\section{Códigos}
+%%% Código
+
+\section{Código}\label{sec:code}
+
+El siguiente programa se utilizó para generar la \Cref{fig:plot6}. El archivo ejecutable se usa como \texttt{./div [int1] [int2]}, donde \texttt{int1} e \texttt{int2} son el intervalo para la gráfica. El programa genera una tabla en formato \texttt{.csv} que puede ser leída por cualquier software de graficación.
+
 {
+\footnotesize
 \renewcommand\ttdefault{cmtt}
 \begin{adjustwidth}{12mm+2mm}{2mm}
 \begin{lstlisting}
-import Numpy as numpy
-print("Hello, world!")
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+\\maximo comun divisor
+
+int mcd(int a, int b) {
+    return b == 0 ? a > 0 ? a : -a : mcd(b, a % b);
+}
+
+\\suma sobre divisores
+
+int dsum(int n) {
+    int sum=0;
+    for(int i=1; i<=n; i++)
+        if((n % i) == 0)
+            sum+=i;
+    return sum;
+}
+
+\\funcion de mobius
+
+int mob(int n) {
+    int p=0;
+    if (n == 1) {
+        return 1;
+    }
+    if (n%2 == 0) {
+        n=n/2;
+        p++;
+        if (n % 2 == 0)
+            return 0;
+    }
+    for (int i=3; i <= n; i+=2) {
+        if (n%i == 0) {
+            n = n/i;
+            p++;
+            if (n % i == 0)
+                return 0;
+        }
+    }
+    return (p % 2 == 0) ? 1 : -1;
+}
+
+\\suma de ramanujan modulo r
+
+int ram(int r, int n) {
+    int sum=0;
+    int nr=mcd(n,r);
+    for(int d=1; d<=nr; d++)
+        if(nr % d == 0)
+            sum+=mob(r/d)*d;
+    return sum;
+}
+
+\\programa principal
+
+int main(int argc, char** argv) {
+    FILE* div=fopen("div.csv", "w");
+
+    for(int j = atoi(argv[1]); j <= atoi(argv[2]); j++)
+        fprintf(div, "%d, %1.5f\n", j, 2.0*ram(1,j) - 2.0*ram(2,j) - 1.0*ram(3,j) + 1.0*ram(6,j));
+    fclose(div);
+    return 0;
+}
+
+\end{lstlisting}
+\end{adjustwidth}
+}
+\bigskip
+
+
+Por ejemplo, al ejecutar \texttt{./div -10 10} para la \Cref{fig:plot6}, el programa generó el siguiente archivo llamado \texttt{div.csv}.
+\bigskip
+
+{
+\footnotesize
+\renewcommand\ttdefault{cmtt}
+\begin{adjustwidth}{12mm+2mm}{2mm}
+\begin{lstlisting}[numbers=none]
+-10, 0.00000
+-9, 0.00000
+-8, 0.00000
+-7, 6.00000
+-6, 0.00000
+-5, 6.00000
+-4, 0.00000
+-3, 0.00000
+-2, 0.00000
+-1, 6.00000
+0, 0.00000
+1, 6.00000
+2, 0.00000
+3, 0.00000
+4, 0.00000
+5, 6.00000
+6, 0.00000
+7, 6.00000
+8, 0.00000
+9, 0.00000
+10, 0.00000
 \end{lstlisting}
 \end{adjustwidth}
 }

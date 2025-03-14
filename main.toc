@@ -1,0 +1,22 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{Portada}{\es@scroman {i}}{section*.1}%
+\contentsline {section}{Dedicatoria}{\es@scroman {iii}}{section*.2}%
+\contentsline {section}{Agradecimientos}{\es@scroman {v}}{section*.3}%
+\contentsline {section}{Índice general}{\es@scroman {vii}}{section*.4}%
+\contentsline {section}{Introducción}{\es@scroman {ix}}{section*.5}%
+\contentsline {section}{\numberline {1}Estructura del anillo de funciones aritméticas}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Convolución de Dirichlet}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Una norma para funciones aritméticas}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Funciones multiplicativas}{11}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Isomorfismos entre grupos de funciones aritméticas}{14}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Algunas funciones aritméticas conocidas}{20}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Funciones pares}{25}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Sumas de Ramanujan}{25}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}El subespacio de funciones pares}{40}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Procesamiento de señales}{45}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Transformada Discreta de Fourier}{45}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Señales pares}{47}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Aplicaciones}{51}{subsection.3.3}%
+\contentsline {section}{\numberline {A}Divisibilidad}{57}{appendix.Alph1}%
+\contentsline {section}{\numberline {B}Código}{57}{appendix.Alph2}%
+\contentsline {section}{Bibliografía}{60}{section*.10}%
