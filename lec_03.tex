@@ -19,25 +19,25 @@ La función $\mathcal{N}$ definida anteriormente tiene las siguientes propiedade
     \item $\mathcal{N}(f)=0 \iff f=0, \forall f \in \mathcal{A}$.
     \item $\mathcal{N}(f*g)=\mathcal{N}(f)\mathcal{N}(g), \forall f,g \in \mathcal{A}$.
     \item $\min \{\mathcal{N}(f),\mathcal{N}(g)\}\leq \mathcal{N}(f+g), \forall f,g \in \mathcal{A}$. 
-    \item Si $\mathcal{N}(f) \ne \mathcal{N}(g)$ entonces $\mathcal{N}(f+g)=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$.
+    \item Si $\mathcal{N}(f) \ne \mathcal{N}(g)$, entonces $\mathcal{N}(f+g)=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-({\scshape \romannumeral 1}) Si $f=0$ por definición se tiene que $\mathcal{N}(f)=0$. Si $f \neq 0$, entonces $\min \left\{n : f(n) \neq 0\right\}\neq 0$, i.e. $\mathcal{N}(f)\geq 1\neq 0$. Por tanto $\mathcal{N}(f)=0$ implica que $f=0$.
+({\scshape \romannumeral 1}) Si $f=0$ por definición se tiene que $\mathcal{N}(f)=0$. Si $f \neq 0$, entonces $\min \left\{n : f(n) \neq 0\right\}\neq 0$, i.e. $\mathcal{N}(f)\geq 1\neq 0$. Por tanto $\mathcal{N}(f)=0$, implica que $f=0$.
 \bigskip
 
-({\scshape \romannumeral 2}) Si $f=0$ o $g=0$ entonces $\mathcal{N}(f)=0$ o $\mathcal{N}(g)=0$. Además $(f*g)(n)=\sum_{d \mid n} f(n)g(n/d)=0, \:\forall\: n \in\mathbb{N}$, es decir, $\mathcal{N}(f*g)=0=\mathcal{N}(f)\mathcal{N}(g)$. Supongamos pues que $f \neq 0$ y $g \neq 0$. Sean $a=\mathcal{N}(f)$ y $b=\mathcal{N}(g)$. Afirmamos que $a b=\min \left\{n : (f*g)(n) \ne 0\right\}=m$.
+({\scshape \romannumeral 2}) Si $f=0$ o $g=0$, entonces $\mathcal{N}(f)=0$ o $\mathcal{N}(g)=0$. Además $(f*g)(n)=\sum_{d \mid n} f(n)g(n/d)=0, \:\forall\: n \in\mathbb{N}$, es decir, $\mathcal{N}(f*g)=0=\mathcal{N}(f)\mathcal{N}(g)$. Supongamos pues que $f \neq 0$ y $g \neq 0$. Sean $a=\mathcal{N}(f)$ y $b=\mathcal{N}(g)$. Afirmamos que $a b=\min \left\{n : (f*g)(n) \ne 0\right\}=m$.
 \bigskip
 
 En efecto, se tiene
 \begin{align*}
 	(f*g)(a b) &= \sum_{d \mid a b} f(d)g(a b/d) \\
 			   &= \sum_{\substack{d \mid a b \\ a \leq d}} f(d)g(a b/d), \textnormal{ pues }f(d)=0, \:\forall\: d<a \\
-			   &= \sum_{\substack{d \mid a b \\ a \leq d \\ a b/d \leq b}}, \textnormal{ pues }a \leq d \implies a b/d \leq b \\
+			   &= \sum_{\substack{d \mid a b \\ a \leq d \\ a b/d \leq b}} f(d) g(a b/d), \textnormal{ pues }a \leq d \implies a b/d \leq b \\
 			   &= \sum_{a=d} f(d)g(a b/d), \textnormal{ pues }g(d)=0, \:\forall\: d<b \\
 			   &= f(a)g(b)\neq 0.
 \end{align*}
-Luego $m \leq a b$ por elección de $m$. Si $m<a b$ entonces
+Luego $m \leq a b$ por elección de $m$. Si $m < a b$, entonces
 \begin{equation*}
 	(f * g)(m) = \sum_{d \mid m} f(d) g(m/d) = \sum_{\substack{d \mid m \\ b \le m/d}} f(d) g(m/d) = \sum_{\substack{d \mid m \\ d<a}} f(d) g(m/d) = 0,
 \end{equation*}
@@ -45,7 +45,7 @@ pues $b \le m/d$ implica que $d<a$ y $f(d)=0$. Pero esto contradice la elección
 
 \bigskip
 
-({\scshape \romannumeral 3}) Sin pérdida de generalidad se puede suponer que $a \le b$, de tal manera que $\min \{ a,b \} = a$. Si $n<a$ entonces $(f+g)(n) = f(n) + g(n) = 0$, por lo que
+({\scshape \romannumeral 3}) Sin pérdida de generalidad se puede suponer que $a \le b$, de tal manera que $\min \{ a,b \} = a$. Si $n<a$, entonces $(f+g)(n) = f(n) + g(n) = 0$, por lo que
 \begin{equation*}
     \min \{ \mathcal{N}(f),\mathcal{N}(g) \}=a \le \min \{ n \std (f+g)(n) \ne 0 \}=\mathcal{N}(f+g).
 \end{equation*}
@@ -61,7 +61,7 @@ por tanto, $N(f+g) \le a = \min \{ a,b \}=\min \{ \mathcal{N}(f),\mathcal{N}(g) 
 $\mathcal{A}$ es un dominio entero. 
 \end{theorem}
 \begin{proof}
-Si $f,g \in \mathcal{A}$ y $f*g=0$ entonces $\mathcal{N}(f*g)=0 \implies \mathcal{N}(f)\mathcal{N}(g)=0 \implies \mathcal{N}(f)=0$ o $\mathcal{N}(g)=0 \implies f=0$ o $g=0$.
+Si $f,g \in \mathcal{A}$ y $f*g=0$, entonces $\mathcal{N}(f*g)=0 \implies \mathcal{N}(f)\mathcal{N}(g)=0 \implies \mathcal{N}(f)=0$ o $\mathcal{N}(g)=0 \implies f=0$ o $g=0$.
 \end{proof}
 
 \begin{remark}
@@ -80,7 +80,7 @@ Si $f(1) \ne 0$, defínase
 \end{split}
 \end{equation}
 
-Entonces la ecuación recursiva \eqref{eq:inv1} define a $f^{-1}$ de tal forma que $f*f^{-1} = I$, pues $f(1)f^{-1}(1)=1$ y si $n>1$ entonces
+Entonces la ecuación recursiva \eqref{eq:inv1} define a $f^{-1}$ de tal forma que $f*f^{-1} = I$, pues $f(1)f^{-1}(1)=1$ y si $n>1$, entonces
 \begin{align*}
 	(f*f^{-1})(n) = \sum_{d \mid n} f(d)f^{-1}\left( \frac{n}{d} \right) &= f(1)f^{-1}(n) + \sum_{\substack{d \mid n \\ d \ne n }} f(d)f^{-1}\left( \frac{n}{d} \right) \\
 	&= f(1)f^{-1}(n)-f(1)f^{-1}(n) = 0
@@ -95,7 +95,7 @@ Si se supone ahora que $f$ es invertible, entonces, en particular, se tiene que 
 Si $\mathcal{N}(f)=p$ para algún número primo $p$, entonces $f$ es irreducible en $\mathcal{A}$.
 \end{proposition}
 \begin{proof}
-Como $p \ne 0$ y $p \ne 1$, entonces $f$ no es cero ni es una unidad. Además, si $f=g*h$ para algunas funciones $g,h \in \mathcal{A}$, entonces  $g,h \ne 0$,  pues en caso contrario $f=0$ y en consecuencia $\mathcal{N}(f)=0 \ne p$, así que $\mathcal{N}(f)$ y $\mathcal{N}(h)$ son enteros positivos. Luego $\mathcal{N}(f)=\mathcal{N}(g*h)=\mathcal{N}(g)\mathcal{N}(h)=p$ y como $p$ es primo, entonces $\mathcal{N}(g)=1$ o bien $\mathcal{N}(h)=1$, es decir, $g$ o $h$ es unidad. Como $g$ y $h$ fueron arbitrarios, entonces $f$ debe ser irreducible en $\mathcal{A}$.
+Como $p \ne 0$ y $p \ne 1$, entonces $f$ no es cero ni es una unidad. Además, si $f=g*h$ para algunas funciones $g,h \in \mathcal{A}$, entonces  $g,h \ne 0$,  pues en caso contrario $f=0$ y en consecuencia $\mathcal{N}(f)=0 \ne p$, así que $\mathcal{N}(g)$ y $\mathcal{N}(h)$ son enteros positivos. Luego $p = \mathcal{N}(f) = \mathcal{N}(g*h) = \mathcal{N}(g)\mathcal{N}(h)$ y como $p$ es primo, entonces $\mathcal{N}(g)=1$ o bien $\mathcal{N}(h)=1$, es decir, $g$ o $h$ es unidad. Como $g$ y $h$ fueron arbitrarios, entonces $f$ debe ser irreducible en $\mathcal{A}$.
 \end{proof}
 
 \begin{theorem}\label{thm:chain1}
@@ -135,7 +135,7 @@ Habiendo llegado tan lejos, se puede conjeturar que el dominio $\mathcal{A}$ es 
 $\mathcal{A}$ es un dominio de factorización única.
 \end{theorem}
 \begin{proof}
-El hecho de que toda función aritmética se puede escribir como producto de funciones aritméticas irreducibles ha quedado en evidencia en la proposición anterior. Una demostración de la unicidad de dicha factorización se puede encontrar en \cite[18, p. 985]{Ca1959}. Ahí se prueba que el anillo de series de potencias formales en un conjunto numerable de variables $\{ x_1,x_2,\ldots \}$ es un dominio de factorización única. El resultado se sigue entonces del hecho de que este anillo es isomorfo al anillo de funciones aritméticas mediante el isomorfismo
+El hecho de que toda función aritmética se puede escribir como producto de funciones aritméticas irreducibles ha quedado en evidencia en la proposición anterior. Una demostración de la unicidad de dicha factorización se puede encontrar en \cite[18, p. 985]{Ca1959}. Ahí se prueba que el anillo de series de potencias formales en un conjunto numerable de variables $\{ x_1,x_2,\ldots \}$ es un dominio de factorización única. El resultado se sigue del hecho de que este anillo es isomorfo al anillo de funciones aritméticas mediante el isomorfismo
 \begin{align*}
     P : \mathcal{A} & \longrightarrow \mathbb{C}[[x_1,x_2,\ldots]] \\
     P(f) & \longmapsto \sum_{n \in \mathbb{N}} f(n) x_1^{\alpha_1}\cdots x_{\nu}^{\alpha_{\nu}},
@@ -186,11 +186,11 @@ $\mathcal{A}$ no es un anillo artiniano.
 \end{proposition}
 \begin{proof}
 Para cada $n \in \mathbb{N}$ defínase $I_n = \{ f \in \mathcal{A} \std \mathcal{N}(f) \ge n \} \cup \{ \mathbf{0} \}$. Se tiene lo siguiente:\begin{enumerate}[label=\textnormal{(\arabic*)}]
-\item $I_n$ es un ideal de $\mathcal{A}$, para cada $n$. En efecto, por definición se tiene $I_n \ne \emptyset$. Si $f,g \in I_n$ entonces $\mathcal{N}(f) \ge n$ y $\mathcal{N}(g) \ge n$, luego $\mathcal{N}(f-g) \ge \min \{ \mathcal{N}(f), \mathcal{N}(-g) \} = \min \{ \mathcal{N}(f),\mathcal{N}(g) \} \ge n$, luego $f-g \in I_n$.
+\item $I_n$ es un ideal de $\mathcal{A}$, para cada $n$. En efecto, por definición se tiene $I_n \ne \emptyset$. Si $f,g \in I_n$, entonces $\mathcal{N}(f) \ge n$ y $\mathcal{N}(g) \ge n$, luego $\mathcal{N}(f-g) \ge \min \{ \mathcal{N}(f), \mathcal{N}(-g) \} = \min \{ \mathcal{N}(f),\mathcal{N}(g) \} \ge n$, luego $f-g \in I_n$.
 \bigskip
 
 Además, si $h \in \mathcal{A}$, se tienen dos casos. Si $h=\mathbf{0}$, entonces $f*h=0 \in I_n$. Si $h \ne \mathbf{0}$, entonces $\mathcal{N}(f) \ge 1$, de tal manera que $\mathcal{N}(f*g)=\mathcal{N}(f)\mathcal{N}(h) \ge \mathcal{N}(f) \ge n$, es decir, $f*h \in I_n$. Esto prueba que $I_n$ es un ideal de $\mathcal{A}$.
-\item $I_{n+1} \subset I_n$, para cada $n \in \mathbb{N}$, pues $\mathcal{N}(f) \ge n+1$ implica que $\mathcal{N}(f) \ge n$.
+\item $I_{n+1} \subset I_n$, para cada $n \in \mathbb{N}$, pues $\mathcal{N}(f) \ge n+1$, implica que $\mathcal{N}(f) \ge n$.
 \item $I_n \not \subset I_{n+1}$, para cada $n \in \mathbb{N}$, pues considere $f \in \mathcal{A}$ definida como
 \begin{equation*}
     f(k) = \begin{cases}
@@ -206,11 +206,11 @@ Se tiene pues una cadena descendente de ideales distintos entre sí de $\mathcal
 \subsection{Funciones multiplicativas}
 
 \begin{definition}[Función multiplicativa]\label{def:mul1}
-Se dice que una función aritmética $f$ es \textbf{multiplicativa} si no es idénticamente cero y para todo $m,n \in \mathbb{N}$, $(m,n)=1$ implica que $f(m n)=f(m)f(n)$.
+Se dice que una función aritmética $f$ es \textbf{multiplicativa} si no es idénticamente cero y para todo $m,n \in \mathbb{N}$, $(m,n)=1$, implica que $f(m n)=f(m)f(n)$.
 \end{definition}
 
 \begin{remark}
-Se denota al conjunto de funciones multiplicativas como $\mathcal{M}$. En general si $f$ y $g$ son funciones multiplicativas entonces $f-g$ no es necesariamente una función multiplicativa, sin embargo, $f*g$ sí lo es.
+Se denota al conjunto de funciones multiplicativas como $\mathcal{M}$. En general si $f$ y $g$ son funciones multiplicativas, entonces $f-g$ no es necesariamente una función multiplicativa, sin embargo, $f*g$ sí lo es.
 \end{remark}
 
 \begin{lemma}
@@ -257,7 +257,7 @@ por el \Cref{lem:div1}.
 
 \thispagestyle{easter4}
 
-Como ya se probó al inicio de esta demostración, si $f$ es multiplicativa entonces $f(1)=1$, por lo que existe $f^{-1}$. Veamos que $f^{-1} \in \mathcal{M}$. Para esto construiremos, a partir de $f$, una función multiplicativa $g$ con la propiedad de que $f*g=I$, con lo que quedará demostrado que $f^{-1}$ es multiplicativa por la unicidad de la inversa. Se procede definiendo a $g$ de forma gradual:
+Como ya se probó al inicio de esta demostración, si $f$ es multiplicativa, entonces $f(1)=1$, por lo que existe $f^{-1}$. Veamos que $f^{-1} \in \mathcal{M}$. Para esto construiremos, a partir de $f$, una función multiplicativa $g$ con la propiedad de que $f*g=I$, con lo que quedará demostrado que $f^{-1}$ es multiplicativa por la unicidad de la inversa. Se procede definiendo a $g$ de forma gradual:
 
 \begin{enumerate}[label=\textnormal{(\arabic*)},ref=\textnormal{\arabic*}]
 \item $g(1)=1$.

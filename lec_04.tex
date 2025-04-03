@@ -97,7 +97,7 @@ Finalmente veamos que todos los elementos de la tabla son distintos. Es claro qu
 Existe una relación entre las funciones $\mu$ y $\varphi$ al sumar sobre los divisores de un entero positivo. El siguiente lema será útil para probar dicha relación.
 
 \begin{lemma}\label{lemma:car1}
-Si $n\in\mathbb{N}$, $d$ es un divisor positivo de $n$, $S=\left\{x\in\mathbb{N} \: : \: 1\leq x\leq n\right\}$ y $A=\left\{x\in S \: : \: d \mid x\right\}$ entonces $|A|=n/d$.
+Si $n\in\mathbb{N}$, $d$ es un divisor positivo de $n$, $S=\left\{x\in\mathbb{N} \: : \: 1\leq x\leq n\right\}$ y $A=\left\{x\in S \: : \: d \mid x\right\}$, entonces $|A|=n/d$.
 \end{lemma}
 \begin{proof}
 En efecto, tenemos que la función
@@ -105,7 +105,7 @@ En efecto, tenemos que la función
 	F:\left\{1,\ldots,n/d\right\} & \longrightarrow A \\
 	x & \longmapsto dx
 \end{align*}
-es biyectiva, pues si $x,y\in \left\{1,\ldots,n/d\right\}$ son tales que $F(x)=F(y)$, entonces $dx=dy$ y por tanto $x=y$, pues $d\neq 0$. Además, si $r\in A$ entonces $d \mid r$ y $1\leq r\leq n$, por lo que existe $q\in\mathbb{N}$ tal que $r=dq$, luego $q$ es tal que $1\leq q\leq n/d$ y $F(q)=dq=r$. En consecuencia $|A|=|\left\{1,\ldots,n/d\right\}|=n/d$
+es biyectiva, pues si $x,y\in \left\{1,\ldots,n/d\right\}$ son tales que $F(x)=F(y)$, entonces $dx=dy$ y por tanto $x=y$, pues $d\neq 0$. Además, si $r\in A$, entonces $d \mid r$ y $1\leq r\leq n$, por lo que existe $q\in\mathbb{N}$ tal que $r=dq$, luego $q$ es tal que $1\leq q\leq n/d$ y $F(q)=dq=r$. En consecuencia $|A|=|\left\{1,\ldots,n/d\right\}|=n/d$
 \end{proof}
 
 \begin{proposition}\label{prop:mob1}
@@ -115,18 +115,18 @@ Para todo $n\in\mathbb{N}$ se verifica que
 \end{equation*}
 \end{proposition}
 \begin{proof}
-Si $n=1$ claro que se tiene $\mu(1)=\varphi(1)=1$. Supongamos que $n>1$ y sea $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ su factorización en primos. Sea $S=\left\{1,\ldots,n\right\}$ y para cada $i=1,\ldots,r$ definamos $A_i=\left\{x\in S\: : \: p_i \mid x\right\}$.
+Si $n=1$ claro que se tiene $\mu(1) = 1 = \varphi(1)$. Supongamos que $n>1$ y sea $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ su factorización en primos. Sea $S=\left\{1,\ldots,n\right\}$ y para cada $i=1,\ldots,r$ definamos $A_i=\left\{x\in S\: : \: p_i \mid x\right\}$.
 \bigskip
 
 Si $1\leq m\leq r$, como todos los $p_i$ son primos distintos, se debe tener que 
 \begin{equation*}
 	\bigcap_{s=1}^{m} A_i = \left\{x\in S \: : \: p_1 \mid x,p_2 \mid x,\ldots,p_m \mid x\right\}=\left\{x\in S \: : \: p_1 p_2 \ldots p_m \mid x\right\}.
 \end{equation*}
-Por otro lado, notemos que si $P=\left\{x\in S \: : \: (n,x)=1\right\}$ entonces 
+Por otro lado, notemos que si $P=\left\{x\in S \: : \: (n,x)=1\right\}$, entonces 
 \begin{equation*}
 	\bigcap_{i=1}^{r} S \setminus A_i=P.
 \end{equation*}
-En efecto, si $x\in \bigcup_{i=1}^{r} A_i$ entonces $x\in S$ y $p_i \mid x$, para algún $p_i$, de manera que $p_i \mid n$ y $p_i \mid x$, y por tanto $(n,x)\geq p_i>1$, luego $x\not\in P$. Recíprocamente, si $x\in S$ y $x\not\in P$, entonces $(n,x)>1$ y por tanto debe existir un primo $q$ que divide a $(n,x)$, pero $(n,x)\mid n$ y $(n,x)\mid x$, por lo que $q \mid n$ y $q \mid x$, luego $q=p_i$, para algún $i=1,\ldots,m$. En consecuencia, $p_i \mid x$ y por tanto $x\in \bigcup_{i=1}^{r} A_i$. Se sigue que $\bigcup_{i=1}^{r} A_i=S \setminus P$, o bien $\bigcap_{i=1}^{r} S/A_i=P$.
+En efecto, si $x\in \bigcup_{i=1}^{r} A_i$, entonces $x\in S$ y $p_i \mid x$, para algún $p_i$, de manera que $p_i \mid n$ y $p_i \mid x$, y por tanto $(n,x)\geq p_i>1$, luego $x\not\in P$. Recíprocamente, si $x\in S$ y $x\not\in P$, entonces $(n,x)>1$ y por tanto debe existir un primo $q$ que divide a $(n,x)$, pero $(n,x)\mid n$ y $(n,x)\mid x$, por lo que $q \mid n$ y $q \mid x$, luego $q=p_i$, para algún $i=1,\ldots,m$. En consecuencia, $p_i \mid x$ y por tanto $x\in \bigcup_{i=1}^{r} A_i$. Se sigue que $\bigcup_{i=1}^{r} A_i=S \setminus P$, o bien $\bigcap_{i=1}^{r} S/A_i=P$.
 \bigskip
 
 Como $p_1 \cdots p_m \mid n,\:\forall \: m=1,\ldots,r$, por el lema \eqref{lemma:car1} se debe tener que  $|\bigcap_{s=1}^{m} A_i|=n/p_1 \cdots p_m,\:\forall \: m=1,\ldots,r$. Finalmente, por el principio de inclusión-exclusión, se tiene que 

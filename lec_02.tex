@@ -22,7 +22,7 @@ La función $\mu$ de Möbius está definida por $\mu(1)=1$ y dada $n=p_1^{\alpha
 	\mu(n) =
 		\begin{cases}
 			(-1)^k & \text{si} \: \alpha_1=\alpha_2=\cdots=\alpha_k=1 \\ \hfil
-			0 & \text{en otro caso} \: 
+			0 & \text{en otro caso.}
 		\end{cases}
 \end{equation*}
 \end{definition}
@@ -71,13 +71,13 @@ Para ver que la operación $*$ es asociativa, conmutativa y distributiva respect
 Si $k\in\mathbb{N}$, $D\subset \mathbb{N}$ y $f,g: \{1,\ldots,k\} \longrightarrow D$ son dos funciones biyectivas y estrictamente crecientes, entonces $f=g$.
 \end{lemma}
 \begin{proof}
-Como $D\subset \mathbb{N}$ podemos ordenar los elementos de $D$, digamos $D=\{d_1,\ldots,d_k\}$, donde $d_1<d_2<\cdots<d_k$. Tenemos que $d_1$ es entonces el elemento mínimo de $D$. Sin embargo, tenemos que $f(1)\leq f(i)$ y $g(1)\leq g(i),\:\forall \: i=1,\ldots,k$ y como $f$ y $g$ son suprayectivas, entonces $f(1)\leq d_1$ y $g(1)\leq d_1$, además $d_1\leq f(1)$ y $d_1\leq g(1)$ por ser $d_1$ el elemento mínimo de $D$. Luego $f(1)=d_1=g(1)$.
+Como $D\subset \mathbb{N}$ es finito, se pueden ordenar los elementos de $D$. Sea $D=\{d_1,\ldots,d_k\}$, donde $d_1<d_2<\cdots<d_k$. Se tiene que $d_1$ es el elemento mínimo de $D$. Sin embargo, $f(1)\leq f(i)$ y $g(1)\leq g(i),\:\forall \: i=1,\ldots,k$ y como $f$ y $g$ son suprayectivas, entonces $f(1)\leq d_1$ y $g(1)\leq d_1$, además $d_1\leq f(1)$ y $d_1\leq g(1)$ por ser $d_1$ el elemento mínimo de $D$. Luego $f(1)=d_1=g(1)$.
 \bigskip
 
 %Ahora, tenemos que $d_2$ es el elemento mínimo de $D \setminus \{d_1\}$. Notemos que $f(2),g(2)\in D \setminus \{d_1\}$. En efecto, si $f(2)=d_1$ o $g(2)=d_1$, entonces $f(2)=f(1)$ o $g(2)=g(1)$ y como ambas funciones son inyectivas, entonces $2=1$, lo cual es absurdo. En consecuencia $d_2\leq f(2)$ y $d_2\leq g(1)$. Por otro lado, como $d_2\in D$, deben existir $i_1,i_2\in \{1,\ldots,k\}$ tales que $f(i_1)=d_2$ y $g(i_2)=d_2$. Más aún, $2\leq i_1$ y $2\leq i_2$, pues en caso contrario se tendría $i_1=1$ o $i_2=1$ y por tanto $f(1)=d_2$ o $g(1)=d_2$, es decir, $d_1=d_2$, lo cual es falso por hipótesis. Luego $f(2)\leq f(i_1)=d_2$ y $g(2)\leq f(i_2)=d_2$ y por tanto $f(2)=d_2=g(2)$.
 %\bigskip
 
-Supongamos que $f(i)=d_i=g(i),\:\forall \: i=1,\ldots,n$ y $n+1\leq k$. Si $n+1=k$, como $f$ y $g$ son biyectivas, necesariamente $f(n+1)=d_{n+1}=g(n+1)$. Supongamos pues que $n+1<k$. Tenemos que $d_{n+1}$ es el elemento mínimo del conjunto $D \setminus \{1,\ldots,d_n\}$. Notemos que $f(n+1),g(n+1)\in D\setminus \{1,\ldots,d_n\}$. En efecto, pues si $f(n+1)=d_{i_1}$ o $g(n+1)=d_{i_2}$, para algunos $i_1,i_2\in \{1,\ldots,n\}$, entonces $f(n+1)=f(i_1)$ y $g(n+1)=g(i_2)$ por hipótesis de inducción y por inyectividad se tendría que $n+1=i_1\leq n$ o $n+1=i_2\leq n$, lo cual es absurdo. En consecuencia $f(n+1),g(n+1)\in D \setminus \{1,\ldots,d_n\}$ y por tanto $d_{n+1}\leq f(n+1)$ y $d_{n+1}\leq g(n+1)$. 
+Supóngase que $f(i)=d_i=g(i),\:\forall \: i=1,\ldots,n$ y $n+1\leq k$. Si $n+1=k$, como $f$ y $g$ son biyectivas, necesariamente $f(n+1)=d_{n+1}=g(n+1)$. Supóngase pues que $n+1<k$. Se tiene que $d_{n+1}$ es el elemento mínimo del conjunto $D \setminus \{1,\ldots,d_n\}$. Además, $f(n+1),g(n+1)\in D\setminus \{1,\ldots,d_n\}$. En efecto, pues si $f(n+1)=d_{i_1}$ o $g(n+1)=d_{i_2}$, para algunos $i_1,i_2\in \{1,\ldots,n\}$, entonces $f(n+1)=f(i_1)$ y $g(n+1)=g(i_2)$ por hipótesis de inducción y por inyectividad se tendría que $n+1=i_1\leq n$ o $n+1=i_2\leq n$, lo cual es absurdo. En consecuencia $f(n+1),g(n+1)\in D \setminus \{1,\ldots,d_n\}$ y por tanto $d_{n+1}\leq f(n+1)$ y $d_{n+1}\leq g(n+1)$. 
 \bigskip
 
 Por otra parte, se tiene por suprayectividad que existen $j_1,j_2\in \{1,\ldots,k\}$ tales que $f(j_1)=d_{n+1}$ y $g(j_2)=d_{n+1}$, más aún, $n+1\leq j_1$ y $n+1\leq j_2$, pues en caso contrario se tendría que $j_1<n$ o $j_2<n$, es decir, $f(j_1)<f(n)$ o $g(j_2)<g(n)$, es decir, $d_{n+1}<d_n$, lo que contradice la hipótesis. Luego $f(n+1)\leq f(j_1)=d_{n+1}$ y $g(n+1)\leq g(j_2)=d_{n+1}$. Se sigue finalmente que $f(n+1)=d_{n+1}=g(n+1)$.
@@ -115,7 +115,7 @@ para cada $n\in\mathbb{N}$.
 La siguiente proposición muestra que la función $I$ actúa como la identidad bajo la convolución de Dirichlet, entre otras propiedades algebraicas.
 
 \begin{proposition}
-Si $f,g$ y $h$ son funciones aritméticas entonces se verifica lo siguiente:
+Si $f,g$ y $h$ son funciones aritméticas, entonces se verifica lo siguiente:
 
 \begin{enumerate}[label=\textnormal{(\roman*)}]
 	\item $(f*g)*h=f*(g*h)$
@@ -154,7 +154,7 @@ En efecto, si $f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})$, entonces $c_{i,j}c_{i,m_
 Se tiene pues que $\mathcal{C}=\mathcal{D}$ y como las sumas \eqref{eqn:sum1} y \eqref{eqn:sum2} se extienden sobre los conjuntos $\mathcal{C}$ y $\mathcal{D}$, entonces deben coincidir, es decir, $((f*g)*h)(n)=(f*(g*h))(n)$.
 \bigskip
 
-({\scshape \romannumeral 2}) Como $1<d_i,\:\forall \: i=2,\ldots,k$ entonces $I(d_i)=0,\:\forall \: i=2,\ldots,k$, luego por la \Cref{prop:dir1} se tiene que
+({\scshape \romannumeral 2}) Como $1<d_i,\:\forall \: i=2,\ldots,k$, entonces $I(d_i)=0,\:\forall \: i=2,\ldots,k$, luego por la \Cref{prop:dir1} se tiene que
 
 \begin{align*}
 	(f*I)(n) &= \sum_{i=1}^{k} f(d_i)I(d_{k+1-i})=f(d_1)I(d_k)+\cdots+f(d_k)I(d_1) \\
@@ -191,11 +191,11 @@ Dados $c \in \mathbb{C}$ y $f \in \mathcal{A}$, se define $c f \in \mathcal{A}$ 
 \end{definition}
 
 \begin{proposition}
-El grupo abeliano $(\mathcal{A}, +)$ junto con la multiplicación por escalares definida anterioremente constituyen un espacio vectorial sobre el campo $\mathbb{C}$, donde el elemento neutro aditivo es la función $\mathbf{0}$. De ahora en adelante, este espacio vectorial será llamado simplemente el espacio de las funciones aritméticas.
+El grupo abeliano $(\mathcal{A}, +)$ junto con la multiplicación por escalares definida anteriormente constituyen un espacio vectorial sobre el campo $\mathbb{C}$, donde el elemento neutro aditivo es la función $\mathbf{0}$. De ahora en adelante, este espacio vectorial será llamado simplemente el espacio de las funciones aritméticas.
 \end{proposition}
 
 \begin{proposition}
-Si $c \in \mathbb{C}$ y $f, g \in \mathcal{A}$ entonces $c(f*g)=(c f)*g=f*(c g)$.
+Si $c \in \mathbb{C}$ y $f, g \in \mathcal{A}$, entonces $c(f*g)=(c f)*g=f*(c g)$.
 \end{proposition}
 \begin{proof}
 Se tiene que para cualquier $n \in \mathbb{N}$,

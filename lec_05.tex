@@ -12,11 +12,11 @@ Durante todo el capítulo se supondrá que $r$ es un entero positivo arbitrario 
 \end{remark}
 
 \begin{definition}[Función par]\label{def:even}
-Una función aritmética se dice \textbf{par} $\Mod{r}$ si $f(n)=f((n,r))$, donde $(m,r)$ es el máximo común divisor de $n$ y $r$, para cada $n \in \mathbb{N}$.
+Una función aritmética se dice \textbf{par} $\Mod{r}$ si $f(n)=f((n,r))$, donde $(n,r)$ es el máximo común divisor de $n$ y $r$, para cada $n \in \mathbb{N}$.
 \end{definition}
 
 \begin{definition}[Función periódica]
-Una función aritmética se dice \textbf{periódica} con periodo $r$ (o periódica $\Mod{r}$) si $m, n \in \mathbb{N}$ y $m \equiv n \pmod{r}$ implica que $f(m)=f(n)$.
+Una función aritmética se dice \textbf{periódica} con periodo $r$ (o periódica $\Mod{r}$) si $m, n \in \mathbb{N}$ y $m \equiv n \pmod{r}$, implica que $f(m)=f(n)$.
 \end{definition}
 
 La siguiente proposición es una consecuencia inmediata de las definiciones anteriores.
@@ -25,7 +25,7 @@ La siguiente proposición es una consecuencia inmediata de las definiciones ante
 Toda función par $\Mod{r}$ es periódica con periodo $r$.
 \end{proposition}
 \begin{proof}
-Si $m \equiv n \pmod{r}$ entonces $r \mid m-n$, por tanto existe $q \in \mathbb{Z}$ tal que $m-n=q r$. Por demostrar que $(n,r)=(m,r)$. En efecto, como $(n,r) \mid n$ y $(n,r) \mid r$, entonces $(n,r) \mid n+qr=m$, luego $(n,r) \mid (m,r)$. Análogamente, se tiene que $(m,r) \mid (n,r)$. Se sigue que $(n,r)=(m,r)$ y por tanto $f(n)=f((n,r))=f((m,r))=f(m)$.
+Si $m \equiv n \pmod{r}$, entonces $r \mid m-n$, por tanto existe $q \in \mathbb{Z}$ tal que $m-n=q r$. Por demostrar que $(n,r)=(m,r)$. En efecto, como $(n,r) \mid n$ y $(n,r) \mid r$, entonces $(n,r) \mid n+qr=m$, luego $(n,r) \mid (m,r)$. Análogamente, se tiene que $(m,r) \mid (n,r)$. Se sigue que $(n,r)=(m,r)$ y por tanto $f(n)=f((n,r))=f((m,r))=f(m)$.
 \end{proof}
 
 \subsection{Sumas de Ramanujan}
@@ -59,9 +59,9 @@ En efecto,
 \begin{align*}
     \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi / r) a n} = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \cos \left( \frac{2 \pi}{r} a n \right) + i \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right).
 \end{align*}
-Pero $(a,r)=1$ si y sólo si $(a-r,r)=1$. Además, si $1 \le a \le r-1$ entonces $1 \le r-a \le r-1$, por tanto
+Pero $(a,r)=1$ si y sólo si $(a-r,r)=1$. Además, si $1 \le a \le r-1$, entonces $1 \le r-a \le r-1$, por tanto
 \begin{align*}
-    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right) = \sum_{\substack{a=1 \\ (r-a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} (r-a) n \right) & = \sum_{\substack{a=1 \\ (r-a)=1}}^{r} - \sin \left( \frac{2 \pi}{r} a n \right) \\
+    \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right) = \sum_{\substack{a=1 \\ (r-a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} (r-a) n \right) & = \sum_{\substack{a=1 \\ (r-a,r)=1}}^{r} - \sin \left( \frac{2 \pi}{r} a n \right) \\
                                                                                  &= - \sum_{\substack{a=1 \\ (a,r)=1}}^{r} \sin \left( \frac{2 \pi}{r} a n \right).
 \end{align*}
 Se sigue que la parte imaginaria de la primera suma se anula y se tiene la igualdad deseada.
@@ -96,7 +96,7 @@ pues el denominador no se anula. Luego
 \end{align*}
 \end{proof}
 
-En lo que sigue de este capítulo se trabajará exclusivamente con ésta última representación de $c_r$ y se le referirá como \emph{suma de Ramanujan módulo} $r$ o simplemete \emph{suma de Ramanujan} cuando no haya riesgo de confusión.
+En lo que sigue de este capítulo se trabajará exclusivamente con esta última representación de $c_r$ y se le referirá como \emph{suma de Ramanujan módulo} $r$ o simplemete \emph{suma de Ramanujan} cuando no haya riesgo de confusión.
 
 \begin{proposition}
 Algunas propiedades de la sumas de Ramanujan son las siguientes:
@@ -130,34 +130,37 @@ Algunas propiedades de la sumas de Ramanujan son las siguientes:
     \begin{equation*}
         c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d \le \sum_{d \mid (n,r)} d = \sum_{\substack{d \mid n \\ d \mid r}} d \le \sum_{d \mid n} d, \sum_{d \mid r} d \le \max \{ \sigma(n),\sigma(r) \}.
     \end{equation*}
-\item Defínase
+\item Defínase, para $r \in \mathbb{N}$ fijo, la función aritmética
     \begin{equation*}
         \eta_r(n) = \begin{cases}
             \hfil r & \text{si } r \mid n \\
             \hfil 0 & \text{en otro caso}.
         \end{cases}
     \end{equation*}
-Se tiene que la función $\eta_\Box(n)$ es multiplicativa para $n$ fijo. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
+Suponga ahora $n_0 \in \mathbb{N}$ arbitrario pero fijo. Se tiene que la función aritmética $g$ deifnida como $g(r) = \eta_r(n_0), \forall k \in \mathbb{N}$, es multiplicativa. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
 \begin{equation*}
-    \eta_{r s}(n) = \begin{cases}
-        \hfil r s & \text{si } r s \mid n \\
+    g(r s ) = \eta_{r s}(n_0) = \begin{cases}
+        \hfil r s & \text{si } r s \mid n_0 \\
         \hfil 0 & \text{en otro caso,}
     \end{cases}
 \end{equation*}
-pero $r s \mid n$ si y sólo si $r \mid n$ y $s \mid n$. En efecto, si $r s \mid n$ es claro que $r \mid n$ y $s \mid n$. Supóngase que $r \mid n$ y $s \mid n$, de tal manera que existen $q_1, q_2 \in \mathbb{Z}$ tales que $n=r q_1=s q_2$. Como $(r,s)=1$, también existen $x, y \in \mathbb{Z}$ tales que $1=r x + s y$, luego $n=n r x + n s y$, por lo que $n= r s (q_2 x + q_1 y)$, es decir, $r s \mid n$. Luego, si $r s \mid n$, entonces
-\begin{equation*}
-    \eta_{r s}(n) = r s = \eta_r(n) \eta_s(n),
-\end{equation*}
-y si $r s \centernot\mid$ entonces $r \centernot\mid n$ y $s \centernot\mid n$, por lo que
-\begin{equation*}
-    \eta_{r s}(0) = 0 = \eta_r(n) \eta_s(n).
-\end{equation*}
+pero $r s \mid n_0$ si y sólo si $r \mid n_0$ y $s \mid n_0$. En efecto, si $r s \mid n_0$ es claro que $r \mid n_0$ y $s \mid n_0$. Supóngase que $r \mid n_0$ y $s \mid n_0$, de tal manera que existen $q_1, q_2 \in \mathbb{Z}$ tales que $n=r q_1=s q_2$. Como $(r,s)=1$, también existen $x, y \in \mathbb{Z}$ tales que $1=r x + s y$, luego $n_0=n_0 r x + n_0 s y$, por lo que $n_0= r s (q_2 x + q_1 y)$, es decir, $r s \mid n_0$.
+\bigskip
 
-Por otro lado, se tiene que
+En consecuencia, si $r s \mid n_0$, entonces
 \begin{equation*}
-    \sum_{d \mid r} \mu \left( \frac{r}{d} \right) \eta_d(n) = \sum_{\substack{d \mid r \\ d \mid n}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d = c_r(n),
+    g(r s) = \eta_{r s}(n_0) = r s = \eta_r(n_0) \eta_s(n_0) = g(r) g(s),
 \end{equation*}
-es decir, $c_\Box(n)=\mu*\eta_\Box(n)$. Luego $c_\Box(n)$ debe ser multiplicativa para $n$ fijo, por ser producto de funciones multiplicativas.
+y si $r s \centernot\mid n_0$ entonces $r \centernot\mid n_0$ y $s \centernot\mid n_0$, por lo que
+\begin{equation*}
+    g(r s) = \eta_{r s}(0) = 0 = \eta_r(n_0) \eta_s(n_0) = g(r) g(s).
+\end{equation*}
+En cualquier caso, $g(r s) = g(r) g(s)$, luego $g$ es multiplicativa. Considere ahora la función aritmética $f$ definida como $f(r) = c_r(n_0), \forall r \in \mathbb{N}$. Por demostrar que $f = \mu * g$. En efecto, para cada $r \in \mathbb{N}$ se tiene
+\begin{align*}
+    (\mu * g)(r) & = \sum_{d \mid r} \mu \left( \frac{r}{d} \right) g(d) = \sum_{d \mid r} \mu \left( \frac{r}{d} \right) \eta_d(n_0) \\
+                 & = \sum_{\substack{d \mid r \\ d \mid n_0}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n_0,r)} \mu \left( \frac{r}{d} \right) d = c_r(n_0) = f(r).
+\end{align*}
+Se sigue que $f$ es multiplicativa, por ser producto de funciones multiplicativas, que es lo que se quería probar.
 \item Se tienen los siguientes casos
 \begin{itemize}
 \item Si $p^m \mid n$, entonces $(n,p^m)=p^m$, luego
@@ -179,7 +182,7 @@ es decir, $c_\Box(n)=\mu*\eta_\Box(n)$. Luego $c_\Box(n)$ debe ser multiplicativ
 \end{enumerate}
 \end{proof}
 
-Del la demostración del \cref{it:ram1} se puede rescatar el siguiente corolario, usando la inversión de Möbius (\Cref{cor:mob1}).
+De la demostración del \cref{it:ram1} se puede rescatar el siguiente corolario, usando la inversión de Möbius (\Cref{cor:mob1}).
 
 \begin{corollary}\label{cor:ram5}
 Para cada $n \in \mathbb{N}$ fijo se tiene
@@ -225,16 +228,16 @@ Si $r$ y $s$ dividen a $k$, entonces
                                                                               &= \sum_{d' \mid (k,r)} \mu(r/d) d' \eta_{k/d'} (k/s) = \sum_{d' \mid r} \mu(r/d) d' \eta_{k/d'} (k/s),
 \end{split}
 \end{equation}
-dado que $(k,r)=r$ por ser $r$ divisor de $k$ y dado que los conjuntos $\{ d,d' \in \mathbb{N} \std d \mid k, d' \mid r, d' \mid k/d \}$ y $\{ d,d' \in \mathbb{N} \std d \mid k/d', d' \mid r, d' \mid k \}$ son iguales. En efecto, si $d \mid k$ entonces $k/d$ es un entero, lueg $d' \mid k/d$ implica que $k/d=d' q'$, luego $k=d' q' d$, por tanto $d \mid k/d'$ y $d' \mid k$.
+dado que $(k,r)=r$ por ser $r$ divisor de $k$ y dado que los conjuntos $\{ d,d' \in \mathbb{N} \std d \mid k, d' \mid r, d' \mid k/d \}$ y $\{ d,d' \in \mathbb{N} \std d \mid k/d', d' \mid r, d' \mid k \}$ son iguales. En efecto, si $d \mid k$, entonces $k/d$ es un entero, luego $d' \mid k/d$ implica que $k/d=d' q'$, luego $k=d' q' d$, por tanto $d \mid k/d'$ y $d' \mid k$.
 \bigskip
 
-Recíprocamente, si $d' \mid k$ entonces $k/d'$ es un entero, luego $d \mid k/d'$ implica que $k/d'=dq$, por tanto $k=d q d'$, por tanto $d \mid k$ y $d' \mid k/d$.
+Recíprocamente, si $d' \mid k$, entonces $k/d'$ es un entero, luego $d \mid k/d'$ implica que $k/d'=dq$, por tanto $k=d q d'$, por tanto $d \mid k$ y $d' \mid k/d$.
 \bigskip
 
-Si $s \centernot\mid r$ entonces $s \centernot\mid d'$ y por tanto $k/d' \centernot\mid k/s$. En efecto, pues si $s \mid d'$, como $d' \mid r$ entonces se tendría que $s \mid r$ por transitividad. Además, si $k/d' \mid k/s$ se tendría que $s \mid d'k$. Luego la suma \eqref{eq:ram2} se anula si $s \centernot\mid r$ y en particular si $r \ne s$, pues en este caso se tiene que $\eta_{k/d'}(k/s)=0$ para cada $d' \mid r$. 
+Si $s \centernot\mid r$, entonces $s \centernot\mid d'$ y por tanto $k/d' \centernot\mid k/s$. En efecto, si $s \mid d'$, como $d' \mid r$, entonces se tendría que $s \mid r$ por transitividad. Además, si $k/d' \mid k/s$ se tendría que $s \mid d'k$. Luego la suma \eqref{eq:ram2} se anula si $s \centernot\mid r$ y en particular si $r \ne s$, pues en este caso se tiene que $\eta_{k/d'}(k/s)=0$ para cada $d' \mid r$. 
 \bigskip
 
-Si $s \mid r$ entonces la suma \eqref{eq:ram2} es igual a
+Si $s \mid r$, entonces la suma \eqref{eq:ram2} es igual a
 \begin{equation*}
 \begin{split}
     \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') d' \frac{k}{d'} &= \sum_{\substack{d' \mid r \\ k/d' \mid k/s}} \mu(r/d') k = \sum_{\substack{d' \mid r \\ s \mid d'}} \mu(r/d') k \\
@@ -260,14 +263,14 @@ Basta probar que $\sum_{d \mid r} \alpha(d) c_d(n)=0$ implica que $\alpha(d)=0$ 
 \begin{align*}
     0 = \sum_{e \mid r} \left( \sum_{d \mid r} \alpha(d) c_d \left( \frac{r}{e} \right) \right) c_e \left( \frac{r}{\delta} \right)= \sum_{d \mid r} \alpha(d) \sum_{e \mid r} c_d \left( \frac{r}{e} \right) c_e \left( \frac{r}{\delta} \right) = \alpha(\delta) r,
 \end{align*}
-por el la proposición anterior, y dado que $r \ne 0$ entonces $\alpha(\delta)=0$. Como $\delta$ fue un divisor arbitrario de $r$, se tiene el resultado.
+por la proposición anterior, y dado que $r \ne 0$, entonces $\alpha(\delta)=0$. Como $\delta$ fue un divisor arbitrario de $r$, se tiene el resultado.
 \end{proof}
 
 \begin{lemma}
-Si $d \mid r$ entonces $c_d(n)=c_d((n,r))$.
+Si $d \mid r$, entonces $c_d(n)=c_d((n,r))$.
 \end{lemma}
 \begin{proof}
-Si $d \mid r$ entonces $(n,d)=((n,r),d)$. En efecto, dado que $(n,d) \mid n$ y $(n,d) \mid d$, entonces $(n,d) \mid n$, $(n,d) \mid d$ y $(n,d) \mid r$, por lo que $(n,d) \mid (n,r)$ y $(n,d) \mid d$, es decir, $(n,d) \mid ((n,r),d)$. Recíprocamente se tiene que $((n,r),d) \mid n$ y $((n,r),d) \mid d$, así que $((n,r),d) \mid (n,d)$. Se sigue que $(n,d)=((n,r),d)$. Luego
+Si $d \mid r$, entonces $(n,d)=((n,r),d)$. En efecto, dado que $(n,d) \mid n$ y $(n,d) \mid d$, entonces $(n,d) \mid n$, $(n,d) \mid d$ y $(n,d) \mid r$, por lo que $(n,d) \mid (n,r)$ y $(n,d) \mid d$, es decir, $(n,d) \mid ((n,r),d)$. Recíprocamente se tiene que $((n,r),d) \mid n$ y $((n,r),d) \mid d$, así que $((n,r),d) \mid (n,d)$. Se sigue que $(n,d)=((n,r),d)$. Luego
 \begin{equation*}
     c_d(n) = \sum_{e \mid (n,d)} \mu(d/e) e = \sum_{e \mid ((n,r),d)} \mu(d/e) e = c_d((n,r)).
 \end{equation*}
@@ -319,12 +322,12 @@ Además como $f$ es multiplicativa, entonces $F$ también lo es. Si $n$ es un en
 Si $f$ es multiplicativa y separable, entonces para cualesquiera $a,b \in \mathbb{N}$ se tiene:
 \begin{enumerate}[label=\textnormal{(\roman*)}]
 \item $f(a)f(b)=f(a b)f((a,b))$.
-\item $\displaystyle f(a) = f((a,b)) \sum_{\substack{d \mid a \\ (d,b) = 1}} (\mu * f)(d)$
+\item $\displaystyle f(a) = f((a,b)) \sum_{\substack{d \mid a \\ (d,b) = 1}} (\mu * f)(d)$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-(\textsc{\romannumeral 1}) Nótese que si $p$ es un primo y $m,n > 1$ entonces
+(\textsc{\romannumeral 1}) Nótese que si $p$ es un primo y $m,n > 1$, entonces
 \begin{equation*}
     f(p^m)f(p^n) = f(p) f(p) = f(p^{m+n})f((p^m,p^n)),
 \end{equation*}
@@ -335,7 +338,7 @@ pues $(p^m,p^n)=p^i$, con $i=\min \{ m,n \}$. Sean $a,b \in \mathbb{N}$ y escrí
                    &= f(p_1^{\alpha_1+\beta_1}) \cdots f(p_r^{\alpha_r+\beta_r}) f((p_1^{\alpha_1},p_1^{\beta_1})) \cdots f((p_r^{\alpha_r},p_r^{\beta_r})) \\
                    &= f(p_1^{\alpha_1})f(p_1^{\beta_1}) \cdots f(p_r^{\alpha_r})f(p_r^{\beta_r}) \\
                    &= f(p_1^{\alpha_1} \cdots p_r^{\alpha_r})f(p_1^{\beta_1} \cdots p_r^{\beta_r}) \\
-                   &= f(a)f(b)
+                   &= f(a)f(b).
 \end{align*}
 (\textsc{\romannumeral 2}) Al igual que en la demostración anterior, si $F=\mu * f$, entonces
 \begin{equation*}
@@ -345,10 +348,10 @@ pues $(p^m,p^n)=p^i$, con $i=\min \{ m,n \}$. Sean $a,b \in \mathbb{N}$ y escrí
 Se verá primero que los conjuntos $\{ d \in \mathbb{N} \std d \mid a_* \text{ y } (d,b)=1\}$ y $\{ d \in \mathbb{N} \std d \mid a_* / (a,b)_* \}$ son iguales.
 \bigskip
 
-Para empezar, se tiene que $a_*/(a,b)_*$ es un entero. Si $(a,b)_*=1$ esto es claro. Si $(a,b)_*>1$ se puede escribir $(a,b)_*=q_1 \cdots q_s$, donde todos los primos son distintos. Luego $q_i \mid (a,b)_*$, pero $(a,b)_* \mid (a,b)$ y $(a,b) \mid a$, por tanto $q_i \mid a$ y por tanto $q_i \mid a_*$. Como $i \in \{ 1,\ldots,s \}$ fue arbitrario y todos los primos $q_i$ son distintos, entonces $q_1 \cdots q_s = (a,b)_* \mid a_*$, que es lo que se quería probar.
+Para empezar, se tiene que $a_*/(a,b)_*$ es un entero. Si $(a,b)_*=1$, esto es claro. Si $(a,b)_*>1$ se puede escribir $(a,b)_*=q_1 \cdots q_s$, donde todos los primos son distintos. Luego $q_i \mid (a,b)_*$, pero $(a,b)_* \mid (a,b)$ y $(a,b) \mid a$, por tanto $q_i \mid a$ y por tanto $q_i \mid a_*$. Como $i \in \{ 1,\ldots,s \}$ fue arbitrario y todos los primos $q_i$ son distintos, entonces $q_1 \cdots q_s = (a,b)_* \mid a_*$, que es lo que se quería probar.
 \bigskip
 
-Procedamos a probar la igualdad de los conjuntos. Supóngase primero que $d \mid a_*$ y $(d,b)=1$. Entonces existe $c \in \mathbb{N}$ tal que $a_*=d c$. Por otro lado, se tiene que $(a,b) \mid b$ y por tanto $((a,b),d)=1$, más aún, como $(a,b)_* \mid (a,b)$ entonces también $((a,b)_*,d)=1$ y como $(a,b)_* \mid a_* = d c$, por el lema de Euclides se debe tener que $(a,b)_* \mid c$ es decir, $a_* = (a,b)_* d q$, para algún $q \in \mathbb{N}$, luego $d \mid a_* / (a,b)_*$.
+Procedamos a probar la igualdad de los conjuntos. Supóngase primero que $d \mid a_*$ y $(d,b)=1$. Entonces existe $c \in \mathbb{N}$ tal que $a_*=d c$. Por otro lado, se tiene que $(a,b) \mid b$ y por tanto $((a,b),d)=1$, más aún, como $(a,b)_* \mid (a,b)$, entonces también $((a,b)_*,d)=1$ y como $(a,b)_* \mid a_* = d c$, por el lema de Euclides se debe tener que $(a,b)_* \mid c$ es decir, $a_* = (a,b)_* d q$, para algún $q \in \mathbb{N}$, luego $d \mid a_* / (a,b)_*$.
 \bigskip
 
 Recíprocamente, supóngase que $d \mid a_*/(a,b)_*$. Se debe tener que
@@ -374,7 +377,7 @@ Finalmente, como $f$ es multiplicativa,
 \end{proof}
 
 \begin{example}
-La función $\overline{\varphi}=\varphi(n)/n$ es separable. Nótese que para cualquier primo $p$ y $m>0$ se tiene $\varphi(p^m)=p^m-p^{m-1}$, luego $\varphi(p^m)/p^m=1-p^{-1}$ y también $\varphi(p)/p=1-p^{-1}$. Ahora, si $n=p_1^{\alpha_1} \cdots p_r^{\alpha_r}$ entonces, como $\varphi$ es multiplicativa,
+La función $\overline{\varphi}(n)=\varphi(n)/n$ es separable. Nótese que para cualquier primo $p$ y $m>0$ se tiene $\varphi(p^m)=p^m-p^{m-1}$, luego $\varphi(p^m)/p^m=1-p^{-1}$ y también $\varphi(p)/p=1-p^{-1}$. Ahora, si $n=p_1^{\alpha_1} \cdots p_r^{\alpha_r}$, entonces, como $\varphi$ es multiplicativa,
 \begin{equation*}
     \frac{\varphi(n)}{n} = \frac{\varphi(p_1^{\alpha_1})}{p_1^{\alpha_1}} \cdots \frac{\varphi(p_r^{\alpha_r})}{p_r^{\alpha^r}} = \left( 1-\frac{1}{p_1} \right) \cdots \left( 1-\frac{1}{p_r} \right) = \frac{\varphi(p_1)}{p_1} \cdots \frac{\varphi(p_r)}{p_r} = \frac{\varphi(n_*)}{n_*}
 \end{equation*}
@@ -383,7 +386,7 @@ La función $\overline{\varphi}=\varphi(n)/n$ es separable. Nótese que para cua
 \begin{lemma}[Fórmula de Hölder]\label{lem:holder}
 Para cada $n \in \mathbb{N}$ se tiene
 \begin{equation*}
-    c_r(n) = \frac{\varphi(r) \mu \left( \displaystyle \frac{r}{(n,r)} \right)}{\varphi \left( \displaystyle \frac{r}{(n,r)} \right)}
+    c_r(n) = \frac{\varphi(r) \mu \left( \displaystyle \frac{r}{(n,r)} \right)}{\varphi \left( \displaystyle \frac{r}{(n,r)} \right)}.
 \end{equation*}
 \end{lemma}
 
@@ -392,7 +395,7 @@ Se tiene
 \begin{equation}\label{eq:par1}
     c_r (n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d = \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) > 1}} \mu \left( \frac{r}{d} \right) d + \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{r}{d} \right) d,
 \end{equation}
-pero si $(r/(n,r),(n,r)/d)>1$ entonces $r/d$ debe tener un factor cuadrado, pues en este caso existe un primo $p$ tal que $p \mid r/(n,r)$ y $p \mid (n,r)/d$, luego $r=p (n,r) q_1$ y $(n,r)=p d q_2$ para algunos enteros $q_1$ y $q_2$, luego $r=p^2 d q_1 q_2$ y por tanto $p^2 \mid r/d$, así que $\mu(r/d)=0$. Luego la ecuación \eqref{eq:par1} es igual a
+pero si $(r/(n,r),(n,r)/d)>1$, entonces $r/d$ debe tener un factor cuadrado, pues en este caso existe un primo $p$ tal que $p \mid r/(n,r)$ y $p \mid (n,r)/d$, luego $r=p (n,r) q_1$ y $(n,r)=p d q_2$ para algunos enteros $q_1$ y $q_2$, por lo que $r=p^2 d q_1 q_2$ y por tanto $p^2 \mid r/d$, así que $\mu(r/d)=0$. Luego la ecuación \eqref{eq:par1} es igual a
 \begin{equation}\label{eq:par2}
 \begin{split}
     \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{r}{d} \right) d & = \sum_{\substack{d \mid (n,r) \\ \left( \frac{r}{(n,r)}, \frac{(n,r)}{d} \right) = 1}} \mu \left( \frac{r}{(n,r)} \right) \mu \left( \frac{(n,r)}{d} \right) d \\
@@ -436,7 +439,7 @@ o por la fórmula equivalente,
 A los coeficientes $\alpha$ se les llamará \textbf{coeficientes de Fourier} de la función par $f$.
 \end{theorem}
 \begin{proof}
-Es claro que toda función de la forma \eqref{eq:ram3} es par $\Mod{r}$, pues por el lema anterior si $d \mid r$ entonces $c_d(n)=c_d((n,r))$. Nótese que
+Es claro que toda función de la forma \eqref{eq:ram3} es par $\Mod{r}$, pues por el lema anterior si $d \mid r$, entonces $c_d(n)=c_d((n,r))$. Nótese que
 \begin{equation*}
 \begin{split}
     \sum_{d \mid r} \alpha(d) c_d(n) &= \sum_{d \mid r} \left( \frac{1}{r} \sum_{e \mid r} f \left( \frac{r}{e} \right) c_e \left( \frac{r}{d} \right) \right) c_d(n) \\
@@ -461,7 +464,7 @@ Por otro lado, de la demostración de \Cref{thm:gauss} se puede rescatar el hech
 \end{equation*}
 donde la segunda igualdad se cumple por ser $f$ par $\Mod{r}$, la tercera por ser $(rx/e,r)=r/e$, pues $(x,e)=1$ implica que $(r/e)(x,e)=r/e$, y como $r/e$ es un entero positivo, entonces $(rx/e,r)=r/e$. La cuarta por definición de $\varphi$, y la penúltima igualdad se cumple por la fórmula de Hölder (\Cref{lem:holder}) y el \Cref{cor:mcd1}, pues $e$ y $d$ dividen a $d$, así que
 \begin{equation}\label{eq:holder}
-    c_d \left( \frac{r}{e} \right) \varphi(e) = \frac{\varphi(d)\mu \left( \displaystyle \frac{d}{(r/e,d)} \right)}{\varphi \left( \displaystyle \frac{d}{(r/e,d)} \right)} = \frac{\varphi(d)\mu \left( \displaystyle \frac{e}{(r/d,e)} \right)}{\varphi \left( \displaystyle \frac{e}{(r/d,e)} \right)} \varphi(e) = \varphi(d) c_e \left( \frac{r}{d} \right)
+    c_d \left( \frac{r}{e} \right) \varphi(e) = \frac{\varphi(d)\mu \left( \displaystyle \frac{d}{(r/e,d)} \right)}{\varphi \left( \displaystyle \frac{d}{(r/e,d)} \right)} = \frac{\varphi(d)\mu \left( \displaystyle \frac{e}{(r/d,e)} \right)}{\varphi \left( \displaystyle \frac{e}{(r/d,e)} \right)} \varphi(e) = \varphi(d) c_e \left( \frac{r}{d} \right).
 \end{equation}
 \end{proof}
 
@@ -503,7 +506,7 @@ donde $g$ es una función aritmética.
 La siguiente proposición muestra que esta generalización preserva la modularidad respecto a $r$. Más aún, el \Cref{thm:fou1} permite caracterizar a las funciones pares módulo $r$ de esta forma.
 
 \begin{theorem}
-Toda función $f$ par módulo $r$ se puede expresar como
+Toda función $f$ par $\Mod{r}$ se puede expresar como
 \begin{equation}\label{eq:fou2}
     f(n) = \sum_{\delta \mid (n,r)} g(\delta), \forall n \in \mathbb{N}.
 \end{equation}
@@ -520,7 +523,7 @@ Dado que $(n,r)=((n,r),r)$, es claro que toda función arimética que tenga dich
 En vista de que toda función par tiene al menos dos representaciones, la del teorema anterior y la del \Cref{thm:fou1}, cabe preguntarse si existe alguna relación entre ellas. El siguiente teorema da respuesta a esta inquietud.
 
 \begin{theorem}
-Si $f$ es par módulo $r$, entonces sus respectivas expansiones \eqref{eq:ram3} y \eqref{eq:fou2} están relacionadas mediante la fórmula
+Si $f$ es par $\Mod{r}$, entonces sus respectivas expansiones \eqref{eq:ram3} y \eqref{eq:fou2} están relacionadas mediante la fórmula
 \begin{equation*}
     \alpha(d) = \frac{1}{r} \sum_{e \mid r/d} g \left( \frac{r}{e} \right) e.
 \end{equation*}
@@ -543,7 +546,7 @@ por el \cref{cor:ram5}.
 Recuérdese del \cref{cor:est1} que el anillo $(\mathcal{A}, +, *)$ es un álgebra conmutativa con identidad. Se tiene que el conjunto de funciones pares es un subespacio de $\mathcal{A}$, pero no es un subanillo, pues en general $(f*g)(n) \ne (f*g)((n,r))$ aún cuando $f$ y $g$ sean pares $\Mod{r}$, tome por ejemplo dos funciones constantes. Se denotará como $\mathcal{A}_r$ al conjunto de funciones pares módulo $r$.
 
 \begin{proposition}
-El conjunto $\mathcal{A}_r$ es una subespacio de $\mathcal{A}$.
+El conjunto $\mathcal{A}_r$ es un subespacio de $\mathcal{A}$.
 \end{proposition}
 \begin{proof}
 Basta verificar las siguientes condiciones:
@@ -581,9 +584,9 @@ Sean $c \in \mathbb{C}$ y $f,g,h \in \mathcal{A}_r$. Escríbase $f(n)=f_1(n)+ i 
         \langle f,f \rangle & = \sum_{d \mid r} \varphi(d) \left[ f_1 \left( \frac{r}{d} \right) + i f_2 \left( \frac{r}{d} \right) \right] \overline{\left[ f_1 \left( \frac{r}{d} \right) + i f_2 \left( \frac{r}{d} \right) \right]} \\
                             & = \sum_{d \mid r} \varphi(d) \left[ f_1^2 \left( \frac{r}{d} \right) + f_2^2 \left( \frac{r}{d} \right) \right] \ge 0
 \end{align*}
-Además, si $\langle f,f \rangle=0$, como todos los términos de la suma anterior son positivos, se debe tener que $f_1(d)=f_2(d)=0$ para todo $d$ divisor de $r$. Si $n \in \mathbb{N}$ entonces $f_1(n)=f((n,r))=0$, pues $f$ es par $\Mod{r}$ y $(n,r) \mid r$. Análogamente se tiene $f_2(n)=0$. Luego $f(n)=f_1(n)+i f_2(n)=0$ para cada $n \in \mathbb{N}$, es decir $f=\mathbf{0}$.
+Además, si $\langle f,f \rangle=0$, como todos los términos de la suma anterior son positivos, se debe tener que $f_1(d)=f_2(d)=0$ para todo $d$ divisor de $r$. Si $n \in \mathbb{N}$, entonces $f_1(n)=f((n,r))=0$, pues $f$ es par $\Mod{r}$ y $(n,r) \mid r$. Análogamente se tiene $f_2(n)=0$. Luego $f(n)=f_1(n)+i f_2(n)=0$ para cada $n \in \mathbb{N}$, es decir $f=\mathbf{0}$.
 \item \begin{align*}
-        \langle f+g,h \rangle & = \sum_{d \mid r} \varphi(d) (f+g) \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)} = \sum_{d \mid r} \varphi(d) \left[ f \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} + g \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} \right] \\
+        \langle f+g,h \rangle & = \sum_{d \mid r} \varphi(d) (f+g) \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} = \sum_{d \mid r} \varphi(d) \left[ f \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} + g \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} \right] \\
                               & = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} + \sum_{d \mid r} g \left( \frac{r}{d} \right) \overline{h \left( \frac{r}{d} \right)} = \langle f,h \rangle + \langle g,h \rangle
 \end{align*}
 \item \begin{equation*}

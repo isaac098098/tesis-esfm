@@ -7,7 +7,7 @@
 Si $r \in \mathbb{N}$, $r=e q_1$, $r= d q_2$, $d=(q_1,d)k_1$ y $e=(q_2,e) k_2$ entonces $k_1=k_2$.
 \end{proposition}
 \begin{proof}
-Nótese que $q_1,q_2$ enteros positivos, además $(q_1 q_2, r) = (q_1 q_2, r)$, luego $(q_1 q_2,e q_1)=(q_1 q_2,d q_2)$ y por tanto $q_1 (q_2,e)=q_2 (q_1,d)$ por la proposición anterior. Luego, dado que $r=(q_2,e)k_2 q_1=(q_1,d)k_1 q_2$, la ley de cancelación implica que $k_1 = k_2$.
+Nótese que $q_1,q_2$ son enteros positivos y claro que $(q_1 q_2, r) = (q_1 q_2, r)$, luego $(q_1 q_2,e q_1)=(q_1 q_2,d q_2)$ y por tanto $q_1 (q_2,e)=q_2 (q_1,d)$. En consecuencia, $(q_2,e)k_2 q_1 = e q_1 = r = d q_2 = (q_1,d)k_1 q_2$ y por la ley de cancelación se debe tener que $k_1 = k_2$.
 \end{proof}
 
 \begin{corollary}\label{cor:mcd1}
@@ -18,7 +18,7 @@ Si $r \in \mathbb{N}$, $e \mid r$ y $d \mid r$ con $e,r \in \mathbb{N}$, entonce
 \end{corollary}
 
 \begin{theorem}[Lema de Euclides]
-Si $a \mid bc$ y $(a,b)=1$ entonces $a \mid c$.
+Si $a \mid bc$ y $(a,b)=1$, entonces $a \mid c$.
 \end{theorem}
 \begin{proof}
 Si $(a,b)=1$, podemos escribir $1=a s+b t$, donde $s,t\in \mathbb{Z}$. Luego $c=a(s c)+b c(t)$ y como $a \mid a$ y $a \mid bc$ por hipótesis, entonces $a \mid c$.

@@ -5,12 +5,12 @@
 \newpage
 \section{Procesamiento de señales}
 
-Una \emph{señal} es una descripción de un fenómeno que evoluciona en el tiempo o espacio; el \emph{procesamiento de señales} se refiere a cualquier operación manual o mecánica que modifique, analice o manipule de otra forma la información contenida en una señal. Considérese, por ejemplo, la temperatura ambiente; se puede medir su evolución coon el tiempo de muchas formas y los datos resultantes representan una ``señal'' de temperatura. Algunas operaciones sobre esta señal se pueden hacer incluso a mano, por ejemplo calcular la temperatura promedio en un mes o graficar la señal en una hoja de papel.
+Una \emph{señal} es una descripción de un fenómeno que evoluciona en el tiempo o espacio; el \emph{procesamiento de señales} se refiere a cualquier operación manual o mecánica que modifique, analice o manipule de otra forma la información contenida en una señal. Considérese, por ejemplo, la temperatura ambiente; se puede medir su evolución con el tiempo de muchas formas y los datos resultantes representan una ``señal'' de temperatura. Algunas operaciones sobre esta señal se pueden hacer incluso a mano, por ejemplo calcular la temperatura promedio en un mes o graficar la señal en una hoja de papel.
 
 \bigskip
 
 El adjetivo ``digital'' proviene de \emph{digitus}, palabra latina para dedo. En este contexto, se refiere a un paradigma en el que el mundo físico se puede describir usando únicamente números enteros.
-El \emph{procesamiento digital de señales} es por tanto una rama del procesamiento de señales en la cual todo, incluido el tiempo, es descrito en términos de números enteros. En el procesamiento de digital de señales, la representación abstracta subyacente siempre es el conjunto de números naturales, independientemente de la naturaleza de la señal \cite{Prand1}.
+El \emph{procesamiento digital de señales} es por tanto una rama del procesamiento de señales en la cual todo, incluido el tiempo, es descrito en términos de números enteros. En el procesamiento digital de señales, la representación abstracta subyacente siempre es el conjunto de números naturales, independientemente de la naturaleza de la señal \cite{Prand1}.
 
 \begin{definition}
 Más específicamente, una \emph{señal} es cualquier función $x : \mathbb{Z} \longrightarrow \mathbb{C}$.
@@ -25,7 +25,7 @@ Es necesario establecer las dos convenciones siguientes a lo largo del capítulo
 \end{itemize}
 \end{remark}
 
-En este capítulo se estudiará una clase particular de señales periódicas, llamadas señales \emph{simétricas} o \emph{pares}, con las herramientas del capítulo anterior. Estas señales no son más que funciones aritméticas pares definidas en los enteros.
+En este capítulo se estudiará una clase particular de señales periódicas, llamadas señales \emph{pares}, con las herramientas del capítulo anterior. Estas señales no son más que funciones aritméticas pares definidas en los enteros.
 
 \subsection{Transformada Discreta de Fourier}
 
@@ -37,7 +37,7 @@ Una señal periódica con periodo $r$ contiene toda su información en un period
 \bigskip
 
 Sea $W_r = e^{-j(2 \pi / r)}$ y considérese el producto interno $\langle x,y \rangle = \sum_{n=1}^{r} \overline{x[n]} y[n]$ en $\mathbb{C}^r$. Se sabe, véase por ejemplo \cite{Prand1}, que el conjunto $\{ w_k \}_{k=1}^r,$ donde \begin{equation*}
-    w_k = (W_r^{-k}, W_r^{-2 k}, \ldots, W_r^{-(r-1) k}, 1) \in \mathbb{C}^r, w=1,\ldots,r,
+    w_k = (W_r^{-k}, W_r^{-2 k}, \ldots, W_r^{-(r-1) k}, 1) \in \mathbb{C}^r, k=1,\ldots,r,
 \end{equation*}
 es una base ortogonal de $\mathbb{C}^r$. En efecto,
 \begin{equation*}
@@ -77,8 +77,6 @@ donde la fórmula \eqref{eq:analysis} se ha extendido implicitamente  a todos lo
 
 \subsection{Señales pares}
 
-Las señales simétricas son un análogo a las funciones aritméticas pares estudiadas en el capítulo anterior.
-
 \begin{definition}[Señal simétrica]
 Una señal $x$ se dice \emph{simétrica módulo} $r$ si $x[n] = x[r-n]$ para cada $n \in \mathbb{Z}$.
 \end{definition}
@@ -102,7 +100,7 @@ donde la segunda igualdad se cumple por la observación anterior y por la simetr
 Una señal par módulo $r$ es una función $x : \mathbb{Z} \longrightarrow \mathbb{C}$ tal que $x[n] = x[(n,r)], \forall n \in \mathbb{Z}$. Son una generalización de las funciones aritméticas pares, \cref{def:even}.
 \end{definition}
 
-Toda señal par módulo es periódica con periodo $r$ y simétrica módulo $r$. La demostración de lo primero es idéntica a la de la \Cref{prop:mod->per}.
+Toda señal par módulo $r$ es periódica con periodo $r$ y simétrica módulo $r$. La demostración de lo primero es idéntica a la de la \Cref{prop:mod->per}.
 
 \begin{proposition}
 Cualquier señal $x$ par módulo $r$ es simétrica módulo $r$.
@@ -126,11 +124,11 @@ Para cada divisor positivo $d$ de $r$, sea
 Por el \Cref{thm:gauss} se tiene que $\bigcup_{d \mid r} S_d = \{ 1,2,\ldots,r \}$.
 \bigskip
 
-Además, si $(r/d)\alpha \in S_d$ entonces
+Además, si $(r/d)\alpha \in S_d$, entonces
 \begin{equation}\label{eq:res1}
     \left( \left( \frac{r}{d} \alpha \right),r \right) = \left( \left( \frac{r}{d} \right),r \right) = \frac{r}{d},
 \end{equation}
-pues $(\alpha,d)=1$ y $d \mid r$. Más aún, si $x$ es par y $n, m \in S_e$ entonces $\alpha[n]=\alpha[m]$. En efecto, se debe tener que $n = (r/d) \alpha$ y $m = (r/d) y$ con $(\alpha,d)=(\beta,d)=1$ y $1 \le \alpha,\beta \le d$. Luego, como $x$ es par,
+pues $(\alpha,d)=1$ y $d \mid r$. Más aún, si $x$ es par y $n, m \in S_e$, entonces $\alpha[n]=\alpha[m]$. En efecto, se debe tener que $n = (r/d) \alpha$ y $m = (r/d) y$ con $(\alpha,d)=(\beta,d)=1$ y $1 \le \alpha,\beta \le d$. Luego, como $x$ es par,
 \begin{equation*}
     x[n] = x \left[ \frac{r}{d} \alpha \right] = x \left[ \left( \frac{r}{d} \alpha, r \right) \right] = x \left[ \frac{r}{d} \right]
 \end{equation*}
@@ -168,7 +166,7 @@ Sea $d$ un divisor positivo de $r$ y sea $n \in \{ 1,2,\ldots,r \}$. Basta proba
 Si $n \in S_d$, entonces $n=(r/d) x$ con $(x,d)=1$ y $1 \le x \le d$. Además, como $(n,r) \mid n$ y $(n,r) \mid r$, existen $a,b \in \mathbb{N}$ tales que $n = (n,r) a$  y $r = (n,r) b$. Luego $(n,r) a = (r/d) x$ y por tanto $(n,r) a d = (n,r) b x$, así que $a d = b x$. Dado que $(a,b)=(n/(n,r), r/(n,r))=1$ y $a \mid b x$, entonces $a \mid x$ y por tanto $x = a q$, para algún $q \in \mathbb{N}$. Se sigue que $(n,r) = (r/d) q$ y además $1 \le q \le a q = x \le d$. Luego $(n,r) \in S_d$.
 \bigskip
 
-Recíprocamente, si $(n,r) \in S_d$, escríbase $(n,r) = (r/d) y$ con $(y,d)=1$ y $1 \le y \le d$. Como $(n,r) \mid r$ entonces $(r/d) y \mid r$, luego $r = (r/d) y q$ para algún $q \in \mathbb{N}$ y por tanto $r d = r y q$, así que $d = y q$, es decir $y \mid d$. Se debe tener por tanto que $y=(y,d)=1$, luego $(n,r)=(r/d)$ y como $n=(n,r)a$ para algún $a \in \mathbb{N}$, entonces $n = (r/d)a$. Además, como $n \le r$, entonces $(r/d) a \le r$, luego $r a \le r d$, es decir, $1 \le a \le d$ y por tanto $n \in S_d$.
+Recíprocamente, si $(n,r) \in S_d$, escríbase $(n,r) = (r/d) y$ con $(y,d)=1$ y $1 \le y \le d$. Como $(n,r) \mid r$, entonces $(r/d) y \mid r$, luego $r = (r/d) y q$ para algún $q \in \mathbb{N}$ y por tanto $r d = r y q$, así que $d = y q$, es decir $y \mid d$. Se debe tener por tanto que $y=(y,d)=1$, luego $(n,r)=(r/d)$ y como $n=(n,r)a$ para algún $a \in \mathbb{N}$, entonces $n = (r/d)a$. Además, como $n \le r$, entonces $(r/d) a \le r$, luego $r a \le r d$, es decir, $1 \le a \le d$ y por tanto $n \in S_d$.
 \end{proof}
 
 Las funciones $h_{r,d}$ se pueden extender de forma natural a una función simétrica a todo $\mathbb{Z}$ definiendo $h_{r,d}[n] = h_{r,d}[(n,r)]$ para cada $n \in \mathbb{Z}$ y abusando de la notación se le seguirá denotando $h_{r,d}$. Sin embargo, en lo que sigue será suficiente considerar únicamente su restricción a $\{ 1,2,\ldots,r \}$.
@@ -265,7 +263,7 @@ Específicamente, se tiene $S_1 = \{ 10 \}, S_2 = \{ 5 \}, S_5 = \{ 2, 4, 6, 8 \
     X[5] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[5] = x[10] - x[5] + 4 x[2] - 4 x[1] \\
     X[10] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[10] = x[10] + x[5] + 4 x[2] + 4 x[1]. \\
 \end{align*}
-El cálculo de estos coeficientes se reduce entonces a calcular $c_d[k]$ para cada $d \mid r$ y $k \mid r$. A diferencia de la transformada discreta de Fourier clásica, éstos cálculos no requieren la implementación de las funciones $\sin$ y $\cos$. Las sumas de Ramanujan se puede implementar o bien usando la \Cref{prop:ram0}, implementando sólo la función de Möbius, una una suma condicional y el máximo común divisor, o bien utilizando la fórmula cerrada sin sumatorias \ref{lem:holder} (fórmula de Hölder), pero implementando la función de Möbius, la función $\varphi$ de Euler y el máximo común divisor.
+El cálculo de estos coeficientes se reduce a calcular $c_d[k]$ para cada $d \mid r$ y $k \mid r$. A diferencia de la transformada discreta de Fourier clásica, éstos cálculos no requieren la implementación de las funciones $\sin$ y $\cos$. Las sumas de Ramanujan se puede implementar o bien usando la \Cref{prop:ram0}, implementando sólo la función de Möbius, una una suma condicional y el máximo común divisor, o bien utilizando la fórmula cerrada sin sumatorias \ref{lem:holder} (fórmula de Hölder), pero implementando la función de Möbius, la función $\varphi$ de Euler y el máximo común divisor.
 \end{example}
 
 \begin{example}
@@ -276,17 +274,17 @@ Suponga que se quiere obtener una señal simétrica $x$ módulo $3$ tal que $x[1
 \end{align*}
 Utilizando la fórmula de reconstrucción, se puede escribir
 \begin{equation*}
-x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1}{3} \left( 5 c_1[n] + 2 c_3[n] \right), \forall n \in \mathbb{Z}.
+x[n] = \frac{1}{3} \sum_{d \mid 3} X \left[ \frac{3}{d} \right] c_d[n] = \frac{1}{3} \left( 5 c_1[n] + 2 c_3[n] \right), \forall n \in \mathbb{Z},
 \end{equation*}
 
-Se puede calcular también su transformada discreta de Fourier usando la \cref{prop:fou4} para todo entero $k$,
+y se puede ver la gráfica de $x$ en la \Cref{fig:plot1}. Se puede calcular también su transformada discreta de Fourier usando la \cref{prop:fou4} para todo entero $k$,
 \begin{equation*}
     X[k] = \sum_{d \mid 3} x \left[ \frac{3}{d} \right] c_d[k] = 3 c_1[k] + c_3[k], \forall k \in \mathbb{Z}.
 \end{equation*}
 La gráfica de esta señal se muestra en la \Cref{fig:plot2}.
 \end{example}
 
-De acuerdo a la \Cref{prop:real}, como $x$ sólo toma valores reales entonces $X$ sólo toma valores reales. Se puede observar en la \Cref{fig:plot2} que $X[1] = X[2] = 2$ y $X[3] = 5$. Calculando la transformada de forma clásica usando la fórmula \eqref{eq:analysis}, se tiene
+De acuerdo a la \Cref{prop:real}, como $x$ sólo toma valores reales, se tiene que $X$ sólo toma valores reales. Se puede observar en la \Cref{fig:plot2} que $X[1] = X[2] = 2$ y $X[3] = 5$, y esto se puede verificar calculando la transformada de forma clásica usando la fórmula \eqref{eq:analysis},
 \begin{align*}
     X[1] & = \sum_{n=1}^{3} x[n] W_3^{n \cdot 1} = x[1] e^{-j(2 \pi / 3) \cdot 1} + x[2] e^{-j(2 \pi / 3) \cdot 2} + x[3] e^{-j(2 \pi / 3) \cdot 3} \\
          & = \left( -\frac{1}{2} - \frac{\sqrt{3}}{2} i \right) + \left(  -\frac{1}{2} + \frac{\sqrt{3}}{2} i \right) + 3 = -1 + 3 = 2
@@ -296,7 +294,7 @@ De acuerdo a la \Cref{prop:real}, como $x$ sólo toma valores reales entonces $X
          & = \left( -\frac{1}{2} + \frac{\sqrt{3}}{2} i \right) + \left(  -\frac{1}{2} - \frac{\sqrt{3}}{2} i \right) + 3 = -1 + 3 = 2
 \end{align*}
 \begin{align*}
-    X[1] = \sum_{n=1}^{3} x[n] W_3^{n \cdot 2} & = x[1] e^{-j(2 \pi / 3) \cdot 3} + x[2] e^{-j(2 \pi / 3) \cdot 6} + x[3] e^{-j(2 \pi / 3) \cdot 9} \\
+    X[3] = \sum_{n=1}^{3} x[n] W_3^{n \cdot 2} & = x[1] e^{-j(2 \pi / 3) \cdot 3} + x[2] e^{-j(2 \pi / 3) \cdot 6} + x[3] e^{-j(2 \pi / 3) \cdot 9} \\
                                                & = 1 + 1 + 3 = 5
 \end{align*}
 
