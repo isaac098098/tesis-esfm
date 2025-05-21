@@ -6,7 +6,7 @@
 \markboth{Introducción}{Introducción}
 \addcontentsline{toc}{section}{Introducción}
 
-En 1640 Fermat afirmó que poseía una demostración del hecho de que si $p$ es un número primo y $x$ es cualquier entero no divisible por $p$, entonces $x^{p-1}-1$ es divisible por $p$. Ahora llamado Teorema de Fermat, es uno de los teoremas fundamentales de la teoría de números. Este resultado fue generalizado más tarde por Euler en 1760: si $n$ es un entero positivo y $\varphi(n)$ denota el número de enteros positivos no mayores a $n$ que son primos relativos a $n$, entonces $x^{\varphi(n)-1}-1$ es divisible por $n$.
+En 1640 Fermat afirmó que poseía una demostración del hecho de que si $p$ es un número primo y $x$ es cualquier entero no divisible por $p$, entonces $x^{p-1}-1$ es divisible por $p$. Ahora llamado el \emph{pequeño teorema de Fermat}, es uno de los teoremas fundamentales de la teoría de números. Este resultado fue generalizado más tarde por Euler en 1760: si $n$ es un entero positivo y $\varphi(n)$ denota el número de enteros positivos no mayores a $n$ que son primos relativos a $n$, entonces $x^{\varphi(n)-1}-1$ es divisible por $n$.
 Aunque la función $\varphi$ de Euler se definió para enunciar la generalización anterior, ésta posee remarcables propiedades que hacen valer la pena estudiarla por sí misma. Gauss (1801) probó que si $n\in\mathbb{N}$ y $d_1,d_2,\cdots,d_k$ son todos los divisores positivos de $n$, entonces $\varphi(d_1)+\varphi(d_2)+\cdots+\varphi(d_k)=n$.
 \bigskip
 
@@ -21,7 +21,7 @@ Dedekind (1857) probó que si $F(n) = \sum f(d)$, donde $d$ recorre todos los di
 \end{equation*}
 donde las sumas se extienden sobre todas las combinaciónes de los distintos factores primos $a, b, \ldots$ de $n$. Laguerre (1863) expresó la ecuación anterior como
 \begin{equation*}
-    f(n) = \sum \mu \left(  \frac{n}{d} \right) F(d).
+    f(n) = \sum_{d \mid n} \mu \left(  \frac{n}{d} \right) F(d).
 \end{equation*}
 En particular, como $\sum \varphi(d) = n$, se tiene
 \begin{equation*}
@@ -33,7 +33,7 @@ N. V. Bugaiev (1888) consideró la función $\nu(x)$ con valor $\log p$ si $x$ e
 \newpage
 \thispagestyle{easter3}
 
-En 1857 Liouville estableció sin prueba un gran número de identidades interesantes similares a las anteriores, en sus cuatro artículos \emph{Sur quelques functions numeriques}, sobre funciones ariméticas específicas, como la suma y número de divisores de un entero, la función $\varphi$ de Euler, la función de Möbius $\mu$, su propia función $\lambda$, etc. Afirmó que estaba en posesión de un método general de extrema simplicidad, con el que tales identidades se podrían escribir a voluntad. Tales identidades probaron ser un valioso punto de partida para la evaluación asintótica de funciones aritméticas, pero su interés peculiar era más bien  de naturaleza algebráica \cite{Bell1}. 
+En 1857 Liouville estableció sin prueba un gran número de identidades interesantes similares a las anteriores, en sus cuatro artículos \emph{Sur quelques functions numeriques}, sobre funciones ariméticas específicas, como la suma y número de divisores de un entero, la función $\varphi$ de Euler, la función de Möbius $\mu$, su propia función $\lambda$, etc. Afirmó que estaba en posesión de un método general de extrema simplicidad, con el que tales identidades se podrían escribir a voluntad. Tales identidades probaron ser un valioso punto de partida para la evaluación asintótica de funciones aritméticas, pero su interés peculiar era más bien de naturaleza algebraica \cite{Bell1}. 
 \bigskip
 
 En 1911, al buscar pruebas para las fórmulas de Liouville, E. T. Bell construyó un método general con las características deseadas y lo extendió a otros campos además de los números racionales. Aunque Bell tenía intenciones de publicar su teoría completa en 1915, no fue sino hasta 1927 que una introducción desde un punto de vista lógico fue publicada en \cite{Bell2}. En lo concerniente a los \textit{enteros racionales}, terminología de la época para referirse a los números enteros, en 1912 y 1915 \cite{Bell1}, probó el teorema de inversión de Möbius, el cuál es un análogo a la inversión de series de Möbius en un contexto puramente aritmético y lo aplicó a numerosos ejemplos.

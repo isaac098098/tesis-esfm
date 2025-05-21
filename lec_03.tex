@@ -50,9 +50,9 @@ pues $b \le m/d$ implica que $d<a$ y $f(d)=0$. Pero esto contradice la elección
     \min \{ \mathcal{N}(f),\mathcal{N}(g) \}=a \le \min \{ n \std (f+g)(n) \ne 0 \}=\mathcal{N}(f+g).
 \end{equation*}
 
-({\scshape \romannumeral 4}) Supóngase de nuevo sin pérdida de generaliad que $a<b$. Entonces
+({\scshape \romannumeral 4}) Supóngase de nuevo sin pérdida de generalidad que $a<b$. Entonces
 \begin{equation*}
-	(f+g)(a) = f(a) + f(a) = f(a) + 0 = f(a) \ne 0,
+	(f+g)(a) = f(a) + g(a) = f(a) + 0 = f(a) \ne 0,
 \end{equation*}
 por tanto, $N(f+g) \le a = \min \{ a,b \}=\min \{ \mathcal{N}(f),\mathcal{N}(g) \}$. El resultado se sigue ahora del punto ({\scshape \romannumeral 3}).
 
@@ -314,7 +314,7 @@ El isomorfismo buscado es
     L : (P,*) & \longrightarrow (\mathcal{A}_{\mathbb{R}},+) \\
     f & \longmapsto L f
 \end{align*}
-donde $L f(1)=\log(1)$ y $L f(n)=\sum_{d \mid n} \log(d)f(d)f^{-1}(n/d)$ para $n>1$. Se tiene que $L$ es en efecto un homomorfismo, pues para $n=1$ se tiene
+donde $L f(1)=\log(f(1))$ y $L f(n)=\sum_{d \mid n} \log(d)f(d)f^{-1}(n/d)$ para $n>1$. Se tiene que $L$ es en efecto un homomorfismo, pues para $n=1$ se tiene
 \begin{equation*}
     L (f*g)(1) = \log (f*g) (1) = \log(f(1)g(1)) = \log f(1) + \log g(1) = L f(1) + L g(1).
 \end{equation*}

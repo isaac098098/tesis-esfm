@@ -27,7 +27,7 @@ La función $\mu$ de Möbius está definida por $\mu(1)=1$ y dada $n=p_1^{\alpha
 \end{equation*}
 \end{definition}
 
-Una primera forma natural de operar funciones aritméticas es haciéndo su suma o multiplicación puntual, obteniéndo otra función aritmética.
+Una primera forma natural de operar funciones aritméticas es haciendo su suma o multiplicación puntual, obteniendo otra función aritmética.
 
 \begin{definition}
 Si $f,g \in \mathcal{A}$, definimos la \textbf{suma} de $f$ y $g$ como la función \begin{align*}
@@ -148,7 +148,7 @@ Defínanse los conjuntos
 y $\mathcal{E} = \left\{f(a)f(b)f(c) \mid a,b,c\in\mathbb{N} \textrm{ y } a b c=n\right\}$. Se tiene que $\mathcal{C}=\mathcal{E}$ y $\mathcal{D}=\mathcal{E}$.
 \bigskip
 
-En efecto, si $f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})$, entonces $c_{i,j}c_{i,m_i+1-j}d_{k+1-i}=d_i d_{k+1-i}=n$, aplicando dos veces el \Cref{lemma:div1}. Recíprocamente, si $a,b,c\in\mathbb{N}$ son tales que $a b c = n$, entonces $c \mid n$, por tanto $c=d_j$, para algún $j=1,\ldots,k$, es decir, $c=d_{k+1-i}$ para $i=k+1-j$ con $i=1,\ldots,k$. Notemos entonces que por el \Cref{lemma:div1}, necesariamente se debe tener $a b=d_i$, por lo que $a=c_{i,j}$, para algún $j=1,\ldots,m_i$ y aplicando el lema de nuevo se debe tener que $b=c_{i,m_i+1-j}$. En consecuencia $f(a)g(b)h(c)=f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})\in \mathcal{C}$. Se sigue pues que $\mathcal{C}=\mathcal{E}$. Similarmente se demuestra que $\mathcal{D}=\mathcal{E}$.
+En efecto, si $f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i}) \in \mathcal{C}$, entonces $c_{i,j}c_{i,m_i+1-j}d_{k+1-i}=d_i d_{k+1-i}=n$, aplicando dos veces el \Cref{lemma:div1}. Recíprocamente, si $a,b,c\in\mathbb{N}$ son tales que $a b c = n$, entonces $c \mid n$, por tanto $c=d_j$, para algún $j=1,\ldots,k$, es decir, $c=d_{k+1-i}$ para $i=k+1-j$ con $i=1,\ldots,k$. Notemos entonces que por el \Cref{lemma:div1}, necesariamente se debe tener $a b=d_i$, por lo que $a=c_{i,j}$, para algún $j=1,\ldots,m_i$ y aplicando el lema de nuevo se debe tener que $b=c_{i,m_i+1-j}$. En consecuencia $f(a)g(b)h(c)=f(c_{i,j})g(c_{i,m_i+1-j})h(d_{k+1-i})\in \mathcal{C}$. Se sigue pues que $\mathcal{C}=\mathcal{E}$. Similarmente se demuestra que $\mathcal{D}=\mathcal{E}$.
 \bigskip
 
 Se tiene pues que $\mathcal{C}=\mathcal{D}$ y como las sumas \eqref{eqn:sum1} y \eqref{eqn:sum2} se extienden sobre los conjuntos $\mathcal{C}$ y $\mathcal{D}$, entonces deben coincidir, es decir, $((f*g)*h)(n)=(f*(g*h))(n)$.

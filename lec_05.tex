@@ -80,7 +80,7 @@ Para toda $n \in \mathbb{N}$ se tiene que
 Por la \Cref{prop:mob2} se tiene que la suma $\sum_{d \mid k} \mu(d)$ es igual a $1$ si $k=1$ e igual a 0 en otro caso, luego por la proposición anterior,
 \begin{align*}
     c_r(n) = \sum_{\substack{a=1 \\ (a,r)=1}}^{r} e^{i(2 \pi/r) a n} & = \sum_{a=1}^{r} e^{i(2 \pi / r) a n} \left( \sum_{d \mid (a,r)} \mu(d) \right) = \sum_{\substack{d \mid a \\ d \mid r}} \sum_{a=1}^{r}  \mu(d) e^{i(2 \pi / r) a n} \\
-           & = \sum_{d \mid r} \mu(d) \sum_{\substack{d \mid a \\ 1 \le a \le r}} e^{i(2 \pi / r) a n} = \sum_{d \mid r} \mu(d) \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n} \\
+           & = \sum_{d \mid r} \mu(d) \sum_{\substack{d \mid a \\ 1 \le a \le r}} e^{i(2 \pi / r) a n} = \sum_{d \mid r} \mu(d) \sum_{b=1}^{r/d} e^{i (2 \pi / (r/d)) b n}.
 \end{align*}
 El valor de la suma interior depende de si $r/d$ divide a $n$ o no. Si lo hace, cada uno de sus términos es igual a 1 y por tanto la suma vale $r/d$. Si este no es el caso se puede sumar,
 \begin{align*}
@@ -108,8 +108,8 @@ Algunas propiedades de la sumas de Ramanujan son las siguientes:
 \item Si $p$ es primo y $m$ es un entero positivo, entonces
     \begin{equation*}
         c_{p^m}(n) = \begin{cases}
-            \hfil p^m - p^{m-1} & \text{si } p^m \mid n \\
-            \hfil -p^{m-1} & \text{si } p^{m-1} \text{ pero } p^m \centernot\mid n \\
+            \hfil p^m - p^{m-1} & \text{si } p^m \mid n, \\
+            \hfil -p^{m-1} & \text{si } p^{m-1} \mid n \text{ pero } p^m \centernot\mid n, \\
             \hfil 0 & \text{si } p^{m-1} \centernot\mid n.
         \end{cases}
     \end{equation*}
@@ -130,14 +130,14 @@ Algunas propiedades de la sumas de Ramanujan son las siguientes:
     \begin{equation*}
         c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d \le \sum_{d \mid (n,r)} d = \sum_{\substack{d \mid n \\ d \mid r}} d \le \sum_{d \mid n} d, \sum_{d \mid r} d \le \max \{ \sigma(n),\sigma(r) \}.
     \end{equation*}
-\item Defínase, para $r \in \mathbb{N}$ fijo, la función aritmética
+\item Defínase la función aritmética
     \begin{equation*}
         \eta_r(n) = \begin{cases}
             \hfil r & \text{si } r \mid n \\
-            \hfil 0 & \text{en otro caso}.
+            \hfil 0 & \text{en otro caso},
         \end{cases}
     \end{equation*}
-Suponga ahora $n_0 \in \mathbb{N}$ arbitrario pero fijo. Se tiene que la función aritmética $g$ deifnida como $g(r) = \eta_r(n_0), \forall k \in \mathbb{N}$, es multiplicativa. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
+y sea $n_0 \in \mathbb{N}$ arbitrario pero fijo. Se tiene que la función aritmética $g$ deifnida como $g(r) = \eta_r(n_0), \forall r \in \mathbb{N}$, es multiplicativa. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
 \begin{equation*}
     g(r s ) = \eta_{r s}(n_0) = \begin{cases}
         \hfil r s & \text{si } r s \mid n_0 \\
@@ -553,7 +553,7 @@ Basta verificar las siguientes condiciones:
 \begin{enumerate}[label=\textnormal{(\roman*)}]
 \item $\mathcal{A}_r \ne \emptyset$
 \item $f, g \in \mathcal{A}_r$ implica $f+g \in \mathcal{A}_r$
-\item $c \in \mathbb{C}$ y $f \in \mathcal{A}_r$ implica $c f \in \mathcal{A}$.
+\item $c \in \mathbb{C}$ y $f \in \mathcal{A}_r$ implica $c f \in \mathcal{A}_r$.
 \end{enumerate}
 Claro que $\mathbf{0} \in \mathcal{A}_r$. Sea $n \in \mathbb{N}$ y supóngase que $f, g \in \mathcal{A}_r$. Se tiene que $(c f)(n) = c f(n) = c f((n,r)) = (c f)((n,r))$, luego $c f \in \mathcal{A}_r$.
 \bigskip
