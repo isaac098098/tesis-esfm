@@ -5,6 +5,34 @@
 \newpage
 \section{Funciones pares}
 
+\vspace{-10pt}
+\begin{figure}[h]
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth-4pt,
+            height=8.0cm,
+            xmin=-30,
+            xmax=30,
+            ymin=-9,
+            ymax=9,
+            tick style={draw=none},
+            xtick=\empty,
+            ytick=\empty,
+            axis x line=middle,
+            axis line style={-, line width=0.5pt},
+            scale only axis
+        ]
+            \addplot+[black, only marks, mark options={fill=black}, ycomb, mark size=1.5pt] table [col sep=comma] {plots/plot7.csv};
+            \addplot[black, line width=1pt] coordinates {(-30,9) (30,9)};
+            \addplot[black, line width=1pt] coordinates {(-30,-9) (30,-9)};
+        \end{axis}
+    \end{tikzpicture}
+\label{fig:even}
+\end{figure}
+
+\vspace{30pt}
+
 Al estudiar el espacio de funciones aritméticas se puede hacer una analogía con la teoría de Fourier del análisis para funciones periódicas, al considerar la representación de una función periódica como suma de funciones sinusoidales. En este caso, estas funciones osciladoras serán las sumas de Ramanujan $c_r$ en vez de las funciones $\sin$ y $\cos$ del análisis real. Se considerarán las clases de funciones aritméticas pares y periódicas, siendo la primera una subclase propia de la segunda y se probará la existencia de dicha representación solo para las funciones pares.
 
 \begin{remark}
@@ -137,7 +165,7 @@ Algunas propiedades de la sumas de Ramanujan son las siguientes:
             \hfil 0 & \text{en otro caso},
         \end{cases}
     \end{equation*}
-y sea $n_0 \in \mathbb{N}$ arbitrario pero fijo. Se tiene que la función aritmética $g$ deifnida como $g(r) = \eta_r(n_0), \forall r \in \mathbb{N}$, es multiplicativa. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
+y sea $n_0 \in \mathbb{N}$ arbitrario pero fijo. Se tiene que la función aritmética $g$ definida como $g(r) = \eta_r(n_0), \forall r \in \mathbb{N}$, es multiplicativa. En efecto, si $r,s \in \mathbb{N}$ son tales que $(r,s)=1$, entonces
 \begin{equation*}
     g(r s ) = \eta_{r s}(n_0) = \begin{cases}
         \hfil r s & \text{si } r s \mid n_0 \\
@@ -157,8 +185,8 @@ y si $r s \centernot\mid n_0$ entonces $r \centernot\mid n_0$ y $s \centernot\mi
 \end{equation*}
 En cualquier caso, $g(r s) = g(r) g(s)$, luego $g$ es multiplicativa. Considere ahora la función aritmética $f$ definida como $f(r) = c_r(n_0), \forall r \in \mathbb{N}$. Por demostrar que $f = \mu * g$. En efecto, para cada $r \in \mathbb{N}$ se tiene
 \begin{align*}
-    (\mu * g)(r) & = \sum_{d \mid r} \mu \left( \frac{r}{d} \right) g(d) = \sum_{d \mid r} \mu \left( \frac{r}{d} \right) \eta_d(n_0) \\
-                 & = \sum_{\substack{d \mid r \\ d \mid n_0}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n_0,r)} \mu \left( \frac{r}{d} \right) d = c_r(n_0) = f(r).
+    (\mu * g)(r) & = (g * \mu)(r) = \sum_{d \mid r} g \left( d \right) \mu \left(\frac{r}{d}  \right) \sum_{d \mid r} = \sum_{d \mid r} \mu \left( \frac{r}{d} \right) g(d) \\
+                 &= \sum_{d \mid r} \mu \left( \frac{r}{d} \right) \eta_d(n_0)  = \sum_{\substack{d \mid r \\ d \mid n_0}} \mu \left( \frac{r}{d} \right) d = \sum_{d \mid (n_0,r)} \mu \left( \frac{r}{d} \right) d = c_r(n_0) = f(r).
 \end{align*}
 Se sigue que $f$ es multiplicativa, por ser producto de funciones multiplicativas, que es lo que se quería probar.
 \item Se tienen los siguientes casos

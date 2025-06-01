@@ -4,7 +4,36 @@
 \
 \newpage
 \pagenumbering{arabic}
-\section{Estructura del anillo de funciones aritméticas}
+\section{Anillo de funciones aritméticas}
+
+\vspace{-10pt}
+\begin{figure}[h]
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth-1.5pt,
+            height=8.0cm,
+            ymin=0-20,
+            ymax=996+20,
+            xmin=0-10,
+            xmax=1e3+10,
+            tick style={draw=none},
+            xtick=\empty,
+            ytick=\empty,
+            axis x line=bottom,
+            axis line style={-, line width=1pt},
+            scale only axis
+        ]
+            \addplot+[black, only marks, mark options={fill=black}, mark size=0.8pt] table [col sep=comma] {plots/phi.csv};
+            \addplot[black, line width=1pt] coordinates {(0-10,996+20) (1e3+10,996+20)};
+        \end{axis}
+    \end{tikzpicture}
+\label{fig:phi}
+\end{figure}
+
+\vspace{20pt}
+
+El objeto de estudio de este capítulo serán las \emph{functiones aritméticas} y una forma de de hacer operaciones entre ellas. Estas funciones no son más que funciones con dominio en los naturales, pero históricamente son de interés aquellas que expresan alguna propiedad aritmética de los números en los que toman valores.
 
 \begin{definition}
 Se entenderá como \textbf{función aritmética} a cualquier función $f : \mathbb{N} \longrightarrow \mathbb{C}$. Se denota al conjunto de todas las funciones aritméticas como $\mathcal{A}$.

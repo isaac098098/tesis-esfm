@@ -5,6 +5,34 @@
 \newpage
 \section{Procesamiento de señales}
 
+\vspace{-10pt}
+\begin{figure}[h]
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=\textwidth-4pt,
+            height=8.0cm,
+            xmin=-101,
+            xmax=101,
+            ymin=-0.5,
+            ymax=1.5,
+            tick style={draw=none},
+            xtick=\empty,
+            ytick=\empty,
+            axis x line=none,
+            axis line style={-, line width=0.5pt},
+            scale only axis
+        ]
+            \addplot+[black, only marks, mark options={fill=black}, ycomb, mark size=0.8pt] table [col sep=comma] {plots/plot8.csv};
+            \addplot[black, line width=1pt] coordinates {(-101,-0.5) (101,-0.5)};
+            \addplot[black, line width=1pt] coordinates {(-101,1.5) (101,1.5)};
+        \end{axis}
+    \end{tikzpicture}
+\label{fig:signal}
+\end{figure}
+
+\vspace{30pt}
+
 Una \emph{señal} es una descripción de un fenómeno que evoluciona en el tiempo o espacio; el \emph{procesamiento de señales} se refiere a cualquier operación manual o mecánica que modifique, analice o manipule de otra forma la información contenida en una señal. Considérese, por ejemplo, la temperatura ambiente; se puede medir su evolución con el tiempo de muchas formas y los datos resultantes representan una ``señal'' de temperatura. Algunas operaciones sobre esta señal se pueden hacer incluso a mano, por ejemplo calcular la temperatura promedio en un mes o graficar la señal en una hoja de papel.
 
 \bigskip

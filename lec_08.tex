@@ -13,13 +13,13 @@ El siguiente programa se utilizó para generar la \Cref{fig:plot6}. El archivo e
 #include <stdlib.h>
 #include <math.h>
 
-\\maximo comun divisor
+// maximo comun divisor
 
 int mcd(int a, int b) {
     return b == 0 ? a > 0 ? a : -a : mcd(b, a % b);
 }
 
-\\suma sobre divisores
+// suma sobre divisores
 
 int dsum(int n) {
     int sum=0;
@@ -29,7 +29,7 @@ int dsum(int n) {
     return sum;
 }
 
-\\funcion de mobius
+// funcion de mobius
 
 int mob(int n) {
     int p=0;
@@ -53,7 +53,7 @@ int mob(int n) {
     return (p % 2 == 0) ? 1 : -1;
 }
 
-\\suma de ramanujan modulo r
+// suma de ramanujan modulo r
 
 int ram(int r, int n) {
     int sum=0;
@@ -64,7 +64,7 @@ int ram(int r, int n) {
     return sum;
 }
 
-\\programa principal
+// programa principal
 
 int main(int argc, char** argv) {
     FILE* div=fopen("div.csv", "w");

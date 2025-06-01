@@ -32,6 +32,7 @@
 \usepackage{esvect} %better vector arrows
 \usepackage{leftindex} %left indexes
 \usepackage{centernot} %centernot symbols
+\usepackage{pdfpages} %insert pdf pages
 
 %Formatting
 \usepackage[hyphens]{url} %hyperlinks in bibliography
@@ -123,14 +124,18 @@
 
 %Section formatting, depends on titlesec
 
-\titlespacing*{\section}{0cm}{0.7cm}{0.45cm}
+\newcommand\chaptername{Chapter}
+\titleformat{\section}[display]{\normalfont\Large\bfseries \sffamily}{\textsc{\chaptername\ } \thesection}{15pt}{\huge}
+\titlespacing*{\section}{0pt}{50pt}{20pt}
+
+% \titlespacing*{\section}{0cm}{0.7cm}{0.45cm}
 \titlespacing*{\subsection}{0em}{0.7cm}{0.7cm}
 \titlespacing*{\subsubsection}{0em}{0.7cm}{0.7cm}
 %use * to apply to all instances
 %\titlespacing*{sec}{left spacing}{above spacing}{below spacing}
 
-\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\bfseries\large}{\thesubsection.}{0.5em}{}
+% \titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\Large}{\thesubsection.}{1em}{}
 \titleformat{\subsubsection}{\bfseries\large}{\thesubsubsection.}{0.5em}{}
 %titleformat{sec}{format}{number format}{number to title spacing}{prenote (between number and title)}
 \renewcommand{\thesection}{\arabic{section}} %section number format
@@ -142,20 +147,21 @@
 %toc
 %does not affect section titles in the document body
 
-\addto{\captionsspanish}{\renewcommand{\contentsname}{\bfseries Índice general \vspace{0.5cm}}} %babel, toc title format
+\addto{\captionsspanish}{\renewcommand{\contentsname}{\bfseries \sffamily Índice general \vspace{15pt}}} %babel, toc title format
 %use addto to add title to spanish title definitions
 %use captionenglish otherwise
-\renewcommand{\cfttoctitlefont}{\Large} %toc title format
-\renewcommand{\cftsecfont}{\bfseries} %section entry format
-\renewcommand{\cftsecpagefont}{} %section entry number format
-\renewcommand{\cftsubsecpagefont}{} %subsection entry number format
+\renewcommand{\cfttoctitlefont}{\huge} %toc title format
+\renewcommand{\cftsecfont}{\sffamily} %section entry format
+\renewcommand{\cftsecpagefont}{\sffamily} %section entry number format
+\renewcommand{\cftsubsecfont}{\sffamily} %subsection entry format
+\renewcommand{\cftsubsecpagefont}{\sffamily} %subsection entry number format
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} %dot leaders (dot lines)
 \renewcommand{\cftsecaftersnum}{.} %dot after section number
 \renewcommand{\cftsubsecaftersnum}{.} %dot after subsection number
 %\renewcommand{\cftsecnumwidth}{0pt} %horizontal space after section number
 %\renewcommand{\cftsubsecnumwidth}{0pt} %horizontal space after subsection number
-%\renewcommand{\cftsecafterpnum}{\vskip0pt} %vertical spacing between sections
-%\renewcommand{\cftsecafterpnum}{\vskip0pt} %vertical spacing between subsections
+\renewcommand{\cftsecafterpnum}{\vskip0pt} %vertical spacing between sections
+\renewcommand{\cftsecafterpnum}{\vskip0pt} %vertical spacing between subsections
 %\addtocontents{toc}{\vspace{-0.5cm}} %vertical spacing after title
 
 %Bibliography, cites and index
