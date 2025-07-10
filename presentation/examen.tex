@@ -1,0 +1,100 @@
+\documentclass{beamer}
+\usetheme{metropolis}
+\title{Anillo de funciones aritméticas}
+\author{José Luis Juanico}
+\date{Julio 11, 2025}
+\institute{ESFM-IPN}
+
+\begin{document}
+
+\maketitle
+\pagestyle{empty}
+
+\section{Convolución de Dirichlet}
+\begin{frame}{Funciones aritméticas}
+    Dedekind (1857): si $F(n) = \sum f(d)$, donde $d$ recorre todos los divisores positivos de $n$, entonces
+    \begin{equation*}
+        f(n) = F(n) - \sum F \left( \frac{n}{a} \right) + \sum F \left( \frac{n}{a b} \right) - \sum F \left( \frac{n}{a b c} \right) + \cdots,
+    \end{equation*}
+    donde las sumas recorre las combinaciones de primos $a, b, \ldots$ de $n$.
+\end{frame}
+
+\begin{frame}{Funciones aritméticas}
+    Laguerre (1863) expresó esto en la notación
+    \begin{equation*}
+        f(n) = \sum_{d \mid n} \mu \left( \frac{n}{d} \right) F(d)
+    \end{equation*}
+    y fue el primero en usarla. Donde $\mu(1) = 1$, $\mu(p_1 p_2 \cdots p_k) = (-1)^k$ y $\mu(n) = 0$ si $n$ es divisible por algún cuadrado (Möbius).
+\end{frame}
+
+\begin{frame}{Formalización algebraica}
+    \begin{align*}
+        & \sum_{d \mid n} \mu(d) = 0, \text{si } n > 1 && \text{(Mertens, 1874)} \\
+        & \sum_{d \mid n} \varphi(d) = n && \text{(Gauss, 1801)} \\
+        & \sum_{d \mid n} \mu(d) \frac{n}{d} = \varphi(d) && \text{(Laguerre, 1863)}.
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Formalización algebraica}
+    Liouville, J. \emph{Sur quelque functions numeriques}.
+
+    Bell, E. T. \emph{Outline of a theory of arithmetical functions in their algebraic aspects}.
+\end{frame}
+
+\begin{frame}{Convolución de Dirichlet}
+    \begin{equation*}
+        \sum_{d \mid n} f(d) g \left( \frac{n}{d} \right) : = (f * g)(n)
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Convolución de Dirichlet}
+    \begin{equation*}
+        \sum_{d \mid n} f(d) g \left( \frac{n}{d} \right) : = (f * g)(n)
+    \end{equation*}
+    \begin{equation*}
+         f(n) + g(n) : = (f + g)(n)
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Anillo de funciones aritméticas}
+    \begin{itemize}
+    \item $(\mathcal{A},+,*)$ es un álgebra conmutativa con identidad sobre el campo $\mathbb{C}$ (o $\mathbb{C}$-álgebra).
+    \item $(\mathcal{A},+)$ es un espacio vectorial sobre $\mathbb{C}$.
+    \item $(\mathcal{A},+,*)$ es un dominio entero.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elementos irreducibles y primos}
+    \begin{itemize}
+    \item $f \in \mathcal{A}$ es invertible si y sólo si $f(1) \ne 0$.
+    \item $\mathcal{N}(f) = p$ primo implica que $f$ es irreducible en $\mathcal{A}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Anillo de funciones aritméticas}
+    \begin{itemize}
+    \item $\mathcal{A}$ es un dominio de factorización.
+    \item $\mathcal{A}$ es un dominio de factorización única (DFU).
+    \item $\mathcal{A}$ es un anillo local.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elementos irreducibles y primos}
+    Corolario:
+    \begin{itemize}
+    \item $f$ es primo en $\mathcal{A}$ si y sólo si $f$ es irreducible en $\mathcal{A}$.
+    \end{itemize}
+    Podríamos haber ahorrado trabajo probando que $\mathcal{A}$ es un dominio de ideales principales, pues todo DIP es un DFU. Este no es el caso.
+\end{frame}
+
+\begin{frame}{Condición de la cadena ascendente}
+    $\mathcal{A}$ cumple una versión débil de la cadena ascendente: si $(f_1) \subset (f_2) \subset (f_3) \subset \cdots$ y $f_i \nsim f_{i+1}, \forall i \in \mathbb{N}$ (no son asociados), entonces existe $n \in \mathbb{N}$ tal que $(f_i) = (f_n), \forall i \ge n$.
+\end{frame}
+
+\begin{frame}{Condición de la cadena descendente}
+    A propósito de cadenas descendentes, $\mathcal{A}$ no es Artiniano, como lo muestra la sucesión de ideales $I_n = \{ f \in \mathcal{A} \mid \mathcal{N}(f) \ge n \} \cup \{ \mathbf{0} \}$.
+\end{frame}
+
+\section{Isomorfismos}
+
+\end{document}
