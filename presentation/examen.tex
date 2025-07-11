@@ -97,4 +97,234 @@
 
 \section{Isomorfismos}
 
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{A}_{\mathbb{R}}, +) \cong (P, *)
+    \end{equation*}
+    \begin{equation*}
+        P = \{ f \in \mathcal{A} \mid f(1) > 0 \}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{M}, *) \cong (\mathcal{A}', +)
+    \end{equation*}
+    \begin{equation*}
+        \mathcal{A}' = \{ f \in \mathcal{A}_{\mathbb{R}} \mid f(n) = 0, \forall n \ne p^\alpha, p \text{ primo y } \alpha \in \mathbb{N} \}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{A}_{\mathbb{R}}, +) \cong (\mathcal{A}', +)
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{A}_{\mathbb{R}}, +) \cong (\mathcal{A}_1, +)
+    \end{equation*}
+    \begin{equation*}
+        \mathcal{A}_1 = \{ f \in \mathcal{A} \mid f(1) \in \mathbb{R} \}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{A}_{\mathbb{R}}, +) \cong (\mathcal{A}, +)
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Isomorfismos}
+    \begin{equation*}
+        (\mathcal{A}_{\mathbb{R}}, +) \cong (P, *) \cong (\mathcal{M},*) \cong (\mathcal{A}', +) \cong (\mathcal{A}_1, +) \cong (\mathcal{A}, +)
+    \end{equation*}
+\end{frame}
+
+\section{Funciones pares}
+
+\begin{frame}{Funciones pares módulo $r$}
+    \begin{equation*}
+        f(n) = f((n,r)), \forall n \in \mathbb{N}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Sumas de Ramanujan}
+    \begin{align*}
+        \frac{\sigma(n)}{n} & = \frac{\pi^2}{6} \Bigg( 1 + \frac{(-1)^n}{2^2} + \frac{2 \cos \left( \frac{2}{3} \pi n \right)}{3^2} + \frac{2 \cos \left( \frac{1}{2} \pi n \right)}{4^2} \\
+                            & + \frac{2 \left[ \cos \left( \frac{2}{5} \pi n \right) + \cos \left( \frac{4}{5} \pi n \right) \right]}{5^2} + \frac{2 \cos \left( \frac{1}{3} \pi n \right)}{6^2} + \cdots \Bigg)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Sumas de Ramanujan}
+    \begin{align*}
+        & \frac{\sigma(n)}{n} = \frac{\pi^2}{6} \sum_{r=1}^{\infty} \frac{c_r(n)}{r^2}, \\
+        & c_r(n) = \sum_{\substack{a=1 \\ (a,r) = 1}}^{r} \cos \left( \frac{2 \pi}{r} a n \right)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Sumas de Ramanujan}
+    \begin{equation*}
+        c_r(n) = \sum_{d \mid (n,r)} \mu \left( \frac{r}{d} \right) d
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Funciones pares}
+    \begin{itemize}
+    \item Cualquier función constante
+    \item $(n,r)$
+    \item El número de divisores de $(n,r)$
+    \item $f((n,r))$, donde $f$ es cualquier función aritmética
+    \item $\sum_{d \mid (n,r)} g(d)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Expansión de ``Fourier''}
+    $f$ par módulo $r$ implica
+    \begin{equation*}
+        f(n) = \sum_{d \mid r} \alpha(d) c_d(n), \forall n \in \mathbb{N}
+    \end{equation*}
+    para algunos coeficientes $\alpha$.
+\end{frame}
+
+\begin{frame}{Sumas de Ramanujan}
+    \centering
+    $\mathcal{B}_r = \{ c_d \}_{d \mid r}$ es una base de $\mathcal{A}_r$
+
+    ¡$\mathcal{A}_r$ tiene dimensión $\tau(r)$!
+\end{frame}
+
+\begin{frame}{Sumas de Ramanujan}
+    $\mathcal{A}_r$ también tiene producto interno
+    \begin{equation*}
+        \langle f, g \rangle = \sum_{d \mid r} \varphi(d) f \left( \frac{r}{d} \right) \overline{g \left( \frac{r}{d} \right)}
+    \end{equation*}
+    y
+    \begin{equation*}
+        \mathcal{B}'_r = \left\{ \frac{1}{\sqrt{r \varphi(d)}} c_d \right\}
+    \end{equation*}
+    es una base ortonormal de $\mathcal{A}_r$.
+\end{frame}
+
+\section{Aplicaciones}
+
+\begin{frame}{Señal}
+    \begin{equation*}
+        x : \mathbb{Z} \longrightarrow \mathbb{C}
+    \end{equation*} 
+\end{frame}
+
+\begin{frame}{Señal periódica con periodo $r$}
+    \begin{equation*}
+        x[n] = x[n + k r], \forall n, k \in \mathbb{Z}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Señal simética módulo $r$}
+    \begin{equation*}
+        x[n] = x[n - r], \forall n \in \mathbb{Z}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Señal par módulo $r$}
+    \begin{equation*}
+        x[n] = x[(n,r)], \forall n \in \mathbb{Z}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Implicaciones}
+    Toda señal par módulo $r$ es simétrica módulo $r$ y también periódica módulo $r$.
+\end{frame}
+
+\begin{frame}{Transformada Discreta de Fourier}
+    \begin{equation*}
+        X[k] = \sum_{n=1}^{r} x[n] W_r^{n k}, k = 1,\ldots,r,
+    \end{equation*}
+    \begin{equation*}
+        x[n] = \frac{1}{r} \sum_{k=1}^{r} X[k] W_r^{-n k}, n \in \mathbb{Z},
+    \end{equation*}
+    con $W_r = e^{-j (2 \pi / r)}$ y $x$ periódica con periodo $r$.
+\end{frame}
+
+\begin{frame}{Sistemas de residuos}
+    Si $d$ es un divisor positivio de $r$, se define
+    \begin{equation*}
+        S_d = \left\{ \left( \frac{r}{d} \right) \alpha \mid (\alpha, d) = 1, 1 \le \alpha \le d \right\}.
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Sistemas de residuos}
+    \begin{equation*}
+        \bigcup_{d \mid r} S_d = \{ 1,2,\ldots,r \} \hspace{2.5em} (\text{Gauss, 1801})
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Funciones indicadoras}
+    Se define
+    \begin{equation*}
+        h_{r,d}[n] = \begin{cases}
+            \hfil 1 & \text{si } n \in S_d \\
+            \hfil 0 & \text{en otro caso.}
+        \end{cases}
+    \end{equation*}
+    Para $n \in \{ 1,\ldots,r \}$. Se puede extender a todo $\mathbb{Z}$ haciendo $n$ módulo $r$ y la señal $h_{r,d}$ se vuelve par.
+\end{frame}
+
+\begin{frame}{Funciones indicadoras}
+    Los coeficientes de Fourier clásicos para las funciones $h_{r,d}$, para $d$ divisor de $r$ fijo, están dados por:
+    \begin{equation*}
+        H_{r,d}[k] = c_d[k], k=1,\ldots,r.
+    \end{equation*}
+    ¡Sus coeficientes son las sumas de Ramanujan módulo $d$! Conexión entre Gauss y Ramanujan.
+\end{frame}
+
+\begin{frame}{Corolarios}
+    Si $x$ es par módulo $r$, entonces sus coeficientes de Fourier clásicos están dados por:
+    \begin{equation*}
+        X[k] = \sum_{d \mid r} x \left[ \frac{r}{d} \right] c_d[k], k=1,\ldots,r.
+    \end{equation*}
+    Más aún,
+    \begin{equation*}
+        x[n] = \frac{1}{r} \sum_{d \mid r} X \left[ \frac{r}{d} \right] c_d[n], \forall n \in \mathbb{Z}.
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Ejemplo}
+    Si por ejemplo, supóngase que se tiene una señal par módulo $10$ y se quiere calcular sus Transformada Discreta Fourier. Se tiene que los sistemas de residuos de 10 son:
+    \begin{align*}
+        S_1 & = \{ 10 \} \\
+        S_2 & = \{ 5 \} \\
+        S_5 & = \{ 2, 4, 6, 8 \} \\
+        S_{10} & = \{ 1, 3, 5, 7 \} 
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Ejemplo}
+    Luego
+    {\scriptsize
+    \begin{align*}
+        X[1] = X[3] = X[5] = X[7] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[1] = x[10] - x[5] - x[2] + x[1] \\
+        X[2] = X[4] = X[6] = X[8] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[2] = x[10] + x[5] - x[2] - x[1] \\
+        X[5] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[5] = x[10] - x[5] + 4 x[2] - 4 x[1] \\
+        X[10] & = \sum_{d \mid 10} x \left[ \frac{10}{d} \right] c_d[10] = x[10] + x[5] + 4 x[2] + 4 x[1] \\
+    \end{align*}}
+    Entonces, para obtener el valor de su transformada en cualquier entero basta conocer los valores de $X[1], X[2], X[5], X[10]$.
+\end{frame}
+
+\begin{frame}{Ejemplo}
+    \begin{equation*}
+        \begin{bmatrix}
+        1 & -1 & -1 & 1 \\
+        1 & 1 & -1 & -1 \\
+        1 & -1 & 4 & -4 \\
+        1 & 1 & 4 & 4 \\
+        \end{bmatrix}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}[standout]
+¡Gracias!
+\end{frame}
+
 \end{document}
